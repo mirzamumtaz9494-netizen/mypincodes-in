@@ -21,23 +21,24 @@ const popularCities = [
 ];
 ---
 
-<section class="relative bg-gradient-to-b from-brand-900 via-brand-800 to-slate-900 text-white pt-12 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-  <!-- Subtle decorative background blobs -->
+<section class="relative bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white pt-12 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+  <!-- Subtle decorative background blobs in Brand Green and Accent Gold -->
   <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
   <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
   <div class="relative max-w-4xl mx-auto text-center space-y-6">
     
-    <!-- Trust Pill -->
-    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-800/80 border border-brand-700/60 text-xs font-medium text-brand-200">
-      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-      Official India Post Directory • 2026 Updated
+    <!-- Trust Pill matching Logo colors -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pinDark-800/90 border border-slate-700/80 text-xs font-medium text-slate-200 shadow-sm">
+      <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-accent-500 text-pinDark-950 text-[10px] font-bold">⚡</span>
+      <span class="text-white font-semibold">India Postal Data Reference</span>
+      <span class="text-slate-400">• 2026 Updated</span>
     </div>
 
     <!-- Main Headline -->
     <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-      {headline}
+      Instant India <span class="text-brand-400">PIN Code</span> & Post Office Finder
     </h1>
 
     <!-- Subtitle -->
@@ -47,9 +48,9 @@ const popularCities = [
 
     <!-- Search Input Box -->
     <div class="relative max-w-2xl mx-auto mt-8 text-left">
-      <div class="relative flex items-center bg-white rounded-2xl shadow-2xl p-2 focus-within:ring-4 focus-within:ring-accent-500/40 transition-all">
-        <div class="pl-3.5 pr-2 text-slate-600">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="relative flex items-center bg-white rounded-2xl shadow-2xl p-2 focus-within:ring-4 focus-within:ring-brand-500/40 transition-all">
+        <div class="pl-3.5 pr-2 text-slate-400">
+          <svg class="w-6 h-6 text-pinDark-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
         </div>
@@ -59,14 +60,14 @@ const popularCities = [
           id="globalSearchInput" 
           placeholder="Enter 6-digit PIN (e.g. 560001) or Area / Post Office name..."
           autocomplete="off"
-          class="w-full text-slate-900 placeholder-slate-600 text-base sm:text-lg py-2.5 px-2 bg-transparent focus:outline-none"
+          class="w-full text-slate-900 placeholder-slate-400 text-base sm:text-lg py-2.5 px-2 bg-transparent focus:outline-none"
         />
 
         <button 
           id="searchSubmitBtn" 
           class="hidden sm:inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-semibold text-sm shadow-md transition-all active:scale-95"
         >
-          Find PIN
+          <span class="mr-1 text-accent-300 font-bold">⚡</span> Find PIN
         </button>
       </div>
 
@@ -85,30 +86,30 @@ const popularCities = [
       {popularCities.map((c) => (
         <a 
           href={`/pincode/${c.pin}`}
-          class="px-2.5 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 hover:border-slate-500 transition-colors"
+          class="px-2.5 py-1 rounded-full bg-pinDark-800/90 border border-slate-700 text-slate-300 hover:text-white hover:border-brand-500 hover:bg-pinDark-800 transition-colors"
         >
           {c.name}
         </a>
       ))}
     </div>
 
-    <!-- Micro Stats Row -->
-    <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center border-t border-brand-800/60 max-w-3xl mx-auto">
+    <!-- Micro Stats Row with Brand Colors -->
+    <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center border-t border-slate-800 max-w-3xl mx-auto">
       <div>
         <div class="text-2xl font-bold text-white tracking-tight">157,126+</div>
-        <div class="text-xs text-brand-300">Post Offices</div>
+        <div class="text-xs text-brand-300 font-medium">Post Offices</div>
       </div>
       <div>
         <div class="text-2xl font-bold text-white tracking-tight">19,300+</div>
-        <div class="text-xs text-brand-300">Unique PIN Codes</div>
+        <div class="text-xs text-brand-300 font-medium">Unique PIN Codes</div>
       </div>
       <div>
         <div class="text-2xl font-bold text-white tracking-tight">737</div>
-        <div class="text-xs text-brand-300">Postal Districts</div>
+        <div class="text-xs text-brand-300 font-medium">Postal Districts</div>
       </div>
       <div>
         <div class="text-2xl font-bold text-white tracking-tight">36</div>
-        <div class="text-xs text-brand-300">States & UTs</div>
+        <div class="text-xs text-brand-300 font-medium">States & UTs</div>
       </div>
     </div>
 
@@ -123,7 +124,6 @@ const popularCities = [
   const dropdown = document.getElementById('searchResultsDropdown');
   const resultsList = document.getElementById('searchResultsList');
 
-  // Lazy-load compact search index on first user focus
   async function loadSearchIndex() {
     if (searchData || isFetching) return;
     isFetching = true;
@@ -147,16 +147,13 @@ const popularCities = [
         return;
       }
 
-      if (!searchData) {
-        // Still loading index
-        return;
-      }
+      if (!searchData) return;
 
       const isDigitsOnly = /^\d+$/.test(query);
       const matches = [];
 
       for (let i = 0; i < searchData.length; i++) {
-        const item = searchData[i]; // [pin, office, district, state]
+        const item = searchData[i];
         const pin = item[0];
         const office = item[1].toLowerCase();
         const dist = item[2].toLowerCase();
@@ -178,14 +175,12 @@ const popularCities = [
       renderResults(matches, query);
     });
 
-    // Close on outside click
     document.addEventListener('click', (e) => {
       if (!input.contains(e.target as Node) && dropdown && !dropdown.contains(e.target as Node)) {
         dropdown.classList.add('hidden');
       }
     });
 
-    // Enter key navigation
     input.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') {
         const val = input.value.trim();

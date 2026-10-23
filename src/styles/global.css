@@ -10,18 +10,18 @@
   }
 
   body {
-    @apply bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col selection:bg-brand-500 selection:text-white;
+    @apply bg-slate-50 text-slate-900 font-sans min-h-screen flex flex-col selection:bg-brand-600 selection:text-white;
   }
 }
 
 /* Custom subtle patterns & utilities */
 .bg-grid-pattern {
-  background-image: radial-gradient(rgba(148, 163, 184, 0.2) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(148, 163, 184, 0.15) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
 .glass-nav {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }

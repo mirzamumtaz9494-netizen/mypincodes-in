@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <rect width="100" height="100" rx="24" fill="#2563eb" />
-  <path d="M50 20C36.1929 20 25 31.1929 25 45C25 61.5 45 78 50 80C55 78 75 61.5 75 45C75 31.1929 63.8071 20 50 20Z" fill="white" />
-  <circle cx="50" cy="45" r="10" fill="#f97316" />
+  <!-- Outer Dark Pin -->
+  <path d="M50 10C30.67 10 15 25.67 15 45C15 68 45 92 50 94C55 92 85 68 85 45C85 25.67 69.33 10 50 10Z" fill="#1E252B" />
+  <!-- Inner White Circle -->
+  <circle cx="50" cy="45" r="22" fill="#FFFFFF" />
+  <!-- Golden Lightning Bolt -->
+  <path d="M53 28L39 47H49L45 62L61 43H51L55 28H53Z" fill="#F59E0B" />
 </svg>

@@ -10,70 +10,61 @@ const { activePage = 'home' } = Astro.props;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       
-      <!-- Brand Logo -->
-      <a href="/" class="flex items-center gap-2.5 group">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-accent-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-          </svg>
-        </div>
-        <div class="flex flex-col">
-          <span class="text-xl font-extrabold tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">
-            MyPincodes<span class="text-accent-500">.in</span>
-          </span>
-          <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-600 -mt-1">
-            Global Postal & Logistics Hub
-          </span>
-        </div>
+      <!-- Brand Logo using User's Official Logo -->
+      <a href="/" class="flex items-center gap-2 group">
+        <img 
+          src="/logo.png" 
+          alt="MyPincodes.in - India Postal Data Reference" 
+          class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+        />
       </a>
 
       <!-- Desktop Navigation Links -->
       <nav class="hidden lg:flex items-center gap-1">
         <a 
           href="/" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'home' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'home' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
         >
           🇮🇳 India PIN
         </a>
         <a 
           href="/speed-post-calculator" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'calculator' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'calculator' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
         >
           Speed Post
         </a>
         <a 
           href="/address-formatter" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'formatter' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'formatter' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
         >
           Address Label
         </a>
         <a 
           href="/distance-calculator" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'distance' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'distance' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
         >
           Distance
         </a>
         <a 
           href="/us" 
-          class={`px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 ${activePage === 'us' ? 'text-blue-600 bg-blue-50 border border-blue-200' : 'text-slate-700 bg-slate-100 hover:bg-blue-50 hover:text-blue-700'}`}
+          class={`px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 ${activePage === 'us' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-700 bg-slate-100 hover:bg-brand-50 hover:text-brand-700'}`}
         >
           <span>🇺🇸 USA ZIP Hub</span>
-          <span class="px-1.5 py-0.2 rounded bg-blue-600 text-[9px] text-white font-bold">New</span>
+          <span class="px-1.5 py-0.2 rounded bg-accent-500 text-[9px] text-white font-bold">New</span>
         </a>
       </nav>
 
       <!-- Country Toggle Pill -->
-      <div class="hidden sm:flex items-center gap-2 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+      <div class="hidden sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
         <a 
           href="/" 
-          class={`px-2.5 py-1 rounded-lg transition-all ${activePage !== 'us' ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900'}`}
+          class={`px-2.5 py-1 rounded-lg transition-all ${activePage !== 'us' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
         >
           🇮🇳 India
         </a>
         <a 
           href="/us" 
-          class={`px-2.5 py-1 rounded-lg transition-all ${activePage === 'us' ? 'bg-blue-600 text-white shadow-sm' : 'text-slate-500 hover:text-slate-900'}`}
+          class={`px-2.5 py-1 rounded-lg transition-all ${activePage === 'us' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
         >
           🇺🇸 USA
         </a>
@@ -99,15 +90,15 @@ const { activePage = 'home' } = Astro.props;
     <div class="py-2 border-b border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 uppercase">
       <span>Select Region</span>
       <div class="flex gap-2">
-        <a href="/" class="px-2 py-0.5 rounded bg-slate-100 text-slate-800">🇮🇳 India</a>
-        <a href="/us" class="px-2 py-0.5 rounded bg-blue-100 text-blue-800">🇺🇸 USA</a>
+        <a href="/" class="px-2 py-0.5 rounded bg-brand-100 text-brand-800">🇮🇳 India</a>
+        <a href="/us" class="px-2 py-0.5 rounded bg-slate-100 text-slate-800">🇺🇸 USA</a>
       </div>
     </div>
     <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">🇮🇳 India PIN Finder</a>
     <a href="/speed-post-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Speed Post Rate Calculator</a>
     <a href="/address-formatter" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Courier Address Formatter</a>
     <a href="/distance-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PIN-to-PIN Distance Tool</a>
-    <a href="/us" class="block px-3 py-2 rounded-md text-base font-bold text-blue-600 hover:bg-blue-50">🇺🇸 USA ZIP Code & USPS Hub</a>
+    <a href="/us" class="block px-3 py-2 rounded-md text-base font-bold text-brand-700 hover:bg-brand-50">🇺🇸 USA ZIP Code & USPS Hub</a>
   </div>
 </header>
 

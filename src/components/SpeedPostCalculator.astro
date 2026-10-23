@@ -105,30 +105,28 @@ const { defaultDestPin = '' } = Astro.props;
     <button 
       type="button" 
       id="calcRateBtn"
-      class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold text-sm shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2"
+      class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-600 to-brand-700 hover:from-brand-500 hover:to-brand-600 text-white font-bold text-sm shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2"
     >
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-      </svg>
+      <span class="text-accent-300 font-bold">⚡</span>
       Calculate Exact Postage Rate
     </button>
   </div>
 
   <!-- Tariff Result Card -->
-  <div id="tariffResultCard" class="mt-8 bg-slate-900 text-white rounded-2xl p-6 relative overflow-hidden">
+  <div id="tariffResultCard" class="mt-8 bg-pinDark-900 text-white rounded-2xl p-6 relative overflow-hidden border border-slate-800">
     <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-500/10 rounded-full blur-2xl pointer-events-none"></div>
 
     <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-4">
       <div>
         <span class="text-xs uppercase tracking-wider text-brand-400 font-semibold">Speed Post Estimated Cost</span>
         <div class="text-3xl sm:text-4xl font-extrabold text-white mt-1">
-          <span id="totalRateDisplay">₹47.20</span>
+          <span id="totalRateDisplay" class="text-brand-400">₹47.20</span>
           <span class="text-xs font-normal text-slate-400"> (incl. 18% GST)</span>
         </div>
       </div>
       <div class="text-left sm:text-right">
         <span class="text-xs text-slate-400">Estimated Delivery:</span>
-        <div class="text-base font-bold text-emerald-400" id="deliveryTimeDisplay">2 to 4 Working Days</div>
+        <div class="text-base font-bold text-accent-400" id="deliveryTimeDisplay">2 to 4 Working Days</div>
       </div>
     </div>
 
