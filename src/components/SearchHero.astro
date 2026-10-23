@@ -21,28 +21,41 @@ const popularCities = [
 ];
 ---
 
-<section class="relative bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white pt-12 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-  <!-- Subtle decorative background blobs in Brand Green and Accent Gold -->
+<section class="relative bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white pt-14 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+  
+  <!-- Hero Cartoon / Vector Delivery Illustration Banner Background -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden select-none">
+    <img 
+      src="/hero-banner.jpg" 
+      alt="Indian Postal & Courier Delivery Illustration" 
+      class="w-full h-full object-cover object-center opacity-30 md:opacity-35 scale-105 transition-opacity"
+      loading="eager"
+    />
+    <!-- Ambient Gradient Overlay for 100% Readability -->
+    <div class="absolute inset-0 bg-gradient-to-b from-pinDark-950/85 via-pinDark-900/65 to-slate-900/95"></div>
+  </div>
+
+  <!-- Decorative Glowing Brand Blobs -->
   <div class="absolute inset-0 bg-grid-pattern opacity-10 pointer-events-none"></div>
   <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl pointer-events-none"></div>
   <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-accent-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-  <div class="relative max-w-4xl mx-auto text-center space-y-6">
+  <div class="relative max-w-4xl mx-auto text-center space-y-6 z-10">
     
     <!-- Trust Pill matching Logo colors -->
-    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-pinDark-800/90 border border-slate-700/80 text-xs font-medium text-slate-200 shadow-sm">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pinDark-800/90 border border-slate-700/80 text-xs font-medium text-slate-200 shadow-md backdrop-blur-sm">
       <span class="inline-flex items-center justify-center w-4 h-4 rounded-full bg-accent-500 text-pinDark-950 text-[10px] font-bold">⚡</span>
       <span class="text-white font-semibold">India Postal Data Reference</span>
       <span class="text-slate-400">• 2026 Updated</span>
     </div>
 
-    <!-- Main Headline -->
-    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+    <!-- Main Headline with Emerald and Golden accents -->
+    <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white drop-shadow-sm">
       Instant India <span class="text-brand-400">PIN Code</span> & Post Office Finder
     </h1>
 
     <!-- Subtitle -->
-    <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+    <p class="text-base sm:text-lg text-slate-200 max-w-2xl mx-auto leading-relaxed drop-shadow-sm">
       {subheadline}
     </p>
 
@@ -60,7 +73,7 @@ const popularCities = [
           id="globalSearchInput" 
           placeholder="Enter 6-digit PIN (e.g. 560001) or Area / Post Office name..."
           autocomplete="off"
-          class="w-full text-slate-900 placeholder-slate-400 text-base sm:text-lg py-2.5 px-2 bg-transparent focus:outline-none"
+          class="w-full text-slate-900 placeholder-slate-400 text-base sm:text-lg py-2.5 px-2 bg-transparent focus:outline-none font-medium"
         />
 
         <button 
@@ -94,7 +107,7 @@ const popularCities = [
     </div>
 
     <!-- Micro Stats Row with Brand Colors -->
-    <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center border-t border-slate-800 max-w-3xl mx-auto">
+    <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center border-t border-slate-800/80 max-w-3xl mx-auto">
       <div>
         <div class="text-2xl font-bold text-white tracking-tight">157,126+</div>
         <div class="text-xs text-brand-300 font-medium">Post Offices</div>
