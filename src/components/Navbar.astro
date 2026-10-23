@@ -1,0 +1,109 @@
+---
+interface Props {
+  activePage?: string;
+}
+
+const { activePage = 'home' } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 transition-all">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-700 via-brand-600 to-accent-500 flex items-center justify-center text-white shadow-md shadow-brand-500/20 group-hover:scale-105 transition-transform">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-slate-900 group-hover:text-brand-600 transition-colors">
+            MyPincodes<span class="text-accent-500">.in</span>
+          </span>
+          <span class="text-[10px] uppercase tracking-wider font-semibold text-slate-600 -mt-1">
+            India Postal & Utility Hub
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1">
+        <a 
+          href="/" 
+          class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${activePage === 'home' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          PIN Finder
+        </a>
+        <a 
+          href="/speed-post-calculator" 
+          class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${activePage === 'calculator' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          Rate Calculator
+        </a>
+        <a 
+          href="/address-formatter" 
+          class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${activePage === 'formatter' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          Address Formatter
+        </a>
+        <a 
+          href="/distance-calculator" 
+          class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${activePage === 'distance' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          PIN Distance
+        </a>
+        <a 
+          href="/states" 
+          class={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${activePage === 'states' ? 'text-brand-600 bg-brand-50' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          States (36)
+        </a>
+      </nav>
+
+      <!-- Action Button / Search Pill -->
+      <div class="hidden sm:flex items-center gap-3">
+        <a 
+          href="/speed-post-calculator" 
+          class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-accent-50 text-accent-700 border border-accent-200 hover:bg-accent-100 transition-colors"
+        >
+          <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+          Postal Tariff 2026
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button 
+        type="button" 
+        id="mobileMenuBtn" 
+        class="md:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+        aria-label="Toggle navigation menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1 shadow-xl">
+    <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PIN Finder & Search</a>
+    <a href="/speed-post-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Speed Post Rate Calculator</a>
+    <a href="/address-formatter" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Courier Address Formatter</a>
+    <a href="/distance-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PIN-to-PIN Distance Tool</a>
+    <a href="/states" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">All States & Union Territories</a>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobileMenuBtn');
+  const menu = document.getElementById('mobileMenu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>

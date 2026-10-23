@@ -1,0 +1,242 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SpeedPostCalculator from '../../components/SpeedPostCalculator.astro';
+import AddressFormatter from '../../components/AddressFormatter.astro';
+import { getPincodeData, getNearbyPincodes } from '../../utils/postalData';
+
+// On-demand edge rendering via Cloudflare adapter
+export const prerender = false;
+
+const { pincode } = Astro.params;
+
+if (!pincode || !/^\d{6}$/.test(pincode)) {
+  return Astro.redirect('/');
+}
+
+const data = await getPincodeData(pincode);
+
+if (!data) {
+  return Astro.redirect('/');
+}
+
+const nearby = getNearbyPincodes(pincode, data.district, 10);
+const primaryOffice = data.offices[0]?.name || 'Post Office';
+
+// Structured Data for Google Rich Snippets
+const schemaJson = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  name: `${pincode} PIN Code - ${data.district}, ${data.state}`,
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: pincode,
+    addressLocality: data.district,
+    addressRegion: data.state,
+    addressCountry: 'IN'
+  },
+  containsPlace: data.offices.map((off) => ({
+    '@type': 'PostOffice',
+    name: off.name,
+    address: {
+      '@type': 'PostalAddress',
+      postalCode: pincode,
+      addressLocality: data.district,
+      addressRegion: data.state,
+      addressCountry: 'IN'
+    },
+    ...(off.lat && off.lng ? {
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: off.lat,
+        longitude: off.lng
+      }
+    } : {})
+  }))
+};
+---
+
+<Layout 
+  title={`${pincode} PIN Code - ${data.district}, ${data.state} | All Post Offices & Tariffs`}
+  description={`Details for PIN code ${pincode} in ${data.district}, ${data.state}. Covers ${data.offices.length} post offices including ${primaryOffice}. Calculate Speed Post rates and format courier shipping labels.`}
+  activePage="home"
+  schemaJson={schemaJson}
+>
+  <!-- Breadcrumbs -->
+  <div class="bg-slate-100 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-xs text-slate-500 flex items-center gap-2">
+      <a href="/" class="hover:text-brand-600">Home</a>
+      <span>/</span>
+      <a href="/states" class="hover:text-brand-600">States</a>
+      <span>/</span>
+      <a href={`/district/${data.state.toLowerCase().replace(/[^a-z0-9]+/g, '-')}/${data.district.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} class="hover:text-brand-600">
+        {data.district}
+      </a>
+      <span>/</span>
+      <span class="text-slate-800 font-semibold">{pincode}</span>
+    </div>
+  </div>
+
+  <!-- Hero Header for PIN -->
+  <div class="bg-gradient-to-b from-slate-900 to-brand-950 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-xs font-semibold text-brand-400 uppercase tracking-wider mb-3">
+            Postal Index Number (India Post)
+          </div>
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight font-mono text-white flex items-center gap-3">
+            <span>{pincode}</span>
+            <span class="text-base sm:text-lg font-sans font-normal text-slate-300">
+              ({data.district}, {data.state})
+            </span>
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl">
+            Covers {data.offices.length} post office{data.offices.length > 1 ? 's' : ''} under {data.division} in the {data.circle}.
+          </p>
+        </div>
+
+        <!-- Quick Summary Box -->
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-xs space-y-2 shrink-0">
+          <div class="flex justify-between gap-6">
+            <span class="text-slate-400">Postal Circle:</span>
+            <span class="font-semibold text-white">{data.circle}</span>
+          </div>
+          <div class="flex justify-between gap-6">
+            <span class="text-slate-400">Postal Division:</span>
+            <span class="font-semibold text-white">{data.division}</span>
+          </div>
+          <div class="flex justify-between gap-6">
+            <span class="text-slate-400">Postal Region:</span>
+            <span class="font-semibold text-white">{data.region}</span>
+          </div>
+          <div class="flex justify-between gap-6">
+            <span class="text-slate-400">State / UT:</span>
+            <span class="font-semibold text-white">{data.state}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    
+    <!-- Post Offices Table -->
+    <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+      <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-slate-900">
+            Post Offices under PIN Code {pincode} ({data.offices.length})
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">
+            Details including branch category, delivery eligibility, and administrative taluk.
+          </p>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
+            <tr>
+              <th class="p-4">Post Office Name</th>
+              <th class="p-4">Office Type</th>
+              <th class="p-4">Delivery Status</th>
+              <th class="p-4">Division</th>
+              <th class="p-4">Coordinates</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-800">
+            {data.offices.map((off) => (
+              <tr class="hover:bg-slate-50 transition-colors">
+                <td class="p-4 font-semibold text-slate-900 flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-brand-500"></span>
+                  {off.name}
+                </td>
+                <td class="p-4">
+                  <span class={`inline-block px-2 py-0.5 rounded text-[11px] font-bold ${
+                    off.type === 'HO' ? 'bg-purple-100 text-purple-700' :
+                    off.type === 'SO' ? 'bg-blue-100 text-blue-700' :
+                    'bg-slate-100 text-slate-700'
+                  }`}>
+                    {off.type === 'HO' ? 'Head Office (HO)' :
+                     off.type === 'SO' ? 'Sub Office (SO)' :
+                     'Branch Office (BO)'}
+                  </span>
+                </td>
+                <td class="p-4">
+                  <span class={`inline-block px-2 py-0.5 rounded text-[11px] font-semibold ${
+                    off.delivery.toLowerCase().includes('delivery') && !off.delivery.toLowerCase().includes('non')
+                      ? 'bg-emerald-100 text-emerald-800'
+                      : 'bg-amber-100 text-amber-800'
+                  }`}>
+                    {off.delivery}
+                  </span>
+                </td>
+                <td class="p-4 text-slate-600">{data.division}</td>
+                <td class="p-4">
+                  {off.lat && off.lng ? (
+                    <a 
+                      href={`https://maps.google.com/?q=${off.lat},${off.lng}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="text-brand-600 hover:text-brand-800 font-mono font-medium underline"
+                    >
+                      {off.lat}, {off.lng} ↗
+                    </a>
+                  ) : (
+                    <span class="text-slate-400">Not Mapped</span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Pre-filled Speed Post Calculator -->
+    <div>
+      <div class="mb-4">
+        <h2 class="text-xl font-bold text-slate-900">
+          Calculate Speed Post Rate to {pincode}
+        </h2>
+        <p class="text-xs text-slate-500">
+          Estimate exact India Post charges for sending letters or parcels to {data.district}, {data.state}.
+        </p>
+      </div>
+      <SpeedPostCalculator defaultDestPin={pincode} />
+    </div>
+
+    <!-- Pre-filled Courier Address Formatter -->
+    <div>
+      <div class="mb-4">
+        <h2 class="text-xl font-bold text-slate-900">
+          Generate Shipping Label for {pincode}
+        </h2>
+        <p class="text-xs text-slate-500">
+          Format standard postal addresses for deliveries heading to {primaryOffice}.
+        </p>
+      </div>
+      <AddressFormatter defaultPin={pincode} defaultDistrict={data.district} defaultState={data.state} />
+    </div>
+
+    <!-- Nearby / Related PIN codes in the same district -->
+    {nearby.length > 0 && (
+      <div class="bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm">
+        <h2 class="text-base font-bold text-slate-900 mb-4">
+          Other PIN Codes in {data.district}
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          {nearby.map((np) => (
+            <a 
+              href={`/pincode/${np}`}
+              class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-brand-50 hover:text-brand-700 hover:border-brand-300 border border-slate-200 text-xs font-mono font-bold text-slate-700 transition-all"
+            >
+              {np}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </div>
+</Layout>

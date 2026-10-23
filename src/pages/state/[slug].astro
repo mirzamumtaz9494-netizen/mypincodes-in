@@ -1,0 +1,115 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllStates, getDistrictsByState } from '../../utils/postalData';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const states = getAllStates();
+  return states.map((st) => ({
+    params: { slug: st.slug },
+    props: { state: st }
+  }));
+}
+
+const { state } = Astro.props;
+const districts = getDistrictsByState(state.slug);
+
+// Breadcrumbs Schema
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://mypincodes.in'
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'States',
+      item: 'https://mypincodes.in/states'
+    },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: state.name,
+      item: `https://mypincodes.in/state/${state.slug}`
+    }
+  ]
+};
+---
+
+<Layout 
+  title={`${state.name} PIN Code Directory - All Districts & Post Offices`}
+  description={`Browse all ${state.districtsCount} districts, ${state.pincodesCount.toLocaleString('en-IN')} PIN codes, and ${state.officesCount.toLocaleString('en-IN')} post offices in ${state.name}. Official India Post directory.`}
+  activePage="states"
+  schemaJson={breadcrumbSchema}
+>
+  <!-- Breadcrumbs -->
+  <div class="bg-slate-100 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-xs text-slate-500 flex items-center gap-2">
+      <a href="/" class="hover:text-brand-600">Home</a>
+      <span>/</span>
+      <a href="/states" class="hover:text-brand-600">States</a>
+      <span>/</span>
+      <span class="text-slate-800 font-semibold">{state.name}</span>
+    </div>
+  </div>
+
+  <div class="bg-gradient-to-b from-slate-900 to-brand-950 text-white py-12 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-3xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-xs font-semibold text-brand-400 uppercase tracking-wider">
+        State Postal Circle
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        {state.name} PIN Code & Post Office Directory
+      </h1>
+      <p class="text-slate-300 text-sm max-w-xl mx-auto">
+        Complete postal breakdown for {state.districtsCount} districts with {state.pincodesCount.toLocaleString('en-IN')} PIN codes and {state.officesCount.toLocaleString('en-IN')} post offices.
+      </p>
+
+      <div class="pt-6 grid grid-cols-3 gap-4 max-w-sm mx-auto text-center border-t border-slate-800">
+        <div>
+          <div class="text-xl font-bold text-white">{state.districtsCount}</div>
+          <div class="text-xs text-slate-400">Districts</div>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-white">{state.pincodesCount.toLocaleString('en-IN')}</div>
+          <div class="text-xs text-slate-400">PIN Codes</div>
+        </div>
+        <div>
+          <div class="text-xl font-bold text-white">{state.officesCount.toLocaleString('en-IN')}</div>
+          <div class="text-xs text-slate-400">Post Offices</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+      <span>Districts in {state.name} ({districts.length})</span>
+    </h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {districts.map((d) => (
+        <a 
+          href={`/district/${state.slug}/${d.slug}`}
+          class="bg-white p-4 rounded-xl border border-slate-200/80 hover:border-brand-500 hover:shadow-md transition-all group flex items-center justify-between"
+        >
+          <div>
+            <div class="text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+              {d.name}
+            </div>
+            <div class="text-xs text-slate-500 mt-1">
+              {d.pincodes.length} PIN codes • {d.officesCount} offices
+            </div>
+          </div>
+          <span class="text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">→</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>

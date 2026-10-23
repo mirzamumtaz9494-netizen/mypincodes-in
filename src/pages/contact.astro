@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+---
+
+<Layout 
+  title="Contact Us - MyPincodes.in Support & Feedback"
+  description="Get in touch with the MyPincodes.in team for data corrections, API queries, advertising partnerships, or general feedback."
+  activePage="home"
+>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-white rounded-2xl border border-slate-200/80 p-8 sm:p-12 shadow-sm space-y-6">
+      
+      <div class="border-b border-slate-100 pb-6">
+        <span class="text-xs uppercase font-bold text-brand-600 tracking-wider">Reach Out</span>
+        <h1 class="text-3xl font-extrabold text-slate-900 mt-1">
+          Contact Us
+        </h1>
+        <p class="text-slate-500 text-sm mt-2">
+          We welcome questions, data corrections, and partnership inquiries.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+        <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold text-slate-500 uppercase">General Inquiries & Feedback</div>
+          <div class="text-sm font-semibold text-slate-900 mt-1">contact@mypincodes.in</div>
+          <p class="text-xs text-slate-500 mt-2">
+            For general questions, suggestions, or feature requests.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold text-slate-500 uppercase">Data Corrections & Updates</div>
+          <div class="text-sm font-semibold text-slate-900 mt-1">data@mypincodes.in</div>
+          <p class="text-xs text-slate-500 mt-2">
+            Notice a newly upgraded post office or changed boundary? Send official gazette notices here.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-slate-100">
+        <h2 class="text-base font-bold text-slate-900 mb-3">Send Us a Quick Message</h2>
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thank you! Your message has been received.');">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="contactName" class="block text-xs font-semibold text-slate-700 uppercase mb-1">Your Name</label>
+              <input type="text" id="contactName" required placeholder="Full Name" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500" />
+            </div>
+            <div>
+              <label for="contactEmail" class="block text-xs font-semibold text-slate-700 uppercase mb-1">Email Address</label>
+              <input type="email" id="contactEmail" required placeholder="you@domain.com" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500" />
+            </div>
+          </div>
+          <div>
+            <label for="contactSubject" class="block text-xs font-semibold text-slate-700 uppercase mb-1">Subject</label>
+            <input type="text" id="contactSubject" required placeholder="Data correction / Business inquiry / General" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500" />
+          </div>
+          <div>
+            <label for="contactMessage" class="block text-xs font-semibold text-slate-700 uppercase mb-1">Message</label>
+            <textarea id="contactMessage" rows="4" required placeholder="Write your message here..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500"></textarea>
+          </div>
+          <button type="submit" class="px-6 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm shadow-sm transition-all">
+            Send Message
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</Layout>

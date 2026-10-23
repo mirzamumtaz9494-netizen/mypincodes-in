@@ -1,0 +1,254 @@
+[
+  {
+    "name": "Andaman And Nicobar Islands",
+    "slug": "andaman-and-nicobar-islands",
+    "districtsCount": 3,
+    "pincodesCount": 22,
+    "officesCount": 106
+  },
+  {
+    "name": "Andhra Pradesh",
+    "slug": "andhra-pradesh",
+    "districtsCount": 13,
+    "pincodesCount": 1243,
+    "officesCount": 10634
+  },
+  {
+    "name": "Arunachal Pradesh",
+    "slug": "arunachal-pradesh",
+    "districtsCount": 25,
+    "pincodesCount": 49,
+    "officesCount": 308
+  },
+  {
+    "name": "Assam",
+    "slug": "assam",
+    "districtsCount": 33,
+    "pincodesCount": 574,
+    "officesCount": 4011
+  },
+  {
+    "name": "Bihar",
+    "slug": "bihar",
+    "districtsCount": 38,
+    "pincodesCount": 857,
+    "officesCount": 9113
+  },
+  {
+    "name": "Chandigarh",
+    "slug": "chandigarh",
+    "districtsCount": 1,
+    "pincodesCount": 25,
+    "officesCount": 56
+  },
+  {
+    "name": "Chhattisgarh",
+    "slug": "chhattisgarh",
+    "districtsCount": 28,
+    "pincodesCount": 274,
+    "officesCount": 4082
+  },
+  {
+    "name": "Delhi",
+    "slug": "delhi",
+    "districtsCount": 11,
+    "pincodesCount": 97,
+    "officesCount": 564
+  },
+  {
+    "name": "Goa",
+    "slug": "goa",
+    "districtsCount": 2,
+    "pincodesCount": 88,
+    "officesCount": 258
+  },
+  {
+    "name": "Gujarat",
+    "slug": "gujarat",
+    "districtsCount": 33,
+    "pincodesCount": 1010,
+    "officesCount": 8868
+  },
+  {
+    "name": "Haryana",
+    "slug": "haryana",
+    "districtsCount": 22,
+    "pincodesCount": 315,
+    "officesCount": 2702
+  },
+  {
+    "name": "Himachal Pradesh",
+    "slug": "himachal-pradesh",
+    "districtsCount": 12,
+    "pincodesCount": 436,
+    "officesCount": 2796
+  },
+  {
+    "name": "Jammu and Kashmir",
+    "slug": "jammu-and-kashmir",
+    "districtsCount": 20,
+    "pincodesCount": 196,
+    "officesCount": 1590
+  },
+  {
+    "name": "Jharkhand",
+    "slug": "jharkhand",
+    "districtsCount": 24,
+    "pincodesCount": 381,
+    "officesCount": 3804
+  },
+  {
+    "name": "Karnataka",
+    "slug": "karnataka",
+    "districtsCount": 30,
+    "pincodesCount": 1347,
+    "officesCount": 9671
+  },
+  {
+    "name": "Kerala",
+    "slug": "kerala",
+    "districtsCount": 14,
+    "pincodesCount": 1425,
+    "officesCount": 5062
+  },
+  {
+    "name": "Ladakh",
+    "slug": "ladakh",
+    "districtsCount": 2,
+    "pincodesCount": 16,
+    "officesCount": 112
+  },
+  {
+    "name": "Lakshadweep",
+    "slug": "lakshadweep",
+    "districtsCount": 1,
+    "pincodesCount": 9,
+    "officesCount": 10
+  },
+  {
+    "name": "Madhya Pradesh",
+    "slug": "madhya-pradesh",
+    "districtsCount": 52,
+    "pincodesCount": 770,
+    "officesCount": 8284
+  },
+  {
+    "name": "Maharashtra",
+    "slug": "maharashtra",
+    "districtsCount": 36,
+    "pincodesCount": 1585,
+    "officesCount": 12756
+  },
+  {
+    "name": "Manipur",
+    "slug": "manipur",
+    "districtsCount": 16,
+    "pincodesCount": 52,
+    "officesCount": 713
+  },
+  {
+    "name": "Meghalaya",
+    "slug": "meghalaya",
+    "districtsCount": 11,
+    "pincodesCount": 69,
+    "officesCount": 513
+  },
+  {
+    "name": "Mizoram",
+    "slug": "mizoram",
+    "districtsCount": 11,
+    "pincodesCount": 47,
+    "officesCount": 433
+  },
+  {
+    "name": "Nagaland",
+    "slug": "nagaland",
+    "districtsCount": 12,
+    "pincodesCount": 43,
+    "officesCount": 333
+  },
+  {
+    "name": "Odisha",
+    "slug": "odisha",
+    "districtsCount": 30,
+    "pincodesCount": 935,
+    "officesCount": 8270
+  },
+  {
+    "name": "Puducherry",
+    "slug": "puducherry",
+    "districtsCount": 4,
+    "pincodesCount": 33,
+    "officesCount": 94
+  },
+  {
+    "name": "Punjab",
+    "slug": "punjab",
+    "districtsCount": 23,
+    "pincodesCount": 534,
+    "officesCount": 3838
+  },
+  {
+    "name": "Rajasthan",
+    "slug": "rajasthan",
+    "districtsCount": 33,
+    "pincodesCount": 1004,
+    "officesCount": 10345
+  },
+  {
+    "name": "Sikkim",
+    "slug": "sikkim",
+    "districtsCount": 4,
+    "pincodesCount": 19,
+    "officesCount": 209
+  },
+  {
+    "name": "Tamil Nadu",
+    "slug": "tamil-nadu",
+    "districtsCount": 38,
+    "pincodesCount": 2040,
+    "officesCount": 11795
+  },
+  {
+    "name": "Telangana",
+    "slug": "telangana",
+    "districtsCount": 33,
+    "pincodesCount": 676,
+    "officesCount": 5816
+  },
+  {
+    "name": "The Dadra And Nagar Haveli And Daman And Diu",
+    "slug": "the-dadra-and-nagar-haveli-and-daman-and-diu",
+    "districtsCount": 3,
+    "pincodesCount": 10,
+    "officesCount": 54
+  },
+  {
+    "name": "Tripura",
+    "slug": "tripura",
+    "districtsCount": 8,
+    "pincodesCount": 80,
+    "officesCount": 730
+  },
+  {
+    "name": "Uttar Pradesh",
+    "slug": "uttar-pradesh",
+    "districtsCount": 75,
+    "pincodesCount": 1655,
+    "officesCount": 17692
+  },
+  {
+    "name": "Uttarakhand",
+    "slug": "uttarakhand",
+    "districtsCount": 13,
+    "pincodesCount": 302,
+    "officesCount": 2729
+  },
+  {
+    "name": "West Bengal",
+    "slug": "west-bengal",
+    "districtsCount": 23,
+    "pincodesCount": 1128,
+    "officesCount": 8775
+  }
+]

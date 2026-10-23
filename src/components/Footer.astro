@@ -1,0 +1,89 @@
+---
+const popularStates = [
+  { name: 'Maharashtra', slug: 'maharashtra' },
+  { name: 'Karnataka', slug: 'karnataka' },
+  { name: 'Tamil Nadu', slug: 'tamil-nadu' },
+  { name: 'Delhi', slug: 'delhi' },
+  { name: 'Uttar Pradesh', slug: 'uttar-pradesh' },
+  { name: 'Gujarat', slug: 'gujarat' },
+  { name: 'Telangana', slug: 'telangana' },
+  { name: 'West Bengal', slug: 'west-bengal' },
+  { name: 'Kerala', slug: 'kerala' },
+  { name: 'Rajasthan', slug: 'rajasthan' }
+];
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 text-slate-400 text-sm mt-auto border-t border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
+      
+      <!-- Brand & Mission Column -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-600 to-accent-500 flex items-center justify-center text-white font-bold">
+            P
+          </div>
+          <span class="text-xl font-bold tracking-tight text-white">
+            MyPincodes<span class="text-accent-500">.in</span>
+          </span>
+        </a>
+        <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+          India's high-speed postal directory and logistics utility. Access all 157,126+ post offices across 19,300+ PIN codes with official tariffs, coordinates, and courier formatting tools.
+        </p>
+        <div class="pt-2 text-xs text-slate-500">
+          Data synchronized with official Department of Posts (India Post) open gazette records.
+        </div>
+      </div>
+
+      <!-- Postal Multi-Tools -->
+      <div class="space-y-3">
+        <h3 class="text-white font-semibold text-sm tracking-wider uppercase">Postal Multi-Tools</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/" class="hover:text-white transition-colors">Instant PIN Finder</a></li>
+          <li><a href="/speed-post-calculator" class="hover:text-white transition-colors">Speed Post Tariff Calculator</a></li>
+          <li><a href="/address-formatter" class="hover:text-white transition-colors">Courier Address Formatter</a></li>
+          <li><a href="/distance-calculator" class="hover:text-white transition-colors">PIN-to-PIN Distance Tool</a></li>
+          <li><a href="/states" class="hover:text-white transition-colors">All 36 States & UTs</a></li>
+        </ul>
+      </div>
+
+      <!-- Top State Hubs -->
+      <div class="space-y-3">
+        <h3 class="text-white font-semibold text-sm tracking-wider uppercase">Popular Circles</h3>
+        <ul class="space-y-2 text-sm">
+          {popularStates.slice(0, 6).map((st) => (
+            <li>
+              <a href={`/state/${st.slug}`} class="hover:text-white transition-colors">
+                {st.name} PIN Codes
+              </a>
+            </li>
+          ))}
+          <li><a href="/states" class="text-brand-400 hover:text-brand-300 font-medium">View All 36 States →</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal & Compliance (Required for AdSense) -->
+      <div class="space-y-3">
+        <h3 class="text-white font-semibold text-sm tracking-wider uppercase">Legal & Help</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="/contact" class="hover:text-white transition-colors">Contact Support</a></li>
+          <li><a href="/privacy-policy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+          <li><a href="/disclaimer" class="hover:text-white transition-colors">Disclaimer</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-12 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© {currentYear} MyPincodes.in. All rights reserved.</p>
+      <p class="flex items-center gap-1">
+        Built for speed, accuracy & mobile accessibility across India 🇮🇳
+      </p>
+    </div>
+  </div>
+</footer>

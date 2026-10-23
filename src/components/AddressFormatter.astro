@@ -1,0 +1,221 @@
+---
+interface Props {
+  defaultPin?: string;
+  defaultDistrict?: string;
+  defaultState?: string;
+}
+
+const {
+  defaultPin = '',
+  defaultDistrict = '',
+  defaultState = ''
+} = Astro.props;
+---
+
+<div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 sm:p-8 max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 border-b border-slate-100 pb-5 mb-6">
+    <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center font-bold text-xl border border-brand-200">
+      📦
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+        Courier & Postal Address Standardizer
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500">
+        Generate compliant, barcode-ready shipping label addresses for India Post, BlueDart, Delhivery, DTDC & Amazon.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Recipient Name -->
+    <div>
+      <label for="recipientName" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Recipient / Contact Name *
+      </label>
+      <input 
+        type="text" 
+        id="recipientName" 
+        placeholder="e.g. Rahul Sharma"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm"
+      />
+    </div>
+
+    <!-- Phone Number -->
+    <div>
+      <label for="recipientPhone" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Mobile Number *
+      </label>
+      <input 
+        type="tel" 
+        id="recipientPhone" 
+        placeholder="e.g. +91 98765 43210"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm"
+      />
+    </div>
+
+    <!-- Flat / House / Building -->
+    <div class="md:col-span-2">
+      <label for="houseDetails" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Flat / House No. / Building / Society *
+      </label>
+      <input 
+        type="text" 
+        id="houseDetails" 
+        placeholder="e.g. Flat 402, Sai Residency, 4th Cross"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm"
+      />
+    </div>
+
+    <!-- Street / Locality -->
+    <div>
+      <label for="streetLocality" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Street / Colony / Locality *
+      </label>
+      <input 
+        type="text" 
+        id="streetLocality" 
+        placeholder="e.g. Indiranagar 1st Stage"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm"
+      />
+    </div>
+
+    <!-- Landmark -->
+    <div>
+      <label for="landmark" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Landmark (Optional)
+      </label>
+      <input 
+        type="text" 
+        id="landmark" 
+        placeholder="e.g. Near Metro Pillar 42"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm"
+      />
+    </div>
+
+    <!-- City / District -->
+    <div>
+      <label for="cityDistrict" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        City / District *
+      </label>
+      <input 
+        type="text" 
+        id="cityDistrict" 
+        value={defaultDistrict}
+        placeholder="e.g. Bengaluru"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm"
+      />
+    </div>
+
+    <!-- State -->
+    <div>
+      <label for="stateName" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        State / UT *
+      </label>
+      <input 
+        type="text" 
+        id="stateName" 
+        value={defaultState}
+        placeholder="e.g. Karnataka"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm"
+      />
+    </div>
+
+    <!-- PIN Code -->
+    <div class="md:col-span-2">
+      <label for="pincodeField" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        6-Digit PIN Code *
+      </label>
+      <input 
+        type="text" 
+        id="pincodeField" 
+        maxlength="6"
+        value={defaultPin}
+        placeholder="e.g. 560038"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 text-sm font-mono font-semibold"
+      />
+    </div>
+
+  </div>
+
+  <!-- Formatted Preview Output -->
+  <div class="mt-8 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-6 relative">
+    <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-3">
+      <span class="text-xs uppercase tracking-wider font-bold text-slate-500 flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+        </svg>
+        Standard Delivery Address Label
+      </span>
+
+      <button 
+        type="button" 
+        id="copyAddressBtn"
+        class="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white shadow-sm transition-all active:scale-95"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+        </svg>
+        <span id="copyBtnText">Copy Label</span>
+      </button>
+    </div>
+
+    <pre id="addressPreview" class="font-sans text-sm text-slate-800 leading-relaxed whitespace-pre-wrap select-all">
+To,
+Rahul Sharma
+Flat 402, Sai Residency, 4th Cross
+Indiranagar 1st Stage (Near Metro Pillar 42)
+BENGALURU, KARNATAKA - 560038
+Mobile: +91 98765 43210
+INDIA
+    </pre>
+  </div>
+</div>
+
+<script>
+  function updateAddressPreview() {
+    const name = (document.getElementById('recipientName') as HTMLInputElement)?.value.trim() || 'Rahul Sharma';
+    const phone = (document.getElementById('recipientPhone') as HTMLInputElement)?.value.trim() || '+91 98765 43210';
+    const house = (document.getElementById('houseDetails') as HTMLInputElement)?.value.trim() || 'Flat 402, Sai Residency, 4th Cross';
+    const street = (document.getElementById('streetLocality') as HTMLInputElement)?.value.trim() || 'Indiranagar 1st Stage';
+    const landmark = (document.getElementById('landmark') as HTMLInputElement)?.value.trim();
+    const city = (document.getElementById('cityDistrict') as HTMLInputElement)?.value.trim() || 'BENGALURU';
+    const state = (document.getElementById('stateName') as HTMLInputElement)?.value.trim() || 'KARNATAKA';
+    const pin = (document.getElementById('pincodeField') as HTMLInputElement)?.value.trim() || '560038';
+
+    let streetLine = street;
+    if (landmark) {
+      streetLine += ` (Near ${landmark})`;
+    }
+
+    const text = `To,\n${name}\n${house}\n${streetLine}\n${city.toUpperCase()}, ${state.toUpperCase()} - ${pin}\nMobile: ${phone}\nINDIA`;
+
+    const preview = document.getElementById('addressPreview');
+    if (preview) {
+      preview.textContent = text;
+    }
+  }
+
+  const inputs = ['recipientName', 'recipientPhone', 'houseDetails', 'streetLocality', 'landmark', 'cityDistrict', 'stateName', 'pincodeField'];
+  inputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateAddressPreview);
+  });
+
+  const copyBtn = document.getElementById('copyAddressBtn');
+  const copyBtnText = document.getElementById('copyBtnText');
+
+  if (copyBtn && copyBtnText) {
+    copyBtn.addEventListener('click', () => {
+      const preview = document.getElementById('addressPreview');
+      if (preview && preview.textContent) {
+        navigator.clipboard.writeText(preview.textContent.trim()).then(() => {
+          copyBtnText.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtnText.textContent = 'Copy Label';
+          }, 2000);
+        });
+      }
+    });
+  }
+</script>

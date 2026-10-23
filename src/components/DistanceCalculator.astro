@@ -1,0 +1,230 @@
+---
+interface Props {
+  defaultOrigin?: string;
+  defaultDest?: string;
+}
+
+const {
+  defaultOrigin = '110001',
+  defaultDest = '560001'
+} = Astro.props;
+---
+
+<div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 sm:p-8 max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 border-b border-slate-100 pb-5 mb-6">
+    <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl border border-emerald-200">
+      📍
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+        PIN-to-PIN Distance & Transit Estimator
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500">
+        Calculate geographic distance, estimated road transit route, and delivery timelines between any two Indian postal codes.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    <div>
+      <label for="distOriginPin" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        From (Origin PIN) *
+      </label>
+      <input 
+        type="text" 
+        id="distOriginPin" 
+        maxlength="6"
+        value={defaultOrigin}
+        placeholder="e.g. 110001 (New Delhi)"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm font-semibold"
+      />
+      <span id="originLocDesc" class="text-xs text-slate-500 mt-1 block">New Delhi G.P.O.</span>
+    </div>
+
+    <div>
+      <label for="distDestPin" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        To (Destination PIN) *
+      </label>
+      <input 
+        type="text" 
+        id="distDestPin" 
+        maxlength="6"
+        value={defaultDest}
+        placeholder="e.g. 560001 (Bangalore)"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 text-sm font-semibold"
+      />
+      <span id="destLocDesc" class="text-xs text-slate-500 mt-1 block">Bangalore G.P.O.</span>
+    </div>
+  </div>
+
+  <div class="mt-6">
+    <button 
+      type="button" 
+      id="calcDistanceBtn"
+      class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-sm shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+      </svg>
+      Calculate Distance & Transit Time
+    </button>
+  </div>
+
+  <!-- Distance Results Box -->
+  <div id="distanceResultBox" class="mt-8 bg-slate-900 text-white rounded-2xl p-6 relative overflow-hidden">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-slate-800">
+      
+      <div class="pt-2 sm:pt-0">
+        <span class="text-xs uppercase tracking-wider text-emerald-400 font-semibold">Aerial Distance</span>
+        <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="aerialDistDisplay">
+          ~1,740 km
+        </div>
+        <span class="text-[11px] text-slate-400">Direct Haversine route</span>
+      </div>
+
+      <div class="pt-4 sm:pt-0">
+        <span class="text-xs uppercase tracking-wider text-teal-400 font-semibold">Road Transit Route</span>
+        <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="roadDistDisplay">
+          ~2,150 km
+        </div>
+        <span class="text-[11px] text-slate-400">Estimated national highway transit</span>
+      </div>
+
+      <div class="pt-4 sm:pt-0">
+        <span class="text-xs uppercase tracking-wider text-accent-400 font-semibold">Air Express Transit</span>
+        <div class="text-2xl sm:text-3xl font-extrabold text-white mt-1" id="airTransitDisplay">
+          2 - 3 Days
+        </div>
+        <span class="text-[11px] text-slate-400">Speed Post / Express courier</span>
+      </div>
+
+    </div>
+
+    <div class="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400">
+      <div>
+        <span class="font-medium text-slate-300">Postal Tariff Distance Slab: </span>
+        <span id="tariffCategoryText" class="text-emerald-400 font-bold">1,001 km to 2,000 km</span>
+      </div>
+      <a href="/speed-post-calculator" class="text-brand-400 hover:text-brand-300 font-medium">
+        Calculate Speed Post Price →
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Simple coordinate lookup cache
+  let coordsCache: Record<string, { lat: number; lng: number; desc: string }> = {
+    '110001': { lat: 28.6315, lng: 77.2167, desc: 'New Delhi G.P.O., Delhi' },
+    '560001': { lat: 12.9716, lng: 77.5946, desc: 'Bangalore G.P.O., Karnataka' },
+    '400001': { lat: 18.9322, lng: 72.8365, desc: 'Mumbai G.P.O., Maharashtra' },
+    '600001': { lat: 13.0827, lng: 80.2707, desc: 'Chennai G.P.O., Tamil Nadu' },
+    '500001': { lat: 17.3850, lng: 78.4867, desc: 'Hyderabad G.P.O., Telangana' },
+    '700001': { lat: 22.5726, lng: 88.3639, desc: 'Kolkata G.P.O., West Bengal' },
+    '411001': { lat: 18.5204, lng: 73.8567, desc: 'Pune H.O., Maharashtra' },
+    '380001': { lat: 23.0225, lng: 72.5714, desc: 'Ahmedabad H.O., Gujarat' }
+  };
+
+  // Haversine formula (km)
+  function calculateHaversine(lat1: number, lon1: number, lat2: number, lon2: number): number {
+    const R = 6371; // Radius of the Earth in km
+    const dLat = (lat2 - lat1) * Math.PI / 180;
+    const dLon = (lon2 - lon1) * Math.PI / 180;
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return Math.round(R * c);
+  }
+
+  async function getCoords(pin: string) {
+    if (coordsCache[pin]) return coordsCache[pin];
+    try {
+      const prefix = pin.substring(0, 2);
+      const res = await fetch(`/src/data/pincodes/${prefix}.json`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data[pin] && data[pin].offices) {
+          const off = data[pin].offices.find((o: any) => o.lat && o.lng) || data[pin].offices[0];
+          if (off && off.lat && off.lng) {
+            const entry = { lat: off.lat, lng: off.lng, desc: `${off.name}, ${data[pin].district}` };
+            coordsCache[pin] = entry;
+            return entry;
+          }
+        }
+      }
+    } catch (e) {
+      // fallback
+    }
+    // Approximate based on zone digit
+    const zone = parseInt(pin[0], 10);
+    const zoneCoords: Record<number, { lat: number; lng: number; desc: string }> = {
+      1: { lat: 28.6, lng: 77.2, desc: 'Northern Postal Zone' },
+      2: { lat: 26.8, lng: 80.9, desc: 'Northern Postal Zone' },
+      3: { lat: 23.0, lng: 72.5, desc: 'Western Postal Zone' },
+      4: { lat: 19.0, lng: 73.0, desc: 'Western Postal Zone' },
+      5: { lat: 14.5, lng: 78.0, desc: 'Southern Postal Zone' },
+      6: { lat: 11.0, lng: 77.5, desc: 'Southern Postal Zone' },
+      7: { lat: 23.5, lng: 87.0, desc: 'Eastern Postal Zone' },
+      8: { lat: 25.5, lng: 85.0, desc: 'Eastern Postal Zone' }
+    };
+    return zoneCoords[zone] || { lat: 20.5937, lng: 78.9629, desc: 'India' };
+  }
+
+  async function computeDistance() {
+    const originPin = (document.getElementById('distOriginPin') as HTMLInputElement)?.value.trim();
+    const destPin = (document.getElementById('distDestPin') as HTMLInputElement)?.value.trim();
+
+    if (!originPin || !destPin || originPin.length !== 6 || destPin.length !== 6) return;
+
+    const [c1, c2] = await Promise.all([getCoords(originPin), getCoords(destPin)]);
+
+    const originDesc = document.getElementById('originLocDesc');
+    const destDesc = document.getElementById('destLocDesc');
+    if (originDesc) originDesc.textContent = c1.desc;
+    if (destDesc) destDesc.textContent = c2.desc;
+
+    let aerial = calculateHaversine(c1.lat, c1.lng, c2.lat, c2.lng);
+    if (originPin === destPin) aerial = 0;
+
+    const road = Math.round(aerial * 1.24); // Indian highway route correction factor
+
+    const aerialEl = document.getElementById('aerialDistDisplay');
+    const roadEl = document.getElementById('roadDistDisplay');
+    const airTransitEl = document.getElementById('airTransitDisplay');
+    const slabEl = document.getElementById('tariffCategoryText');
+
+    if (aerialEl) aerialEl.textContent = `~${aerial.toLocaleString('en-IN')} km`;
+    if (roadEl) roadEl.textContent = `~${road.toLocaleString('en-IN')} km`;
+
+    let transitDays = '1 - 2 Days';
+    let slabText = 'Local / Same City';
+
+    if (aerial <= 50) {
+      transitDays = '1 Day (Same City)';
+      slabText = 'Local / Within City';
+    } else if (aerial <= 200) {
+      transitDays = '1 - 2 Days';
+      slabText = 'Up to 200 km';
+    } else if (aerial <= 1000) {
+      transitDays = '2 - 3 Days';
+      slabText = '201 km to 1,000 km';
+    } else if (aerial <= 2000) {
+      transitDays = '2 - 4 Days';
+      slabText = '1,001 km to 2,000 km';
+    } else {
+      transitDays = '4 - 7 Days';
+      slabText = 'Above 2,000 km';
+    }
+
+    if (airTransitEl) airTransitEl.textContent = transitDays;
+    if (slabEl) slabEl.textContent = slabText;
+  }
+
+  const distBtn = document.getElementById('calcDistanceBtn');
+  if (distBtn) distBtn.addEventListener('click', computeDistance);
+
+  // Run initial calculation
+  computeDistance();
+</script>

@@ -1,0 +1,223 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SearchHero from '../components/SearchHero.astro';
+import { getAllStates } from '../utils/postalData';
+
+const states = getAllStates();
+---
+
+<Layout 
+  title="MyPincodes.in - All India PIN Code & Post Office Directory 2026"
+  description="Search 157,126+ post offices, calculate Speed Post delivery charges, compute PIN-to-PIN distances, and format courier addresses across all 36 States & UTs in India."
+  activePage="home"
+>
+  <!-- Hero Section with Instant Autocomplete Search -->
+  <SearchHero />
+
+  <!-- Multi-Utility Suite Quick Access -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Utility 1: Speed Post Calculator -->
+      <a 
+        href="/speed-post-calculator" 
+        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200/80 hover:border-brand-500 hover:shadow-2xl transition-all group flex flex-col justify-between"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            ⚡
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+            Speed Post Rate Calculator
+          </h2>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Calculate exact India Post parcel & letter tariffs with 18% GST, weight slabs, and estimated delivery days.
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-brand-600">
+          <span>Calculate Tariff</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
+
+      <!-- Utility 2: Address Formatter -->
+      <a 
+        href="/address-formatter" 
+        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200/80 hover:border-brand-500 hover:shadow-2xl transition-all group flex flex-col justify-between"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            📦
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+            Courier Address Formatter
+          </h2>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Format messy customer addresses into standard barcode-ready shipping labels for BlueDart, Delhivery & India Post.
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-brand-600">
+          <span>Format Address</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
+
+      <!-- Utility 3: Distance Tool -->
+      <a 
+        href="/distance-calculator" 
+        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200/80 hover:border-brand-500 hover:shadow-2xl transition-all group flex flex-col justify-between"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            📍
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+            PIN-to-PIN Distance Tool
+          </h2>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Estimate aerial distance, road transit distance, and delivery transit timelines between any two PIN codes in India.
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-600">
+          <span>Compute Distance</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Browse by State Directory Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-50 text-brand-700 text-xs font-semibold uppercase tracking-wider mb-2">
+          Postal Circle Directory
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Browse PIN Codes by State & Union Territory
+        </h2>
+        <p class="text-sm text-slate-600 mt-1">
+          Explore post offices, taluks, and delivery circles across all 36 administrative regions of India.
+        </p>
+      </div>
+      <a 
+        href="/states" 
+        class="text-sm font-semibold text-brand-600 hover:text-brand-700 flex items-center gap-1 shrink-0"
+      >
+        View Complete List →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {states.map((st) => (
+        <a 
+          href={`/state/${st.slug}`}
+          class="bg-white p-4 rounded-xl border border-slate-200/80 hover:border-brand-400 hover:shadow-md transition-all group flex items-center justify-between"
+        >
+          <div>
+            <div class="text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+              {st.name}
+            </div>
+            <div class="text-xs text-slate-600 mt-0.5">
+              {st.districtsCount} Districts • {st.pincodesCount.toLocaleString('en-IN')} PINs
+            </div>
+          </div>
+          <span class="text-slate-400 group-hover:text-brand-600 group-hover:translate-x-0.5 transition-all text-xs font-bold">
+            →
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- Educational Section: How PIN Codes Work (Crucial for SEO Authority) -->
+  <section class="bg-white border-y border-slate-200/80 py-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          How Indian Postal Index Numbers (PIN) Work
+        </h2>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+          Introduced on 15 August 1972 by Shriram Bhikaji Velankar, the 6-digit PIN code system standardizes mail sorting across India into 9 postal zones.
+        </p>
+      </div>
+
+      <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-2xl">
+        <div class="text-center pb-6 border-b border-slate-800">
+          <span class="text-xs uppercase tracking-widest text-brand-400 font-semibold">Example PIN Code Structure</span>
+          <div class="text-4xl sm:text-6xl font-mono font-black tracking-widest text-white mt-2">
+            <span class="text-brand-400">5</span><span class="text-accent-400">6</span><span class="text-emerald-400">0</span><span class="text-purple-400">0</span><span class="text-purple-400">0</span><span class="text-purple-400">1</span>
+          </div>
+          <div class="text-xs text-slate-400 mt-2">Bengaluru G.P.O., Karnataka</div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-6 pt-6 text-xs leading-relaxed">
+          <div class="space-y-1.5 border-l-2 border-brand-400 pl-3">
+            <div class="text-brand-400 font-mono font-bold text-sm">Digit 1: Zone</div>
+            <div class="text-slate-300">Indicates 1 of the 9 postal regions in India (1 & 2: North, 3 & 4: West, 5 & 6: South, 7 & 8: East, 9: Army Postal Service).</div>
+          </div>
+          <div class="space-y-1.5 border-l-2 border-accent-400 pl-3">
+            <div class="text-accent-400 font-mono font-bold text-sm">Digit 2: Sub-Zone</div>
+            <div class="text-slate-300">Determines the state or postal circle within that geographical zone (e.g. 56 is Karnataka, 11 is Delhi).</div>
+          </div>
+          <div class="space-y-1.5 border-l-2 border-emerald-400 pl-3">
+            <div class="text-emerald-400 font-mono font-bold text-sm">Digit 3: District</div>
+            <div class="text-slate-300">Represents the revenue sorting district within the postal circle where mail is concentrated.</div>
+          </div>
+          <div class="space-y-1.5 border-l-2 border-purple-400 pl-3">
+            <div class="text-purple-400 font-mono font-bold text-sm">Digits 4–6: Office</div>
+            <div class="text-slate-300">Designates the specific delivery post office (Head Office, Sub Office, or Branch Office).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Frequently Asked Questions (Schema-rich content) -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+        Frequently Asked Questions
+      </h2>
+      <p class="text-sm text-slate-600 mt-1">
+        Everything you need to know about Indian postal codes, post office types, and delivery rules.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <details class="bg-white rounded-xl border border-slate-200/80 p-5 shadow-sm group">
+        <summary class="font-bold text-sm text-slate-900 cursor-pointer list-none flex items-center justify-between">
+          <span>What is the full form of PIN in PIN code?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+          PIN stands for <strong>Postal Index Number</strong>. It is a 6-digit code introduced by India Post on 15th August 1972 to eliminate confusion caused by duplicate city names and different languages across India.
+        </p>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200/80 p-5 shadow-sm group">
+        <summary class="font-bold text-sm text-slate-900 cursor-pointer list-none flex items-center justify-between">
+          <span>What is the difference between HO, SO, and BO in India Post?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <div class="text-xs text-slate-600 mt-3 leading-relaxed space-y-2">
+          <p><strong>Head Office (HO):</strong> The primary administrative and financial nodal post office for a district/postal division.</p>
+          <p><strong>Sub Office (SO):</strong> Located in urban or semi-urban areas under the jurisdiction of a Head Office, providing full postal services including Speed Post, savings accounts, and parcels.</p>
+          <p><strong>Branch Office (BO):</strong> Located primarily in rural areas providing basic postal banking, registered letters, and delivery services.</p>
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl border border-slate-200/80 p-5 shadow-sm group">
+        <summary class="font-bold text-sm text-slate-900 cursor-pointer list-none flex items-center justify-between">
+          <span>How is Speed Post rate calculated?</span>
+          <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+        </summary>
+        <p class="text-xs text-slate-600 mt-3 leading-relaxed">
+          Speed Post charges depend on the weight of the parcel and the distance between origin and destination PIN codes (Local, up to 200 km, 201–1,000 km, 1,001–2,000 km, or above 2,000 km). An 18% GST is applicable on all domestic Speed Post services. You can use our interactive <a href="/speed-post-calculator" class="text-brand-600 font-semibold underline">Speed Post Rate Calculator</a> to calculate the exact postage.
+        </p>
+      </details>
+    </div>
+  </section>
+
+</Layout>

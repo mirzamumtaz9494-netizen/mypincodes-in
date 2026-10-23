@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SpeedPostCalculator from '../components/SpeedPostCalculator.astro';
+
+export const prerender = true;
+---
+
+<Layout 
+  title="Speed Post & Parcel Rate Calculator 2026 - Official India Post Tariffs"
+  description="Calculate domestic India Post Speed Post charges, parcel postage rates, 18% GST calculation, weight slabs (up to 35 kg), and estimated delivery time."
+  activePage="calculator"
+>
+  <div class="bg-gradient-to-b from-slate-900 to-brand-950 text-white py-12 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-3xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-500/10 border border-accent-500/30 text-xs font-semibold text-accent-400 uppercase tracking-wider">
+        Official Department of Posts Tariff Matrix
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        India Post Speed Post Rate Calculator
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        Compute accurate postage for Speed Post letters and parcels across all domestic distance slabs with updated 18% GST.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <SpeedPostCalculator />
+
+    <!-- Official Tariff Reference Table -->
+    <div class="mt-16 bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">Official India Post Domestic Speed Post Tariff Schedule</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border border-slate-200 rounded-lg">
+          <thead class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider">
+            <tr>
+              <th class="p-3 border-b">Weight Slab</th>
+              <th class="p-3 border-b">Local (Same City)</th>
+              <th class="p-3 border-b">Up to 200 km</th>
+              <th class="p-3 border-b">201 to 1000 km</th>
+              <th class="p-3 border-b">1001 to 2000 km</th>
+              <th class="p-3 border-b">Above 2000 km</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr>
+              <td class="p-3 font-semibold">Up to 50 grams</td>
+              <td class="p-3">₹15</td>
+              <td class="p-3">₹35</td>
+              <td class="p-3">₹35</td>
+              <td class="p-3">₹35</td>
+              <td class="p-3">₹35</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3 font-semibold">51 to 200 grams</td>
+              <td class="p-3">₹25</td>
+              <td class="p-3">₹35</td>
+              <td class="p-3">₹40</td>
+              <td class="p-3">₹60</td>
+              <td class="p-3">₹70</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">201 to 500 grams</td>
+              <td class="p-3">₹30</td>
+              <td class="p-3">₹50</td>
+              <td class="p-3">₹60</td>
+              <td class="p-3">₹70</td>
+              <td class="p-3">₹80</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3 font-semibold">Additional 500g (up to 35kg)</td>
+              <td class="p-3">₹10</td>
+              <td class="p-3">₹15</td>
+              <td class="p-3">₹30</td>
+              <td class="p-3">₹40</td>
+              <td class="p-3">₹50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-[11px] text-slate-500 mt-3 leading-relaxed">
+        * Note: Goods and Services Tax (GST) of 18% is added to the base charges shown above. Maximum allowable weight for domestic Speed Post is 35 kilograms. Proof of delivery (POD) can be obtained with an additional charge of ₹10 per article.
+      </p>
+    </div>
+  </div>
+</Layout>

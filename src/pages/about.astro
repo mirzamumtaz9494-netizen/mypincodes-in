@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+---
+
+<Layout 
+  title="About Us - MyPincodes.in"
+  description="Learn about MyPincodes.in, our mission to simplify India Post information, postal calculators, and courier utilities."
+  activePage="home"
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="bg-white rounded-2xl border border-slate-200/80 p-8 sm:p-12 shadow-sm space-y-6">
+      
+      <div class="border-b border-slate-100 pb-6">
+        <span class="text-xs uppercase font-bold text-brand-600 tracking-wider">About The Project</span>
+        <h1 class="text-3xl font-extrabold text-slate-900 mt-1">
+          About MyPincodes<span class="text-accent-500">.in</span>
+        </h1>
+        <p class="text-slate-500 text-sm mt-2">
+          Empowering Indian citizens, e-commerce businesses, and logistics professionals with fast, accurate postal intelligence.
+        </p>
+      </div>
+
+      <div class="prose prose-slate max-w-none text-sm text-slate-700 leading-relaxed space-y-4">
+        <p>
+          <strong>MyPincodes.in</strong> was established to provide a modern, lightning-fast, and ad-clutter-free reference for postal data across India. With over 157,000 post offices and 19,300+ unique PIN codes spanning 737 districts, finding accurate postal circles, delivery statuses, and exact shipping tariffs has traditionally been frustrating and slow.
+        </p>
+
+        <h2 class="text-lg font-bold text-slate-900 pt-4">Our Core Mission</h2>
+        <p>
+          Our mission is to build the fastest, most reliable open postal and logistics utility suite in India. We aim to:
+        </p>
+        <ul class="list-disc list-inside space-y-1.5 pl-2 text-slate-600">
+          <li>Provide instant, zero-wait autocomplete lookup for any Indian locality or PIN code.</li>
+          <li>Offer transparent and up-to-date India Post Speed Post tariff calculations with official GST rules.</li>
+          <li>Standardize messy postal addresses into compliant shipping label formats to reduce Return-To-Origin (RTO) rates for small merchants.</li>
+          <li>Deliver structured geographic data and transit distance estimates between Indian postal zones.</li>
+        </ul>
+
+        <h2 class="text-lg font-bold text-slate-900 pt-4">Data Integrity & Sources</h2>
+        <p>
+          The postal records, post office classifications, and regional administrative divisions hosted on this platform are cross-referenced with public gazette directories provided by the <strong>Department of Posts, Ministry of Communications, Government of India</strong> (Open Government Data - data.gov.in).
+        </p>
+
+        <h2 class="text-lg font-bold text-slate-900 pt-4">Zero-Clutter Philosophy</h2>
+        <p>
+          Unlike legacy directory portals that overwhelm visitors with misleading pop-ups and intrusive redirects, MyPincodes.in is engineered with high Core Web Vitals performance standards, clean mobile typography, and respectful advertising placements.
+        </p>
+
+        <div class="pt-6 border-t border-slate-100 text-xs text-slate-500">
+          Have feedback, corrections, or suggestions? Visit our <a href="/contact" class="text-brand-600 font-semibold underline">Contact Us</a> page.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</Layout>

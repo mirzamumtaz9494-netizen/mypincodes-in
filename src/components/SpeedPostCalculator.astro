@@ -1,0 +1,262 @@
+---
+interface Props {
+  defaultDestPin?: string;
+}
+
+const { defaultDestPin = '' } = Astro.props;
+---
+
+<div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 sm:p-8 max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 border-b border-slate-100 pb-5 mb-6">
+    <div class="w-12 h-12 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center font-bold text-xl border border-accent-200">
+      ⚡
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+        India Post Speed Post & Parcel Rate Calculator
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500">
+        Calculates domestic postal tariffs including official 18% GST as per Department of Posts guidelines.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    
+    <!-- Origin PIN -->
+    <div>
+      <label for="originPin" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        Origin PIN Code
+      </label>
+      <input 
+        type="text" 
+        id="originPin" 
+        maxlength="6" 
+        placeholder="e.g. 110001 (New Delhi)"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium"
+      />
+    </div>
+
+    <!-- Destination PIN -->
+    <div>
+      <label for="destPin" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        Destination PIN Code
+      </label>
+      <input 
+        type="text" 
+        id="destPin" 
+        maxlength="6" 
+        value={defaultDestPin}
+        placeholder="e.g. 560001 (Bangalore)"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium"
+      />
+    </div>
+
+    <!-- Weight in Grams -->
+    <div>
+      <label for="parcelWeight" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        Parcel Weight (Grams)
+      </label>
+      <div class="relative">
+        <input 
+          type="number" 
+          id="parcelWeight" 
+          value="150" 
+          min="1" 
+          max="35000" 
+          step="10"
+          class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium"
+        />
+        <span class="absolute right-3.5 top-2.5 text-xs font-semibold text-slate-600">grams</span>
+      </div>
+      <div class="flex gap-2 mt-2">
+        <button type="button" class="weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-weight="50">50g</button>
+        <button type="button" class="weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-weight="200">200g</button>
+        <button type="button" class="weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-weight="500">500g</button>
+        <button type="button" class="weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-weight="1000">1 Kg</button>
+        <button type="button" class="weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-weight="2000">2 Kg</button>
+      </div>
+    </div>
+
+    <!-- Distance Slab -->
+    <div>
+      <label for="distanceSlab" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        Distance Category
+      </label>
+      <select 
+        id="distanceSlab" 
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 text-sm font-medium bg-white"
+      >
+        <option value="local">Local (Same City / Metro)</option>
+        <option value="200">Up to 200 km</option>
+        <option value="1000" selected>201 km to 1,000 km</option>
+        <option value="2000">1,001 km to 2,000 km</option>
+        <option value="2000plus">Above 2,000 km</option>
+      </select>
+      <span class="text-[11px] text-slate-600 block mt-1.5">
+        Auto-adjusts if origin and destination PIN codes are provided.
+      </span>
+    </div>
+
+  </div>
+
+  <!-- Calculate Button -->
+  <div class="mt-6">
+    <button 
+      type="button" 
+      id="calcRateBtn"
+      class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold text-sm shadow-lg shadow-brand-500/20 transition-all flex items-center justify-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+      </svg>
+      Calculate Exact Postage Rate
+    </button>
+  </div>
+
+  <!-- Tariff Result Card -->
+  <div id="tariffResultCard" class="mt-8 bg-slate-900 text-white rounded-2xl p-6 relative overflow-hidden">
+    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-4">
+      <div>
+        <span class="text-xs uppercase tracking-wider text-brand-400 font-semibold">Speed Post Estimated Cost</span>
+        <div class="text-3xl sm:text-4xl font-extrabold text-white mt-1">
+          <span id="totalRateDisplay">₹47.20</span>
+          <span class="text-xs font-normal text-slate-400"> (incl. 18% GST)</span>
+        </div>
+      </div>
+      <div class="text-left sm:text-right">
+        <span class="text-xs text-slate-400">Estimated Delivery:</span>
+        <div class="text-base font-bold text-emerald-400" id="deliveryTimeDisplay">2 to 4 Working Days</div>
+      </div>
+    </div>
+
+    <!-- Breakdown Table -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 text-xs">
+      <div>
+        <div class="text-slate-400">Base Tariff</div>
+        <div class="font-bold text-sm text-slate-100" id="baseTariffDisplay">₹40.00</div>
+      </div>
+      <div>
+        <div class="text-slate-400">GST (18%)</div>
+        <div class="font-bold text-sm text-slate-100" id="gstDisplay">₹7.20</div>
+      </div>
+      <div>
+        <div class="text-slate-400">Weight Slab</div>
+        <div class="font-bold text-sm text-slate-100" id="weightSlabDisplay">51g to 200g</div>
+      </div>
+      <div>
+        <div class="text-slate-400">Distance Slab</div>
+        <div class="font-bold text-sm text-slate-100" id="distanceSlabDisplay">201 - 1,000 km</div>
+      </div>
+    </div>
+
+    <div class="mt-4 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400 flex items-center justify-between">
+      <span>Official India Post Tariff Table 2026. Max weight 35 kg.</span>
+      <span class="text-brand-300 font-medium">Tracking Available</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // India Post Speed Post Official Rates Matrix
+  // Slabs: [up to 50g, 51-200g, 201-500g, additional 500g]
+  const ratesMatrix: Record<string, [number, number, number, number]> = {
+    local: [15, 25, 30, 10],
+    '200': [35, 35, 50, 15],
+    '1000': [35, 40, 60, 30],
+    '2000': [35, 60, 70, 40],
+    '2000plus': [35, 70, 80, 50]
+  };
+
+  const deliveryTimes: Record<string, string> = {
+    local: '1 to 2 Working Days',
+    '200': '1 to 3 Working Days',
+    '1000': '2 to 4 Working Days',
+    '2000': '3 to 5 Working Days',
+    '2000plus': '4 to 7 Working Days'
+  };
+
+  const slabLabels: Record<string, string> = {
+    local: 'Local / Same City',
+    '200': 'Up to 200 km',
+    '1000': '201 - 1,000 km',
+    '2000': '1,001 - 2,000 km',
+    '2000plus': 'Above 2,000 km'
+  };
+
+  function calculateTariff() {
+    const weightInput = document.getElementById('parcelWeight') as HTMLInputElement;
+    const slabSelect = document.getElementById('distanceSlab') as HTMLSelectElement;
+    
+    let weight = parseInt(weightInput?.value || '150', 10);
+    if (isNaN(weight) || weight <= 0) weight = 50;
+    if (weight > 35000) weight = 35000;
+
+    const slab = slabSelect?.value || '1000';
+    const rates = ratesMatrix[slab] || ratesMatrix['1000'];
+
+    let baseRate = 0;
+    let weightLabel = '';
+
+    if (weight <= 50) {
+      baseRate = rates[0];
+      weightLabel = 'Up to 50g';
+    } else if (weight <= 200) {
+      baseRate = rates[1];
+      weightLabel = '51g to 200g';
+    } else if (weight <= 500) {
+      baseRate = rates[2];
+      weightLabel = '201g to 500g';
+    } else {
+      const extraGrams = weight - 500;
+      const extraSlabs = Math.ceil(extraGrams / 500);
+      baseRate = rates[2] + (extraSlabs * rates[3]);
+      weightLabel = `500g + ${extraSlabs}x 500g`;
+    }
+
+    const gst = Math.round((baseRate * 0.18) * 100) / 100;
+    const total = Math.round((baseRate + gst) * 100) / 100;
+
+    const totalEl = document.getElementById('totalRateDisplay');
+    const baseEl = document.getElementById('baseTariffDisplay');
+    const gstEl = document.getElementById('gstDisplay');
+    const slabEl = document.getElementById('distanceSlabDisplay');
+    const weightEl = document.getElementById('weightSlabDisplay');
+    const deliveryEl = document.getElementById('deliveryTimeDisplay');
+
+    if (totalEl) totalEl.textContent = `₹${total.toFixed(2)}`;
+    if (baseEl) baseEl.textContent = `₹${baseRate.toFixed(2)}`;
+    if (gstEl) gstEl.textContent = `₹${gst.toFixed(2)}`;
+    if (slabEl) slabEl.textContent = slabLabels[slab];
+    if (weightEl) weightEl.textContent = weightLabel;
+    if (deliveryEl) deliveryEl.textContent = deliveryTimes[slab];
+  }
+
+  // Quick weight buttons
+  document.querySelectorAll('.weight-chip').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const weight = target.getAttribute('data-weight');
+      const input = document.getElementById('parcelWeight') as HTMLInputElement;
+      if (input && weight) {
+        input.value = weight;
+        calculateTariff();
+      }
+    });
+  });
+
+  const calcBtn = document.getElementById('calcRateBtn');
+  if (calcBtn) calcBtn.addEventListener('click', calculateTariff);
+
+  const weightInput = document.getElementById('parcelWeight');
+  if (weightInput) weightInput.addEventListener('input', calculateTariff);
+
+  const slabSelect = document.getElementById('distanceSlab');
+  if (slabSelect) slabSelect.addEventListener('change', calculateTariff);
+
+  // Initial calculation on load
+  calculateTariff();
+</script>
