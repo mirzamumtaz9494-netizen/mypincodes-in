@@ -1,6 +1,7 @@
 # Build & Cache outputs
 dist/
 .astro/
+.vercel/
 node_modules/
 
 # Environment & OS
