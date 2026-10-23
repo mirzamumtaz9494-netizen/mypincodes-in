@@ -1,0 +1,143 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import USPSPostageCalculator from '../../../components/USPSPostageCalculator.astro';
+import USAddressFormatter from '../../../components/USAddressFormatter.astro';
+import { getUSZipData } from '../../../utils/usPostalData';
+
+export const prerender = false;
+
+const { zipcode } = Astro.params;
+
+if (!zipcode || !/^\d{5}$/.test(zipcode)) {
+  return Astro.redirect('/us');
+}
+
+const data = await getUSZipData(zipcode);
+
+if (!data) {
+  return Astro.redirect('/us');
+}
+
+const primaryPlace = data.places[0] || { name: data.city, county: data.county };
+
+// Structured Data for Google Rich Snippets
+const schemaJson = {
+  '@context': 'https://schema.org',
+  '@type': 'Place',
+  name: `${zipcode} ZIP Code - ${data.city}, ${data.stateCode}`,
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: zipcode,
+    addressLocality: data.city,
+    addressRegion: data.stateCode,
+    addressCountry: 'US'
+  },
+  ...(primaryPlace.lat && primaryPlace.lng ? {
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: primaryPlace.lat,
+      longitude: primaryPlace.lng
+    }
+  } : {})
+};
+---
+
+<Layout 
+  title={`${zipcode} ZIP Code - ${data.city}, ${data.state} (${data.stateCode}) | USPS Rates & Info`}
+  description={`Details for US ZIP code ${zipcode} in ${data.city}, ${data.county} County, ${data.state}. Calculate USPS Ground Advantage, Priority Mail rates, and format shipping labels.`}
+  activePage="us"
+  schemaJson={schemaJson}
+>
+  <!-- Breadcrumbs -->
+  <div class="bg-slate-100 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 text-xs text-slate-500 flex items-center gap-2">
+      <a href="/" class="hover:text-blue-600">Home</a>
+      <span>/</span>
+      <a href="/us" class="hover:text-blue-600">US Postal</a>
+      <span>/</span>
+      <a href={`/us/state/${data.state.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} class="hover:text-blue-600">{data.state}</a>
+      <span>/</span>
+      <span class="text-slate-800 font-semibold">{zipcode}</span>
+    </div>
+  </div>
+
+  <!-- Hero Header for US ZIP -->
+  <div class="bg-gradient-to-b from-blue-950 via-slate-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-semibold text-blue-400 uppercase tracking-wider mb-3">
+            United States Postal Service (USPS)
+          </div>
+          <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight font-mono text-white flex items-center gap-3">
+            <span>{zipcode}</span>
+            <span class="text-base sm:text-lg font-sans font-normal text-slate-300">
+              ({data.city}, {data.stateCode})
+            </span>
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base mt-2 max-w-2xl">
+            Located in {data.county} County, {data.state}. Covers {data.places.length} designated delivery area{data.places.length > 1 ? 's' : ''}.
+          </p>
+        </div>
+
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 text-xs space-y-2 shrink-0">
+          <div class="flex justify-between gap-6">
+            <span class="text-slate-400">Primary City:</span>
+            <span class="font-semibold text-white">{data.city}</span>
+          </div>
+          <div class="flex justify-between gap-6">
+            <span class="text-slate-400">State:</span>
+            <span class="font-semibold text-white">{data.state} ({data.stateCode})</span>
+          </div>
+          <div class="flex justify-between gap-6">
+            <span class="text-slate-400">County:</span>
+            <span class="font-semibold text-white">{data.county || 'N/A'}</span>
+          </div>
+          {primaryPlace.lat && primaryPlace.lng && (
+            <div class="flex justify-between gap-6">
+              <span class="text-slate-400">Coordinates:</span>
+              <a 
+                href={`https://maps.google.com/?q=${primaryPlace.lat},${primaryPlace.lng}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="font-semibold text-blue-400 hover:underline font-mono"
+              >
+                {primaryPlace.lat}, {primaryPlace.lng} ↗
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    
+    <!-- Pre-filled USPS Postage Calculator -->
+    <div>
+      <div class="mb-4">
+        <h2 class="text-xl font-bold text-slate-900">
+          Calculate USPS Postage to {zipcode}
+        </h2>
+        <p class="text-xs text-slate-500">
+          Estimate shipping costs for packages delivering to {data.city}, {data.stateCode}.
+        </p>
+      </div>
+      <USPSPostageCalculator defaultDestZip={zipcode} />
+    </div>
+
+    <!-- Pre-filled USPS Address Formatter -->
+    <div>
+      <div class="mb-4">
+        <h2 class="text-xl font-bold text-slate-900">
+          Format USPS Shipping Label for {zipcode}
+        </h2>
+        <p class="text-xs text-slate-500">
+          Generate standardized CASS-compliant delivery addresses for {data.city}, {data.stateCode}.
+        </p>
+      </div>
+      <USAddressFormatter defaultZip={zipcode} defaultCity={data.city} defaultStateCode={data.stateCode} />
+    </div>
+
+  </div>
+</Layout>

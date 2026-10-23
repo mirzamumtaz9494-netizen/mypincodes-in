@@ -1,0 +1,328 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getAllUSStates } from '../../utils/usPostalData';
+
+export const prerender = true;
+
+const usStates = getAllUSStates();
+
+const popularUSCities = [
+  { name: 'New York (10001)', zip: '10001' },
+  { name: 'Beverly Hills (90210)', zip: '90210' },
+  { name: 'Chicago (60601)', zip: '60601' },
+  { name: 'Houston (77001)', zip: '77001' },
+  { name: 'San Francisco (94102)', zip: '94102' },
+  { name: 'Miami (33101)', zip: '33101' },
+  { name: 'Seattle (98101)', zip: '98101' },
+  { name: 'Boston (02108)', zip: '02108' }
+];
+---
+
+<Layout 
+  title="United States ZIP Code & USPS Postal Directory 2026 - Find Any US ZIP"
+  description="Search 41,488+ US ZIP codes, calculate USPS Ground Advantage and Priority Mail shipping rates, and format standard CASS shipping labels across all 50 US States."
+  activePage="us"
+>
+  <!-- US Hero Section -->
+  <section class="relative bg-gradient-to-b from-blue-950 via-slate-900 to-slate-900 text-white pt-12 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <div class="relative max-w-4xl mx-auto text-center space-y-6">
+      
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-900/80 border border-blue-700/60 text-xs font-medium text-blue-200">
+        <span class="inline-block w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
+        USPS Postal & ZIP Code Directory • 2026 Updated
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+        United States ZIP Code & USPS Postage Finder
+      </h1>
+
+      <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
+        Instant lookup for 41,488+ US ZIP codes, USPS postage rate calculations, and CASS-compliant shipping label formatting.
+      </p>
+
+      <!-- US Search Input Box -->
+      <div class="relative max-w-2xl mx-auto mt-8 text-left">
+        <div class="relative flex items-center bg-white rounded-2xl shadow-2xl p-2 focus-within:ring-4 focus-within:ring-blue-500/40 transition-all">
+          <div class="pl-3.5 pr-2 text-slate-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+          </div>
+
+          <input 
+            type="text" 
+            id="usSearchInput" 
+            placeholder="Enter 5-digit ZIP (e.g. 90210) or City name..."
+            autocomplete="off"
+            class="w-full text-slate-900 placeholder-slate-600 text-base sm:text-lg py-2.5 px-2 bg-transparent focus:outline-none"
+          />
+
+          <button 
+            id="usSearchBtn" 
+            class="hidden sm:inline-flex items-center justify-center px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-md transition-all active:scale-95"
+          >
+            Find ZIP
+          </button>
+        </div>
+
+        <!-- US Autocomplete Dropdown List -->
+        <div 
+          id="usResultsDropdown" 
+          class="hidden absolute left-0 right-0 top-full mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 max-h-96 overflow-y-auto"
+        >
+          <div id="usResultsList" class="divide-y divide-slate-100"></div>
+        </div>
+      </div>
+
+      <!-- Quick Popular US Cities -->
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-2 text-xs">
+        <span class="text-slate-400 font-medium">Popular:</span>
+        {popularUSCities.map((c) => (
+          <a 
+            href={`/us/zip/${c.zip}`}
+            class="px-2.5 py-1 rounded-full bg-slate-800/90 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors"
+          >
+            {c.name}
+          </a>
+        ))}
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="pt-8 grid grid-cols-3 gap-4 text-center border-t border-blue-900/60 max-w-lg mx-auto">
+        <div>
+          <div class="text-2xl font-bold text-white tracking-tight">41,488+</div>
+          <div class="text-xs text-blue-300">Active US ZIP Codes</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-white tracking-tight">50</div>
+          <div class="text-xs text-blue-300">States + DC & PR</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-white tracking-tight">3,143</div>
+          <div class="text-xs text-blue-300">US Counties</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- US Multi-Tools Highlights -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <a 
+        href="/us/postage-calculator" 
+        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 hover:border-blue-500 hover:shadow-2xl transition-all group flex flex-col justify-between"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            🦅
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+            USPS Postage Rate Calculator
+          </h2>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Estimate retail rates for USPS Ground Advantage, Priority Mail, and Express Mail across all USPS Postal Zones.
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+          <span>Calculate USPS Rates</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
+
+      <a 
+        href="/us/address-formatter" 
+        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 hover:border-blue-500 hover:shadow-2xl transition-all group flex flex-col justify-between"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            📫
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+            USPS Shipping Label Formatter
+          </h2>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Generate CASS-standard shipping address labels for USPS, FedEx, and UPS deliveries with standardized 2-letter state codes.
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-indigo-600">
+          <span>Format US Address</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
+
+      <a 
+        href="/us/states" 
+        class="bg-white rounded-2xl p-6 shadow-xl border border-slate-200 hover:border-blue-500 hover:shadow-2xl transition-all group flex flex-col justify-between"
+      >
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-xl font-bold mb-4 group-hover:scale-110 transition-transform">
+            🗺️
+          </div>
+          <h2 class="text-lg font-bold text-slate-900 group-hover:text-purple-600 transition-colors">
+            All 50 US States Directory
+          </h2>
+          <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+            Browse ZIP code directories across California, New York, Texas, Florida, and all 50 states with county breakdowns.
+          </p>
+        </div>
+        <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-purple-600">
+          <span>Browse 50 States</span>
+          <span class="group-hover:translate-x-1 transition-transform">→</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- Browse US States Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider mb-2">
+          State Postal Directory
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Browse US ZIP Codes by State
+        </h2>
+        <p class="text-sm text-slate-600 mt-1">
+          Explore postal codes across all 50 states, District of Columbia, and Puerto Rico.
+        </p>
+      </div>
+      <a href="/us/states" class="text-sm font-semibold text-blue-600 hover:text-blue-700">
+        View All States →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+      {usStates.slice(0, 24).map((st) => (
+        <a 
+          href={`/us/state/${st.slug}`}
+          class="bg-white p-3 rounded-xl border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all text-center group"
+        >
+          <div class="text-xs font-bold text-blue-600 font-mono">{st.code}</div>
+          <div class="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors mt-0.5 truncate">
+            {st.name}
+          </div>
+          <div class="text-[10px] text-slate-400 mt-0.5">
+            {st.zipcodesCount.toLocaleString()} ZIPs
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  let usSearchData: any = null;
+  let usIsFetching = false;
+
+  const usInput = document.getElementById('usSearchInput') as HTMLInputElement;
+  const usDropdown = document.getElementById('usResultsDropdown');
+  const usList = document.getElementById('usResultsList');
+
+  async function loadUsIndex() {
+    if (usSearchData || usIsFetching) return;
+    usIsFetching = true;
+    try {
+      const res = await fetch('/us_search_index.json');
+      usSearchData = await res.json();
+    } catch (e) {
+      console.error('Failed to load US search index', e);
+    } finally {
+      usIsFetching = false;
+    }
+  }
+
+  if (usInput) {
+    usInput.addEventListener('focus', loadUsIndex);
+
+    usInput.addEventListener('input', () => {
+      const query = usInput.value.trim().toLowerCase();
+      if (!query || query.length < 2) {
+        if (usDropdown) usDropdown.classList.add('hidden');
+        return;
+      }
+
+      if (!usSearchData) return;
+
+      const isDigitsOnly = /^\d+$/.test(query);
+      const matches = [];
+
+      for (let i = 0; i < usSearchData.length; i++) {
+        const item = usSearchData[i]; // [zip, city, stateCode, county]
+        const zip = item[0];
+        const city = item[1].toLowerCase();
+        const stateCode = item[2].toLowerCase();
+
+        if (isDigitsOnly) {
+          if (zip.startsWith(query)) matches.push(item);
+        } else {
+          if (city.includes(query) || zip.includes(query) || stateCode === query) {
+            matches.push(item);
+          }
+        }
+
+        if (matches.length >= 10) break;
+      }
+
+      renderUsResults(matches, query);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!usInput.contains(e.target as Node) && usDropdown && !usDropdown.contains(e.target as Node)) {
+        usDropdown.classList.add('hidden');
+      }
+    });
+
+    usInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        const val = usInput.value.trim();
+        if (/^\d{5}$/.test(val)) {
+          window.location.href = `/us/zip/${val}`;
+        }
+      }
+    });
+  }
+
+  function renderUsResults(items: any[], query: string) {
+    if (!usDropdown || !usList) return;
+
+    if (items.length === 0) {
+      usList.innerHTML = `
+        <div class="p-4 text-center text-sm text-slate-500">
+          No matching US ZIP code found for "<span class="font-medium text-slate-800">${query}</span>".
+        </div>
+      `;
+      usDropdown.classList.remove('hidden');
+      return;
+    }
+
+    usList.innerHTML = items.map((item) => `
+      <a 
+        href="/us/zip/${item[0]}" 
+        class="flex items-center justify-between p-3.5 hover:bg-slate-50 transition-colors group cursor-pointer"
+      >
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 font-mono font-bold flex items-center justify-center text-sm border border-blue-200 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+            ${item[0]}
+          </div>
+          <div>
+            <div class="text-sm font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+              ${item[1]}, ${item[2]}
+            </div>
+            <div class="text-xs text-slate-500">
+              ${item[3] || 'County'}
+            </div>
+          </div>
+        </div>
+        <div class="text-xs font-semibold text-blue-600 flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+          View Details →
+        </div>
+      </a>
+    `).join('');
+
+    usDropdown.classList.remove('hidden');
+  }
+</script>

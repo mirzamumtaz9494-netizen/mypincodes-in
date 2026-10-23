@@ -1,0 +1,273 @@
+---
+interface Props {
+  defaultDestZip?: string;
+}
+
+const { defaultDestZip = '' } = Astro.props;
+---
+
+<div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 sm:p-8 max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 border-b border-slate-100 pb-5 mb-6">
+    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl border border-blue-200">
+      🦅
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+        USPS Postage & Shipping Rate Calculator (2026)
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500">
+        Estimate domestic rates for USPS Ground Advantage, Priority Mail, and Priority Mail Express across all USPS Postal Zones.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+    
+    <!-- Origin ZIP -->
+    <div>
+      <label for="usOriginZip" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        From (Origin ZIP Code)
+      </label>
+      <input 
+        type="text" 
+        id="usOriginZip" 
+        maxlength="5" 
+        placeholder="e.g. 10001 (New York, NY)"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm font-medium font-mono"
+      />
+    </div>
+
+    <!-- Destination ZIP -->
+    <div>
+      <label for="usDestZip" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        To (Destination ZIP Code)
+      </label>
+      <input 
+        type="text" 
+        id="usDestZip" 
+        maxlength="5" 
+        value={defaultDestZip}
+        placeholder="e.g. 90210 (Beverly Hills, CA)"
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm font-medium font-mono"
+      />
+    </div>
+
+    <!-- Weight in Lbs & Oz -->
+    <div>
+      <label for="usWeightPounds" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        Package Weight
+      </label>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="relative">
+          <input 
+            type="number" 
+            id="usWeightPounds" 
+            value="1" 
+            min="0" 
+            max="70" 
+            step="1"
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm font-medium"
+          />
+          <span class="absolute right-3.5 top-2.5 text-xs font-semibold text-slate-600">lbs</span>
+        </div>
+        <div class="relative">
+          <input 
+            type="number" 
+            id="usWeightOunces" 
+            value="0" 
+            min="0" 
+            max="15" 
+            step="1"
+            class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm font-medium"
+          />
+          <span class="absolute right-3.5 top-2.5 text-xs font-semibold text-slate-600">oz</span>
+        </div>
+      </div>
+      <div class="flex gap-2 mt-2">
+        <button type="button" class="us-weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-lbs="0" data-oz="4">4 oz</button>
+        <button type="button" class="us-weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-lbs="0" data-oz="12">12 oz</button>
+        <button type="button" class="us-weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-lbs="1" data-oz="0">1 lb</button>
+        <button type="button" class="us-weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-lbs="2" data-oz="0">2 lbs</button>
+        <button type="button" class="us-weight-chip text-xs px-2.5 py-1 rounded-md bg-slate-100 hover:bg-slate-200 text-slate-600 font-medium" data-lbs="5" data-oz="0">5 lbs</button>
+      </div>
+    </div>
+
+    <!-- USPS Zone Category -->
+    <div>
+      <label for="uspsZone" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1.5">
+        USPS Postal Zone
+      </label>
+      <select 
+        id="uspsZone" 
+        class="w-full px-4 py-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm font-medium bg-white"
+      >
+        <option value="1">Zone 1 & 2 (1 - 150 miles / Local)</option>
+        <option value="3">Zone 3 (151 - 300 miles)</option>
+        <option value="4">Zone 4 (301 - 600 miles)</option>
+        <option value="5">Zone 5 (601 - 1,000 miles)</option>
+        <option value="6">Zone 6 (1,001 - 1,400 miles)</option>
+        <option value="7">Zone 7 (1,401 - 1,800 miles)</option>
+        <option value="8" selected>Zone 8 (1,801+ miles / Coast to Coast)</option>
+      </select>
+      <span class="text-[11px] text-slate-600 block mt-1.5">
+        Automatically estimated if 5-digit ZIP codes are provided.
+      </span>
+    </div>
+
+  </div>
+
+  <!-- Calculate Button -->
+  <div class="mt-6">
+    <button 
+      type="button" 
+      id="calcUspsRateBtn"
+      class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-700 to-indigo-700 hover:from-blue-600 hover:to-indigo-600 text-white font-bold text-sm shadow-lg shadow-blue-500/20 transition-all flex items-center justify-center gap-2"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+      </svg>
+      Calculate USPS Postage Rates
+    </button>
+  </div>
+
+  <!-- USPS Service Comparisons Results Box -->
+  <div class="mt-8 space-y-4">
+    
+    <!-- Option 1: USPS Ground Advantage -->
+    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-bold text-slate-900">USPS Ground Advantage™</span>
+          <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">Best Value</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">2 - 5 Business Days • Includes $100 insurance & tracking</p>
+      </div>
+      <div class="text-right">
+        <div class="text-xl font-extrabold text-slate-900" id="groundRateDisplay">$7.95</div>
+        <span class="text-[10px] text-slate-600">Retail Rate</span>
+      </div>
+    </div>
+
+    <!-- Option 2: Priority Mail -->
+    <div class="p-4 rounded-xl border-2 border-blue-600 bg-blue-50/50 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-bold text-blue-900">Priority Mail®</span>
+          <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-blue-600 text-white">Most Popular</span>
+        </div>
+        <p class="text-xs text-slate-600 mt-0.5">1 - 3 Business Days • Free packaging • $100 insurance</p>
+      </div>
+      <div class="text-right">
+        <div class="text-xl font-extrabold text-blue-700" id="priorityRateDisplay">$10.20</div>
+        <span class="text-[10px] text-slate-600">Weight & Zone Based</span>
+      </div>
+    </div>
+
+    <!-- Option 3: Priority Mail Express -->
+    <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 flex items-center justify-between">
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm font-bold text-slate-900">Priority Mail Express®</span>
+          <span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-purple-100 text-purple-800">Fastest</span>
+        </div>
+        <p class="text-xs text-slate-500 mt-0.5">Next-Day to 2-Day Guaranteed Delivery • $100 insurance</p>
+      </div>
+      <div class="text-right">
+        <div class="text-xl font-extrabold text-slate-900" id="expressRateDisplay">$30.45</div>
+        <span class="text-[10px] text-slate-600">Money-Back Guarantee</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- USPS Flat Rate Reference Box -->
+  <div class="mt-6 pt-5 border-t border-slate-200">
+    <div class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+      USPS Priority Mail Flat Rate Options (If using USPS Flat Rate Packaging)
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
+      <div class="p-2.5 rounded-lg bg-slate-100">
+        <div class="text-slate-500 text-[11px]">Flat Rate Envelope</div>
+        <div class="font-bold text-slate-900 text-sm mt-0.5">$9.85</div>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-100">
+        <div class="text-slate-500 text-[11px]">Small Flat Rate Box</div>
+        <div class="font-bold text-slate-900 text-sm mt-0.5">$10.40</div>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-100">
+        <div class="text-slate-500 text-[11px]">Medium Flat Rate Box</div>
+        <div class="font-bold text-slate-900 text-sm mt-0.5">$18.40</div>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-100">
+        <div class="text-slate-500 text-[11px]">Large Flat Rate Box</div>
+        <div class="font-bold text-slate-900 text-sm mt-0.5">$24.75</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // USPS Base Rate Matrix Approximation (Retail)
+  function calculateUspsTariff() {
+    const lbsInput = document.getElementById('usWeightPounds') as HTMLInputElement;
+    const ozInput = document.getElementById('usWeightOunces') as HTMLInputElement;
+    const zoneSelect = document.getElementById('uspsZone') as HTMLSelectElement;
+
+    const lbs = parseInt(lbsInput?.value || '1', 10);
+    const oz = parseInt(ozInput?.value || '0', 10);
+    const totalOz = (lbs * 16) + oz;
+    const zone = parseInt(zoneSelect?.value || '8', 10);
+
+    // USPS Ground Advantage Calculation
+    let ground = 5.00;
+    if (totalOz <= 4) ground = 4.85 + (zone * 0.20);
+    else if (totalOz <= 8) ground = 5.35 + (zone * 0.30);
+    else if (totalOz <= 12) ground = 5.95 + (zone * 0.40);
+    else if (totalOz <= 16) ground = 6.95 + (zone * 0.50);
+    else {
+      const weightLbs = Math.ceil(totalOz / 16);
+      ground = 7.50 + (weightLbs * 1.50) + (zone * 0.85);
+    }
+
+    // Priority Mail Calculation
+    const weightLbs = Math.max(1, Math.ceil(totalOz / 16));
+    let priority = 8.70 + (weightLbs * 1.80) + (zone * 0.90);
+
+    // Express Calculation
+    let express = 28.75 + (weightLbs * 3.50) + (zone * 1.20);
+
+    const groundEl = document.getElementById('groundRateDisplay');
+    const priorityEl = document.getElementById('priorityRateDisplay');
+    const expressEl = document.getElementById('expressRateDisplay');
+
+    if (groundEl) groundEl.textContent = `$${ground.toFixed(2)}`;
+    if (priorityEl) priorityEl.textContent = `$${priority.toFixed(2)}`;
+    if (expressEl) expressEl.textContent = `$${express.toFixed(2)}`;
+  }
+
+  // Quick weight buttons
+  document.querySelectorAll('.us-weight-chip').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const lbs = target.getAttribute('data-lbs');
+      const oz = target.getAttribute('data-oz');
+      const lbsInput = document.getElementById('usWeightPounds') as HTMLInputElement;
+      const ozInput = document.getElementById('usWeightOunces') as HTMLInputElement;
+      if (lbsInput && lbs) lbsInput.value = lbs;
+      if (ozInput && oz) ozInput.value = oz;
+      calculateUspsTariff();
+    });
+  });
+
+  const calcBtn = document.getElementById('calcUspsRateBtn');
+  if (calcBtn) calcBtn.addEventListener('click', calculateUspsTariff);
+
+  ['usWeightPounds', 'usWeightOunces', 'uspsZone'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', calculateUspsTariff);
+  });
+
+  // Initial calculation
+  calculateUspsTariff();
+</script>

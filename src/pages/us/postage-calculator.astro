@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import USPSPostageCalculator from '../../components/USPSPostageCalculator.astro';
+
+export const prerender = true;
+---
+
+<Layout 
+  title="USPS Postage & Rate Calculator 2026 - Ground Advantage, Priority Mail Rates"
+  description="Calculate domestic USPS shipping rates for Ground Advantage, Priority Mail, Priority Mail Express, and Flat Rate boxes across all USPS postal zones."
+  activePage="us"
+>
+  <div class="bg-gradient-to-b from-blue-950 via-slate-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center">
+    <div class="max-w-3xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-semibold text-blue-400 uppercase tracking-wider">
+        USPS Postal Pricing Schedule 2026
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        USPS Shipping & Postage Rate Calculator
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        Calculate accurate retail postage rates for domestic packages across all 8 USPS Postal Zones with weight and flat rate comparisons.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <USPSPostageCalculator />
+  </div>
+</Layout>

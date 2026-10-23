@@ -1,0 +1,366 @@
+[
+  {
+    "name": "Alabama",
+    "code": "AL",
+    "slug": "alabama",
+    "countiesCount": 67,
+    "zipcodesCount": 811
+  },
+  {
+    "name": "Alaska",
+    "code": "AK",
+    "slug": "alaska",
+    "countiesCount": 30,
+    "zipcodesCount": 273
+  },
+  {
+    "name": "Arizona",
+    "code": "AZ",
+    "slug": "arizona",
+    "countiesCount": 15,
+    "zipcodesCount": 530
+  },
+  {
+    "name": "Arkansas",
+    "code": "AR",
+    "slug": "arkansas",
+    "countiesCount": 75,
+    "zipcodesCount": 706
+  },
+  {
+    "name": "California",
+    "code": "CA",
+    "slug": "california",
+    "countiesCount": 58,
+    "zipcodesCount": 2593
+  },
+  {
+    "name": "Colorado",
+    "code": "CO",
+    "slug": "colorado",
+    "countiesCount": 64,
+    "zipcodesCount": 645
+  },
+  {
+    "name": "Connecticut",
+    "code": "CT",
+    "slug": "connecticut",
+    "countiesCount": 15,
+    "zipcodesCount": 429
+  },
+  {
+    "name": "Delaware",
+    "code": "DE",
+    "slug": "delaware",
+    "countiesCount": 3,
+    "zipcodesCount": 96
+  },
+  {
+    "name": "District of Columbia",
+    "code": "DC",
+    "slug": "district-of-columbia",
+    "countiesCount": 1,
+    "zipcodesCount": 277
+  },
+  {
+    "name": "Florida",
+    "code": "FL",
+    "slug": "florida",
+    "countiesCount": 67,
+    "zipcodesCount": 1473
+  },
+  {
+    "name": "Georgia",
+    "code": "GA",
+    "slug": "georgia",
+    "countiesCount": 157,
+    "zipcodesCount": 952
+  },
+  {
+    "name": "Hawaii",
+    "code": "HI",
+    "slug": "hawaii",
+    "countiesCount": 4,
+    "zipcodesCount": 137
+  },
+  {
+    "name": "Idaho",
+    "code": "ID",
+    "slug": "idaho",
+    "countiesCount": 44,
+    "zipcodesCount": 320
+  },
+  {
+    "name": "Illinois",
+    "code": "IL",
+    "slug": "illinois",
+    "countiesCount": 102,
+    "zipcodesCount": 1575
+  },
+  {
+    "name": "Indiana",
+    "code": "IN",
+    "slug": "indiana",
+    "countiesCount": 92,
+    "zipcodesCount": 968
+  },
+  {
+    "name": "Iowa",
+    "code": "IA",
+    "slug": "iowa",
+    "countiesCount": 99,
+    "zipcodesCount": 1055
+  },
+  {
+    "name": "Kansas",
+    "code": "KS",
+    "slug": "kansas",
+    "countiesCount": 105,
+    "zipcodesCount": 748
+  },
+  {
+    "name": "Kentucky",
+    "code": "KY",
+    "slug": "kentucky",
+    "countiesCount": 120,
+    "zipcodesCount": 946
+  },
+  {
+    "name": "Louisiana",
+    "code": "LA",
+    "slug": "louisiana",
+    "countiesCount": 64,
+    "zipcodesCount": 719
+  },
+  {
+    "name": "Maine",
+    "code": "ME",
+    "slug": "maine",
+    "countiesCount": 16,
+    "zipcodesCount": 485
+  },
+  {
+    "name": "Marshall Islands",
+    "code": "MH",
+    "slug": "marshall-islands",
+    "countiesCount": 1,
+    "zipcodesCount": 2
+  },
+  {
+    "name": "Maryland",
+    "code": "MD",
+    "slug": "maryland",
+    "countiesCount": 24,
+    "zipcodesCount": 605
+  },
+  {
+    "name": "Massachusetts",
+    "code": "MA",
+    "slug": "massachusetts",
+    "countiesCount": 14,
+    "zipcodesCount": 685
+  },
+  {
+    "name": "Michigan",
+    "code": "MI",
+    "slug": "michigan",
+    "countiesCount": 83,
+    "zipcodesCount": 1159
+  },
+  {
+    "name": "Minnesota",
+    "code": "MN",
+    "slug": "minnesota",
+    "countiesCount": 87,
+    "zipcodesCount": 992
+  },
+  {
+    "name": "Mississippi",
+    "code": "MS",
+    "slug": "mississippi",
+    "countiesCount": 82,
+    "zipcodesCount": 531
+  },
+  {
+    "name": "Missouri",
+    "code": "MO",
+    "slug": "missouri",
+    "countiesCount": 115,
+    "zipcodesCount": 1157
+  },
+  {
+    "name": "Montana",
+    "code": "MT",
+    "slug": "montana",
+    "countiesCount": 56,
+    "zipcodesCount": 404
+  },
+  {
+    "name": "Nebraska",
+    "code": "NE",
+    "slug": "nebraska",
+    "countiesCount": 93,
+    "zipcodesCount": 620
+  },
+  {
+    "name": "Nevada",
+    "code": "NV",
+    "slug": "nevada",
+    "countiesCount": 17,
+    "zipcodesCount": 254
+  },
+  {
+    "name": "New Hampshire",
+    "code": "NH",
+    "slug": "new-hampshire",
+    "countiesCount": 10,
+    "zipcodesCount": 281
+  },
+  {
+    "name": "New Jersey",
+    "code": "NJ",
+    "slug": "new-jersey",
+    "countiesCount": 21,
+    "zipcodesCount": 723
+  },
+  {
+    "name": "New Mexico",
+    "code": "NM",
+    "slug": "new-mexico",
+    "countiesCount": 33,
+    "zipcodesCount": 427
+  },
+  {
+    "name": "New York",
+    "code": "NY",
+    "slug": "new-york",
+    "countiesCount": 62,
+    "zipcodesCount": 2154
+  },
+  {
+    "name": "North Carolina",
+    "code": "NC",
+    "slug": "north-carolina",
+    "countiesCount": 100,
+    "zipcodesCount": 1081
+  },
+  {
+    "name": "North Dakota",
+    "code": "ND",
+    "slug": "north-dakota",
+    "countiesCount": 53,
+    "zipcodesCount": 407
+  },
+  {
+    "name": "Ohio",
+    "code": "OH",
+    "slug": "ohio",
+    "countiesCount": 88,
+    "zipcodesCount": 1416
+  },
+  {
+    "name": "Oklahoma",
+    "code": "OK",
+    "slug": "oklahoma",
+    "countiesCount": 77,
+    "zipcodesCount": 765
+  },
+  {
+    "name": "Oregon",
+    "code": "OR",
+    "slug": "oregon",
+    "countiesCount": 36,
+    "zipcodesCount": 481
+  },
+  {
+    "name": "Pennsylvania",
+    "code": "PA",
+    "slug": "pennsylvania",
+    "countiesCount": 67,
+    "zipcodesCount": 2176
+  },
+  {
+    "name": "Rhode Island",
+    "code": "RI",
+    "slug": "rhode-island",
+    "countiesCount": 5,
+    "zipcodesCount": 90
+  },
+  {
+    "name": "South Carolina",
+    "code": "SC",
+    "slug": "south-carolina",
+    "countiesCount": 46,
+    "zipcodesCount": 534
+  },
+  {
+    "name": "South Dakota",
+    "code": "SD",
+    "slug": "south-dakota",
+    "countiesCount": 66,
+    "zipcodesCount": 385
+  },
+  {
+    "name": "Tennessee",
+    "code": "TN",
+    "slug": "tennessee",
+    "countiesCount": 95,
+    "zipcodesCount": 785
+  },
+  {
+    "name": "Texas",
+    "code": "TX",
+    "slug": "texas",
+    "countiesCount": 254,
+    "zipcodesCount": 2600
+  },
+  {
+    "name": "Utah",
+    "code": "UT",
+    "slug": "utah",
+    "countiesCount": 29,
+    "zipcodesCount": 347
+  },
+  {
+    "name": "Vermont",
+    "code": "VT",
+    "slug": "vermont",
+    "countiesCount": 14,
+    "zipcodesCount": 308
+  },
+  {
+    "name": "Virginia",
+    "code": "VA",
+    "slug": "virginia",
+    "countiesCount": 133,
+    "zipcodesCount": 1214
+  },
+  {
+    "name": "Washington",
+    "code": "WA",
+    "slug": "washington",
+    "countiesCount": 39,
+    "zipcodesCount": 716
+  },
+  {
+    "name": "West Virginia",
+    "code": "WV",
+    "slug": "west-virginia",
+    "countiesCount": 55,
+    "zipcodesCount": 851
+  },
+  {
+    "name": "Wisconsin",
+    "code": "WI",
+    "slug": "wisconsin",
+    "countiesCount": 72,
+    "zipcodesCount": 896
+  },
+  {
+    "name": "Wyoming",
+    "code": "WY",
+    "slug": "wyoming",
+    "countiesCount": 23,
+    "zipcodesCount": 195
+  }
+]

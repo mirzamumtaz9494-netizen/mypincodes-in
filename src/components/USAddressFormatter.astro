@@ -1,0 +1,191 @@
+---
+interface Props {
+  defaultZip?: string;
+  defaultCity?: string;
+  defaultStateCode?: string;
+}
+
+const {
+  defaultZip = '90210',
+  defaultCity = 'Beverly Hills',
+  defaultStateCode = 'CA'
+} = Astro.props;
+---
+
+<div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-6 sm:p-8 max-w-3xl mx-auto">
+  <div class="flex items-center gap-3 border-b border-slate-100 pb-5 mb-6">
+    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-xl border border-blue-200">
+      📫
+    </div>
+    <div>
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+        USPS Standard Shipping Address Formatter
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500">
+        Generate USPS CASS-compliant, barcode-ready shipping label addresses for USPS, FedEx, UPS, and Amazon packages.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- Recipient Name -->
+    <div class="md:col-span-2">
+      <label for="usRecipientName" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Recipient / Business Name *
+      </label>
+      <input 
+        type="text" 
+        id="usRecipientName" 
+        placeholder="e.g. John Doe or Acme Corp"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm"
+      />
+    </div>
+
+    <!-- Street Address -->
+    <div>
+      <label for="usStreetAddress" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Delivery Address (Street & Number) *
+      </label>
+      <input 
+        type="text" 
+        id="usStreetAddress" 
+        placeholder="e.g. 123 Main St"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm"
+      />
+    </div>
+
+    <!-- Suite / Apt -->
+    <div>
+      <label for="usSuiteApt" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        Apt / Suite / Unit (Optional)
+      </label>
+      <input 
+        type="text" 
+        id="usSuiteApt" 
+        placeholder="e.g. Apt 4B or Ste 200"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm"
+      />
+    </div>
+
+    <!-- City -->
+    <div>
+      <label for="usCity" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+        City / Municipality *
+      </label>
+      <input 
+        type="text" 
+        id="usCity" 
+        value={defaultCity}
+        placeholder="e.g. Beverly Hills"
+        class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm"
+      />
+    </div>
+
+    <!-- State & ZIP -->
+    <div class="grid grid-cols-2 gap-2">
+      <div>
+        <label for="usStateCode" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+          State (2-Letter) *
+        </label>
+        <input 
+          type="text" 
+          id="usStateCode" 
+          maxlength="2"
+          value={defaultStateCode}
+          placeholder="CA"
+          class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm uppercase font-mono font-bold"
+        />
+      </div>
+      <div>
+        <label for="usZipCode" class="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
+          5-Digit ZIP Code *
+        </label>
+        <input 
+          type="text" 
+          id="usZipCode" 
+          maxlength="5"
+          value={defaultZip}
+          placeholder="90210"
+          class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 text-sm font-mono font-bold"
+        />
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Formatted Preview Output -->
+  <div class="mt-8 bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-6 relative">
+    <div class="flex items-center justify-between pb-3 border-b border-slate-200 mb-3">
+      <span class="text-xs uppercase tracking-wider font-bold text-slate-500 flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+        </svg>
+        USPS Standard Postal Label Format
+      </span>
+
+      <button 
+        type="button" 
+        id="copyUsAddressBtn"
+        class="inline-flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all active:scale-95"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/>
+        </svg>
+        <span id="copyUsBtnText">Copy Label</span>
+      </button>
+    </div>
+
+    <pre id="usAddressPreview" class="font-mono text-sm text-slate-800 leading-relaxed uppercase whitespace-pre-wrap select-all">
+JOHN DOE
+123 MAIN ST APT 4B
+BEVERLY HILLS CA 90210
+UNITED STATES
+    </pre>
+  </div>
+</div>
+
+<script>
+  function updateUsAddressPreview() {
+    const name = (document.getElementById('usRecipientName') as HTMLInputElement)?.value.trim() || 'JOHN DOE';
+    const street = (document.getElementById('usStreetAddress') as HTMLInputElement)?.value.trim() || '123 MAIN ST';
+    const apt = (document.getElementById('usSuiteApt') as HTMLInputElement)?.value.trim();
+    const city = (document.getElementById('usCity') as HTMLInputElement)?.value.trim() || 'BEVERLY HILLS';
+    const state = (document.getElementById('usStateCode') as HTMLInputElement)?.value.trim() || 'CA';
+    const zip = (document.getElementById('usZipCode') as HTMLInputElement)?.value.trim() || '90210';
+
+    let addressLine2 = street;
+    if (apt) {
+      addressLine2 += ` ${apt}`;
+    }
+
+    const text = `${name.toUpperCase()}\n${addressLine2.toUpperCase()}\n${city.toUpperCase()} ${state.toUpperCase()} ${zip}\nUNITED STATES`;
+
+    const preview = document.getElementById('usAddressPreview');
+    if (preview) {
+      preview.textContent = text;
+    }
+  }
+
+  const usInputs = ['usRecipientName', 'usStreetAddress', 'usSuiteApt', 'usCity', 'usStateCode', 'usZipCode'];
+  usInputs.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', updateUsAddressPreview);
+  });
+
+  const copyBtn = document.getElementById('copyUsAddressBtn');
+  const copyBtnText = document.getElementById('copyUsBtnText');
+
+  if (copyBtn && copyBtnText) {
+    copyBtn.addEventListener('click', () => {
+      const preview = document.getElementById('usAddressPreview');
+      if (preview && preview.textContent) {
+        navigator.clipboard.writeText(preview.textContent.trim()).then(() => {
+          copyBtnText.textContent = 'Copied!';
+          setTimeout(() => {
+            copyBtnText.textContent = 'Copy Label';
+          }, 2000);
+        });
+      }
+    });
+  }
+</script>
