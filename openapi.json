@@ -1,0 +1,214 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "India Pincode & Postal Details API",
+    "description": "Enterprise-grade Indian Postal Index Number (PIN Code) API. Provides real-time postal office verification, delivery office status, GPS coordinates, district/state matching, and locality search across all 150,000+ Indian post offices.",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://mypincodes.in",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/api/v1/pincode": {
+      "get": {
+        "summary": "Lookup Pincode Details",
+        "description": "Retrieve all post offices, administrative divisions, delivery status, and coordinates associated with a 6-digit Indian PIN code.",
+        "operationId": "getPincode",
+        "parameters": [
+          {
+            "name": "pin",
+            "in": "query",
+            "required": true,
+            "description": "6-digit Indian Postal Code",
+            "schema": {
+              "type": "string",
+              "example": "560001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pincode details retrieved successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "pincode": "560001",
+                  "district": "Bengaluru",
+                  "state": "Karnataka",
+                  "circle": "Karnataka",
+                  "division": "Bangalore East",
+                  "region": "Bangalore HQ",
+                  "officesCount": 2,
+                  "offices": [
+                    {
+                      "name": "Bangalore G.P.O.",
+                      "type": "Head Post Office (H.O.)",
+                      "delivery": "Delivery",
+                      "lat": 12.9796,
+                      "lng": 77.5907
+                    },
+                    {
+                      "name": "Raj Bhavan S.O",
+                      "type": "Sub Post Office (S.O.)",
+                      "delivery": "Non-Delivery",
+                      "lat": 12.9863,
+                      "lng": 77.5925
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid PIN code format"
+          },
+          "404": {
+            "description": "PIN code not found"
+          }
+        }
+      }
+    },
+    "/api/v1/search": {
+      "get": {
+        "summary": "Search Pincodes by Locality or Office Name",
+        "description": "Find pincodes and corresponding post offices by matching locality name, village, town, or city.",
+        "operationId": "searchPincode",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": true,
+            "description": "Locality, office, or area name (min 2 characters)",
+            "schema": {
+              "type": "string",
+              "example": "Indiranagar"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results to return (default 10, max 50)",
+            "schema": {
+              "type": "integer",
+              "default": 10,
+              "example": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Matching post offices and pincodes",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "query": "Indiranagar",
+                  "count": 1,
+                  "results": [
+                    {
+                      "pincode": "560038",
+                      "officeName": "Indiranagar H.O",
+                      "district": "Bengaluru",
+                      "state": "Karnataka"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/verify": {
+      "get": {
+        "summary": "Validate Address & Pincode Match",
+        "description": "Used by checkout forms and e-commerce platforms to prevent delivery failure by ensuring the customer's state and district match the provided PIN code.",
+        "operationId": "verifyPincode",
+        "parameters": [
+          {
+            "name": "pin",
+            "in": "query",
+            "required": true,
+            "description": "6-digit PIN code",
+            "schema": {
+              "type": "string",
+              "example": "560001"
+            }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "required": false,
+            "description": "State name to verify against",
+            "schema": {
+              "type": "string",
+              "example": "Karnataka"
+            }
+          },
+          {
+            "name": "district",
+            "in": "query",
+            "required": false,
+            "description": "District name to verify against",
+            "schema": {
+              "type": "string",
+              "example": "Bengaluru"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Verification result",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "pincode": "560001",
+                  "isValid": true,
+                  "stateMatch": true,
+                  "districtMatch": true,
+                  "resolvedState": "Karnataka",
+                  "resolvedDistrict": "Bengaluru"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/states": {
+      "get": {
+        "summary": "List All States and Statistics",
+        "description": "Returns list of all 36 Indian states and union territories with total districts, pincodes, and post office counts.",
+        "operationId": "getStates",
+        "responses": {
+          "200": {
+            "description": "List of states",
+            "content": {
+              "application/json": {
+                "example": {
+                  "success": true,
+                  "count": 36,
+                  "states": [
+                    {
+                      "name": "Karnataka",
+                      "slug": "karnataka",
+                      "districtsCount": 31,
+                      "pincodesCount": 1824,
+                      "officesCount": 9840
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
