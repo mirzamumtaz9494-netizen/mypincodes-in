@@ -1,0 +1,437 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How are India Post Speed Post charges calculated?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Speed Post charges in India are calculated based on two main factors: the total weight of the parcel/document (in weight slabs up to 35 kg) and the distance between sender and recipient PIN codes (Local, up to 200 km, 201 to 1000 km, 1001 to 2000 km, and above 2000 km). An 18% Goods and Services Tax (GST) is added to the base tariff.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Is 18% GST included in the Speed Post rate chart?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The base tariff schedule published by the Department of Posts excludes taxes. An 18% GST (CGST 9% + SGST 9% for intra-state, or IGST 18% for inter-state) is levied on the total postage amount.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the maximum weight permitted for Speed Post in India?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The maximum allowable weight limit for domestic Speed Post articles is 35 kilograms (35 kg).'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does Speed Post cost for a 500 gram parcel?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For a 500 gram parcel, base Speed Post charges are ₹30 for local delivery, ₹50 for distances up to 200 km, ₹60 for 201-1000 km, ₹70 for 1001-2000 km, and ₹80 for over 2000 km. After adding 18% GST, the final payable cost ranges from ₹35.40 (local) to ₹94.40 (>2000 km).'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the expected delivery time for Speed Post?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Standard delivery timeframes under Department of Posts norms are: Local (same city): 1 to 2 days; Metro to Metro: 1 to 3 days; State Capital to State Capital: 2 to 4 days; District headquarters to District headquarters: 2 to 4 days; Rest of the country: 4 to 6 business days.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between Speed Post and Registered Post?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Speed Post is a fast-track, time-bound express service with online real-time SMS/web tracking and delivery within 1-5 days. Registered Post is an economical service focused on secure, signature-confirmed physical delivery but typically takes 5-10 business days without real-time priority transit.'
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title="India Post Speed Post Rate Chart 2026 - Domestic Charges, Slabs & Delivery Norms"
+  description="Official India Post domestic Speed Post rate chart for 2026. Complete postage tariff matrix by weight slabs (up to 35 kg), distance tiers, 18% GST calculation, delivery timelines, and FAQs."
+  canonical="https://mypincodes.in/speed-post-rates-chart"
+  activePage="calculator"
+  schemaJson={faqSchema}
+>
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center border-b border-slate-800">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pinDark-800 border border-slate-700 text-xs font-semibold text-accent-400 uppercase tracking-wider">
+        <span class="text-accent-400 font-bold">⚡</span> Official Department of Posts (DoP) Schedule 2026
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+        India Post Speed Post Rate Chart 2026
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto">
+        Complete tariff breakdown for domestic Speed Post letters, parcels, and documents across all weight slabs and distance tiers, with delivery timeframes and 18% GST calculation.
+      </p>
+
+      <!-- Instant Calculator CTA -->
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-3">
+        <a 
+          href="/speed-post-calculator" 
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-sm shadow-lg shadow-brand-500/20 transition-all hover:scale-105"
+        >
+          <span>Calculate Your Exact Postage</span>
+          <span>→</span>
+        </a>
+        <a 
+          href="/distance-calculator" 
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-all"
+        >
+          <span>Find PIN Distance</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    
+    <!-- Quick Summary Highlight Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs uppercase font-bold text-slate-400">Starting Price</div>
+        <div class="text-2xl font-black text-brand-600 mt-1">₹15 <span class="text-xs font-normal text-slate-500">+ 18% GST</span></div>
+        <div class="text-xs text-slate-500 mt-1">For local letters up to 50g</div>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs uppercase font-bold text-slate-400">Maximum Weight</div>
+        <div class="text-2xl font-black text-slate-900 mt-1">35 kg</div>
+        <div class="text-xs text-slate-500 mt-1">Domestic Speed Post limit</div>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs uppercase font-bold text-slate-400">Delivery Time</div>
+        <div class="text-2xl font-black text-slate-900 mt-1">1 to 5 Days</div>
+        <div class="text-xs text-slate-500 mt-1">Across 19,000+ PIN codes</div>
+      </div>
+      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="text-xs uppercase font-bold text-slate-400">Tracking Included</div>
+        <div class="text-2xl font-black text-emerald-600 mt-1">Free 24/7</div>
+        <div class="text-xs text-slate-500 mt-1">SMS & Online tracking</div>
+      </div>
+    </div>
+
+    <!-- Official Domestic Speed Post Tariff Matrix -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Official Domestic Speed Post Rate Chart</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">Base rates in Indian Rupees (₹) as notified by Department of Posts, Government of India.</p>
+        </div>
+        <span class="inline-flex self-start sm:self-auto items-center px-3 py-1 rounded-lg bg-emerald-50 text-emerald-700 text-xs font-semibold border border-emerald-200">
+          ✓ Verified 2026 Tariff
+        </span>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border border-slate-200 rounded-xl overflow-hidden">
+          <thead class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider text-xs">
+            <tr>
+              <th class="p-3.5 border-b">Weight Bracket</th>
+              <th class="p-3.5 border-b">Local (Same City)</th>
+              <th class="p-3.5 border-b">Up to 200 km</th>
+              <th class="p-3.5 border-b">201 to 1,000 km</th>
+              <th class="p-3.5 border-b">1,001 to 2,000 km</th>
+              <th class="p-3.5 border-b">Above 2,000 km</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="p-3.5 font-bold text-slate-900">Up to 50 grams</td>
+              <td class="p-3.5 font-semibold text-brand-600">₹15</td>
+              <td class="p-3.5 font-semibold">₹35</td>
+              <td class="p-3.5 font-semibold">₹35</td>
+              <td class="p-3.5 font-semibold">₹35</td>
+              <td class="p-3.5 font-semibold">₹35</td>
+            </tr>
+            <tr class="bg-slate-50/50 hover:bg-slate-50/80 transition-colors">
+              <td class="p-3.5 font-bold text-slate-900">51 to 200 grams</td>
+              <td class="p-3.5 font-semibold text-brand-600">₹25</td>
+              <td class="p-3.5 font-semibold">₹35</td>
+              <td class="p-3.5 font-semibold">₹40</td>
+              <td class="p-3.5 font-semibold">₹60</td>
+              <td class="p-3.5 font-semibold">₹70</td>
+            </tr>
+            <tr class="hover:bg-slate-50/80 transition-colors">
+              <td class="p-3.5 font-bold text-slate-900">201 to 500 grams</td>
+              <td class="p-3.5 font-semibold text-brand-600">₹30</td>
+              <td class="p-3.5 font-semibold">₹50</td>
+              <td class="p-3.5 font-semibold">₹60</td>
+              <td class="p-3.5 font-semibold">₹70</td>
+              <td class="p-3.5 font-semibold">₹80</td>
+            </tr>
+            <tr class="bg-brand-50/40 hover:bg-brand-50/70 transition-colors">
+              <td class="p-3.5 font-bold text-slate-900">
+                Additional 500g <span class="block text-[11px] font-normal text-slate-500">(up to 35 kg maximum)</span>
+              </td>
+              <td class="p-3.5 font-semibold text-brand-700">+₹10</td>
+              <td class="p-3.5 font-semibold text-slate-700">+₹15</td>
+              <td class="p-3.5 font-semibold text-slate-700">+₹30</td>
+              <td class="p-3.5 font-semibold text-slate-700">+₹40</td>
+              <td class="p-3.5 font-semibold text-slate-700">+₹50</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- GST Note Callout -->
+      <div class="mt-4 p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs leading-relaxed flex items-start gap-3">
+        <span class="text-base">📌</span>
+        <div>
+          <strong class="font-semibold">Note on GST & Additional Services:</strong> All base rates shown above are subject to an additional <strong>18% Goods and Services Tax (GST)</strong>. Proof of Delivery (POD) can be requested for an extra charge of <strong>₹10 per article</strong>.
+        </div>
+      </div>
+    </section>
+
+    <!-- Comprehensive Calculated Rates with 18% GST Included (For Instant Reference) -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Final Speed Post Charges (With 18% GST Included)</h2>
+      <p class="text-xs sm:text-sm text-slate-500 mb-6">Actual total payable amount at the post office counter for standard weights.</p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border border-slate-200 rounded-xl overflow-hidden">
+          <thead class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider text-xs">
+            <tr>
+              <th class="p-3 border-b">Weight</th>
+              <th class="p-3 border-b">Local (Same City)</th>
+              <th class="p-3 border-b">Up to 200 km</th>
+              <th class="p-3 border-b">201 to 1,000 km</th>
+              <th class="p-3 border-b">1,001 to 2,000 km</th>
+              <th class="p-3 border-b">Above 2,000 km</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr>
+              <td class="p-3 font-semibold">50 grams (Document/Letter)</td>
+              <td class="p-3 text-brand-600 font-bold">₹17.70</td>
+              <td class="p-3">₹41.30</td>
+              <td class="p-3">₹41.30</td>
+              <td class="p-3">₹41.30</td>
+              <td class="p-3">₹41.30</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3 font-semibold">100 grams</td>
+              <td class="p-3 text-brand-600 font-bold">₹29.50</td>
+              <td class="p-3">₹41.30</td>
+              <td class="p-3">₹47.20</td>
+              <td class="p-3">₹70.80</td>
+              <td class="p-3">₹82.60</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">250 grams</td>
+              <td class="p-3 text-brand-600 font-bold">₹35.40</td>
+              <td class="p-3">₹59.00</td>
+              <td class="p-3">₹70.80</td>
+              <td class="p-3">₹82.60</td>
+              <td class="p-3">₹94.40</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3 font-semibold">500 grams (Half kg parcel)</td>
+              <td class="p-3 text-brand-600 font-bold">₹35.40</td>
+              <td class="p-3">₹59.00</td>
+              <td class="p-3">₹70.80</td>
+              <td class="p-3">₹82.60</td>
+              <td class="p-3">₹94.40</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">1 kg parcel</td>
+              <td class="p-3 text-brand-600 font-bold">₹47.20</td>
+              <td class="p-3">₹76.70</td>
+              <td class="p-3">₹106.20</td>
+              <td class="p-3">₹129.80</td>
+              <td class="p-3">₹153.40</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3 font-semibold">2 kg parcel</td>
+              <td class="p-3 text-brand-600 font-bold">₹70.80</td>
+              <td class="p-3">₹112.10</td>
+              <td class="p-3">₹177.00</td>
+              <td class="p-3">₹224.20</td>
+              <td class="p-3">₹271.40</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">5 kg parcel</td>
+              <td class="p-3 text-brand-600 font-bold">₹141.60</td>
+              <td class="p-3">₹218.30</td>
+              <td class="p-3">₹389.40</td>
+              <td class="p-3">₹507.40</td>
+              <td class="p-3">₹625.40</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 text-center">
+        <a 
+          href="/speed-post-calculator" 
+          class="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-brand-600 hover:text-brand-700 hover:underline"
+        >
+          <span>Need custom weight or PIN-to-PIN calculations? Open the interactive Speed Post Calculator</span>
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Speed Post Delivery Time Standards (Norms) -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Speed Post Delivery Timelines (Citizen Charter Norms)</h2>
+      <p class="text-xs sm:text-sm text-slate-500 mb-6">Standard transit times established under India Post service standards.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🏙️</span>
+            <h3 class="font-bold text-slate-900 text-sm">Local Delivery</h3>
+          </div>
+          <div class="text-2xl font-black text-brand-600 mt-2">1 – 2 Days</div>
+          <p class="text-xs text-slate-500 mt-1">Within the same municipality, city, or delivery PIN circle.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">✈️</span>
+            <h3 class="font-bold text-slate-900 text-sm">Metro to Metro</h3>
+          </div>
+          <div class="text-2xl font-black text-brand-600 mt-2">1 – 3 Days</div>
+          <p class="text-xs text-slate-500 mt-1">Between Delhi, Mumbai, Bengaluru, Chennai, Kolkata, and Hyderabad.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🏛️</span>
+            <h3 class="font-bold text-slate-900 text-sm">State Capital to Capital</h3>
+          </div>
+          <div class="text-2xl font-black text-brand-600 mt-2">2 – 4 Days</div>
+          <p class="text-xs text-slate-500 mt-1">Transit between major state capitals across India.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🚚</span>
+            <h3 class="font-bold text-slate-900 text-sm">Same State (District to District)</h3>
+          </div>
+          <div class="text-2xl font-black text-brand-600 mt-2">2 – 4 Days</div>
+          <p class="text-xs text-slate-500 mt-1">Delivery between different districts in the same state.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🗺️</span>
+            <h3 class="font-bold text-slate-900 text-sm">Rest of the Country</h3>
+          </div>
+          <div class="text-2xl font-black text-brand-600 mt-2">4 – 6 Days</div>
+          <p class="text-xs text-slate-500 mt-1">Inter-state transit and deliveries to remote or hill regions.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center gap-2">
+            <span class="text-xl">🛡️</span>
+            <h3 class="font-bold text-slate-900 text-sm">Compensation for Delay</h3>
+          </div>
+          <div class="text-sm font-bold text-slate-900 mt-2">Double Speed Post Fee</div>
+          <p class="text-xs text-slate-500 mt-1">Or ₹1,000 (whichever is lower) for delayed delivery under citizen charter.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speed Post vs Registered Post Comparison -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-2">Speed Post vs. Registered Post: Key Differences</h2>
+      <p class="text-xs sm:text-sm text-slate-500 mb-6">Choosing the right India Post service for your letters and parcels.</p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border border-slate-200 rounded-xl overflow-hidden">
+          <thead class="bg-slate-100 text-slate-700 font-bold uppercase tracking-wider text-xs">
+            <tr>
+              <th class="p-3 border-b">Feature</th>
+              <th class="p-3 border-b text-brand-700">Speed Post (Express)</th>
+              <th class="p-3 border-b">Registered Post</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr>
+              <td class="p-3 font-semibold">Priority & Speed</td>
+              <td class="p-3 font-bold text-brand-600">High (1 to 5 days)</td>
+              <td class="p-3">Normal (5 to 10 days)</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3 font-semibold">Maximum Weight</td>
+              <td class="p-3 font-semibold">Up to 35 kg</td>
+              <td class="p-3">Up to 2 kg (Letters) / 20 kg (Parcels)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">Tracking</td>
+              <td class="p-3 font-semibold text-emerald-600">Real-time Online & SMS</td>
+              <td class="p-3">Limited milestone tracking</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3 font-semibold">Starting Price</td>
+              <td class="p-3 font-semibold">₹15 + GST</td>
+              <td class="p-3">₹20 base + letter weight</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold">Best Used For</td>
+              <td class="p-3 font-semibold">Parcels, e-commerce, urgent documents</td>
+              <td class="p-3">Legal notices, official certificates</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions (FAQ Section) -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-6">Frequently Asked Questions (Speed Post FAQs)</h2>
+      
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map((faq, index) => (
+          <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-start gap-2">
+              <span class="text-brand-600 font-mono text-sm">Q{index + 1}.</span>
+              <span>{faq.name}</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 pl-6 leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bottom Action Navigation -->
+    <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-brand-600 to-emerald-700 text-white flex flex-col sm:flex-row items-center justify-between gap-6 shadow-lg shadow-brand-600/10">
+      <div>
+        <h3 class="text-xl font-bold">Ready to calculate postage or look up a PIN code?</h3>
+        <p class="text-xs sm:text-sm text-emerald-100 mt-1">Search 157,000+ Indian post offices or calculate exact shipping cost.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a 
+          href="/" 
+          class="px-4 py-2.5 rounded-xl bg-white text-brand-700 font-bold text-xs uppercase tracking-wider hover:bg-emerald-50 transition-all shadow-md"
+        >
+          Search PIN Codes
+        </a>
+        <a 
+          href="/speed-post-calculator" 
+          class="px-4 py-2.5 rounded-xl bg-emerald-900/60 border border-emerald-400 text-white font-bold text-xs uppercase tracking-wider hover:bg-emerald-900/80 transition-all"
+        >
+          Calculator
+        </a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

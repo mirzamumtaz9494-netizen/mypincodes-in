@@ -11,6 +11,7 @@ export const GET: APIRoute = async () => {
   const staticPages = [
     { url: '', priority: '1.0', changefreq: 'weekly' },
     { url: '/speed-post-calculator', priority: '0.9', changefreq: 'monthly' },
+    { url: '/speed-post-rates-chart', priority: '0.9', changefreq: 'monthly' },
     { url: '/address-formatter', priority: '0.9', changefreq: 'monthly' },
     { url: '/distance-calculator', priority: '0.9', changefreq: 'monthly' },
     { url: '/states', priority: '0.8', changefreq: 'monthly' },
