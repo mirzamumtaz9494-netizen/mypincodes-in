@@ -46,6 +46,12 @@ const { activePage = 'home' } = Astro.props;
           Distance
         </a>
         <a 
+          href="/guides" 
+          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'guides' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          Guides
+        </a>
+        <a 
           href="/us" 
           class={`px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 ${activePage === 'us' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-700 bg-slate-100 hover:bg-brand-50 hover:text-brand-700'}`}
         >
@@ -98,6 +104,7 @@ const { activePage = 'home' } = Astro.props;
     <a href="/speed-post-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Speed Post Rate Calculator</a>
     <a href="/address-formatter" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Courier Address Formatter</a>
     <a href="/distance-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PIN-to-PIN Distance Tool</a>
+    <a href="/guides" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">📚 Postal Knowledge Guides</a>
     <a href="/us" class="block px-3 py-2 rounded-md text-base font-bold text-brand-700 hover:bg-brand-50">🇺🇸 USA ZIP Code & USPS Hub</a>
   </div>
 </header>

@@ -1,0 +1,177 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'India Post & Courier Packaging Guidelines: Address Formatting, Weight Limits & Sealing Rules',
+  description: 'Official packaging and addressing standards for India Post Speed Post, Registered Post, and private courier services like DTDC, Blue Dart, and Delhivery.',
+  author: {
+    '@type': 'Organization',
+    name: 'MyPincodes.in Editorial Team'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'MyPincodes.in',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://mypincodes.in/logo.png'
+    }
+  },
+  datePublished: '2026-10-24',
+  dateModified: '2026-11-11'
+};
+---
+
+<Layout
+  title="Courier Packaging & Address Guidelines: India Post, DTDC & Blue Dart Standards"
+  description="Learn official packaging rules for domestic parcels in India. Proper address formatting, box sealing, label placement, weight restrictions (35 kg limit), and prohibited items."
+  canonical="https://mypincodes.in/guides/courier-address-packaging-guidelines"
+  activePage="guides"
+  schemaJson={articleSchema}
+>
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="flex items-center gap-2 text-xs font-semibold text-accent-400 uppercase tracking-wider">
+        <a href="/guides" class="hover:underline">Postal Knowledge Hub</a>
+        <span>•</span>
+        <span>Logistics Best Practices</span>
+        <span>•</span>
+        <span>5 Min Read</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+        India Post & Courier Packaging Guidelines: Formatting, Sealing & Rules
+      </h1>
+      <p class="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed">
+        Ensure your parcels and documents arrive without delays. Follow standard address structuring rules, dimension limits, and tamper-proof sealing methods accepted by India Post, DTDC, Blue Dart, and Delhivery.
+      </p>
+    </div>
+  </div>
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-slate-800 leading-relaxed space-y-10">
+
+    <!-- Section 1: Standard Address Structure -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Standard Indian Address Formatting Rules</h2>
+      <p class="text-slate-600 text-sm">
+        Over 30% of courier delivery failures (RTO - Return to Origin) in India occur due to incomplete or improperly structured addresses. For automated sorting systems and delivery executives, always format addresses in this sequential structure:
+      </p>
+
+      <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 font-mono text-xs sm:text-sm text-slate-900 space-y-2">
+        <div class="text-slate-400 text-[11px] font-sans font-bold uppercase">Optimal 4-Line Standard Address Layout:</div>
+        <div class="text-brand-700 font-bold">Line 1: [Recipient Full Name] - Mob: [10-Digit Mobile Number]</div>
+        <div>Line 2: [Flat / Door / House No.], [Apartment / Building Name], [Street / Road Name]</div>
+        <div>Line 3: [Landmark / Colony / Sector], [Village / Town / City]</div>
+        <div class="text-emerald-700 font-bold">Line 4: [District], [State] - [6-Digit PIN Code]</div>
+      </div>
+
+      <div class="pt-2">
+        <a href="/address-formatter" class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 hover:text-brand-700 hover:underline">
+          <span>Try our free instant Courier Address Formatter tool</span>
+          <span>→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2: Label Placement Rules -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Label Placement: "TO" vs. "FROM"</h2>
+      <p class="text-slate-600 text-sm">
+        Automated OCR barcode scanners at sorting centers expect standardized label placements on envelopes and parcel boxes:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-2">
+          <span class="inline-block px-2.5 py-0.5 rounded bg-brand-100 text-brand-800 text-xs font-bold uppercase">Recipient (TO)</span>
+          <h3 class="font-bold text-slate-900 text-sm">Bottom-Right or Center Front</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Write the recipient's details in larger, clear lettering in the <strong>center or bottom-right half</strong> of the package face. Ensure the 6-digit PIN code is prominently highlighted.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-2">
+          <span class="inline-block px-2.5 py-0.5 rounded bg-slate-200 text-slate-800 text-xs font-bold uppercase">Sender (FROM)</span>
+          <h3 class="font-bold text-slate-900 text-sm">Top-Left or Reverse Flap</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Write the sender's return address in smaller text in the <strong>top-left corner</strong> of the front, or across the back sealing flap. Always include a working sender mobile number for return notifications.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Physical Specifications & Limits -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Speed Post Size & Weight Restrictions</h2>
+      <p class="text-slate-600 text-sm">
+        Articles booked under India Post Speed Post must conform to published dimension norms:
+      </p>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm border border-slate-200 rounded-xl overflow-hidden">
+          <thead class="bg-slate-100 text-slate-700 font-bold uppercase text-xs">
+            <tr>
+              <th class="p-3.5 border-b">Parameter</th>
+              <th class="p-3.5 border-b">Standard Envelopes / Letters</th>
+              <th class="p-3.5 border-b">Boxes / Parcels</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-700">
+            <tr>
+              <td class="p-3.5 font-bold text-slate-900">Maximum Weight</td>
+              <td class="p-3.5">Up to 2 kg</td>
+              <td class="p-3.5 font-bold text-brand-700">Up to 35 kg maximum</td>
+            </tr>
+            <tr class="bg-slate-50/50">
+              <td class="p-3.5 font-bold text-slate-900">Maximum Dimension</td>
+              <td class="p-3.5">Length: 60 cm (L + W + H &le; 90 cm)</td>
+              <td class="p-3.5">Maximum length 1.5 meters; Length + Girth &le; 3 meters</td>
+            </tr>
+            <tr>
+              <td class="p-3.5 font-bold text-slate-900">Minimum Size</td>
+              <td class="p-3.5">14 cm &times; 9 cm with 0.25 mm tolerance</td>
+              <td class="p-3.5">Surface area sufficient for standard 13-digit barcode label</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Section 4: Prohibited Articles -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Prohibited Articles in Domestic Mail</h2>
+      <p class="text-slate-600 text-sm">
+        Under Section 19 of the Indian Post Office Act, sending the following items through postal transit is legally forbidden:
+      </p>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-slate-700">
+        <li class="p-3 rounded-xl bg-red-50/60 border border-red-200 flex items-center gap-2">
+          <span class="text-red-500 font-bold">✕</span> Explosives, matchboxes, crackers & fireworks
+        </li>
+        <li class="p-3 rounded-xl bg-red-50/60 border border-red-200 flex items-center gap-2">
+          <span class="text-red-500 font-bold">✕</span> Inflammable liquids, kerosene, spirits & gases
+        </li>
+        <li class="p-3 rounded-xl bg-red-50/60 border border-red-200 flex items-center gap-2">
+          <span class="text-red-500 font-bold">✕</span> Currency notes, coins, gold bullion & jewellery (uninsured)
+        </li>
+        <li class="p-3 rounded-xl bg-red-50/60 border border-red-200 flex items-center gap-2">
+          <span class="text-red-500 font-bold">✕</span> Perishable organic food items prone to leakage
+        </li>
+      </ul>
+    </section>
+
+    <!-- Quick Navigation Footer -->
+    <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">Looking for Speed Post Rates?</h3>
+        <p class="text-xs text-slate-400 mt-1">Check official domestic postal rates across all distance tiers with 18% GST.</p>
+      </div>
+      <a href="/speed-post-rates-chart" class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs uppercase tracking-wider transition-all whitespace-nowrap shadow-md">
+        View Rate Chart 2026 →
+      </a>
+    </div>
+
+  </article>
+</Layout>

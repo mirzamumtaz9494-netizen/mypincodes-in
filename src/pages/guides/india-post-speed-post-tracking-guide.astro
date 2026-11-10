@@ -1,0 +1,158 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'Speed Post Tracking Guide: How to Track India Post Consignments via SMS & Online',
+  description: 'Complete step-by-step guide to tracking India Post Speed Post articles, understanding 13-digit consignment barcode formats, SMS tracking numbers, and delivery timeframes.',
+  author: {
+    '@type': 'Organization',
+    name: 'MyPincodes.in Editorial Team'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'MyPincodes.in',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://mypincodes.in/logo.png'
+    }
+  },
+  datePublished: '2026-10-24',
+  dateModified: '2026-11-11'
+};
+---
+
+<Layout
+  title="Speed Post Tracking Guide: How to Track India Post Articles (SMS & Online)"
+  description="Learn how to track India Post Speed Post consignments. Understand 13-digit barcode tracking numbers (EE, EM, SP), SMS tracking commands to 51969, and official delivery norms."
+  canonical="https://mypincodes.in/guides/india-post-speed-post-tracking-guide"
+  activePage="guides"
+  schemaJson={articleSchema}
+>
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="flex items-center gap-2 text-xs font-semibold text-accent-400 uppercase tracking-wider">
+        <a href="/guides" class="hover:underline">Postal Knowledge Hub</a>
+        <span>•</span>
+        <span>Tracking Guide</span>
+        <span>•</span>
+        <span>6 Min Read</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+        Speed Post Tracking Guide: How to Track India Post Consignments
+      </h1>
+      <p class="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed">
+        Step-by-step instructions for tracking your Speed Post letters, parcels, passports, and documents using online portals, official mobile apps, and SMS commands without internet access.
+      </p>
+    </div>
+  </div>
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-slate-800 leading-relaxed space-y-10">
+
+    <!-- Section 1: Anatomy of Tracking Number -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Understanding Your 13-Digit Consignment Number</h2>
+      <p class="text-slate-600">
+        When booking an article at any India Post counter, the receipt prints a unique <strong>13-character alpha-numeric tracking number</strong> (e.g., <code class="bg-slate-100 px-2 py-0.5 rounded font-mono text-brand-700 font-bold">EE123456789IN</code>). Here is what each part indicates:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-mono text-xl font-bold text-brand-600 mb-1">EE / EM / ED</div>
+          <h3 class="text-xs font-bold uppercase text-slate-700">Service Identifier</h3>
+          <p class="text-xs text-slate-500 mt-1"><strong>E</strong> denotes Express Mail Service (EMS / Speed Post). Registered posts typically begin with <strong>R</strong>.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-mono text-xl font-bold text-brand-600 mb-1">123456789</div>
+          <h3 class="text-xs font-bold uppercase text-slate-700">Unique Article Serial</h3>
+          <p class="text-xs text-slate-500 mt-1">9-digit unique serialized identifier assigned by the computerized booking terminal.</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-mono text-xl font-bold text-brand-600 mb-1">IN</div>
+          <h3 class="text-xs font-bold uppercase text-slate-700">Country Code</h3>
+          <p class="text-xs text-slate-500 mt-1">ISO 3166-1 alpha-2 country code denoting origin in <strong>India</strong> for international postal routing.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Method 1 Online Tracking -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Method 1: Online Tracking via India Post Web Portal</h2>
+      <p class="text-slate-600">
+        The official India Post portal provides real-time transit milestones, from sorting hub dispatch to final delivery:
+      </p>
+
+      <ol class="list-decimal pl-5 space-y-3 text-slate-700 text-sm">
+        <li>Visit the official tracking page at <strong>www.indiapost.gov.in</strong>.</li>
+        <li>Locate the <strong>"Track N Trace"</strong> module on the homepage.</li>
+        <li>Select <strong>"Consignment"</strong> and enter your 13-digit number.</li>
+        <li>Complete the simple anti-bot captcha and click <strong>"Track Now"</strong>.</li>
+        <li>Review your shipment event log showing timestamps, intermediate National Sorting Hubs (NSH), and delivery confirmation.</li>
+      </ol>
+    </section>
+
+    <!-- Section 3: Method 2 SMS Tracking -->
+    <section class="bg-gradient-to-br from-brand-50 to-emerald-50 rounded-2xl p-6 sm:p-8 border border-brand-200 shadow-sm space-y-4">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">📱</span>
+        <h2 class="text-2xl font-bold text-slate-900">Method 2: SMS Tracking (No Internet Required)</h2>
+      </div>
+      <p class="text-slate-700 text-sm">
+        If you are traveling or have no active data connection, India Post provides a direct SMS tracking service:
+      </p>
+
+      <div class="bg-white rounded-xl p-5 border border-brand-200 font-mono text-xs sm:text-sm text-slate-900 space-y-2">
+        <div class="text-slate-500 uppercase text-[10px] font-bold">SMS Command Format:</div>
+        <div class="font-bold text-brand-700 text-base">POST TRACK &lt;13-Digit Consignment Number&gt;</div>
+        <div class="text-slate-500 uppercase text-[10px] font-bold pt-2">Send To Number:</div>
+        <div class="font-bold text-slate-900 text-base">51969 <span class="text-xs font-normal text-slate-600">or</span> 166</div>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed">
+        <em>Example:</em> Send <code class="bg-white px-2 py-0.5 rounded font-mono text-brand-700">POST TRACK EE123456789IN</code> to <strong>51969</strong>. You will receive an immediate SMS reply detailing current status and last-recorded post office hub.
+      </p>
+    </section>
+
+    <!-- Section 4: What if Your Consignment is Delayed? -->
+    <section class="space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">What to Do if Your Speed Post is Delayed or Missing?</h2>
+      <p class="text-slate-600 text-sm leading-relaxed">
+        Under the Department of Posts Citizen's Charter, India Post maintains strict delivery standards. If an article exceeds scheduled delivery norms:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-2">
+          <h3 class="font-bold text-slate-900 text-sm">Online Grievance Redressal (CPGRAMS)</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Register a complaint directly on the India Post portal under <em>"Customer Care > Register Complaint"</em>. Enter your consignment number and booking details. A ticket number will be generated with resolution typically provided within 7 working days.
+          </p>
+        </div>
+
+        <div class="p-5 rounded-xl bg-white border border-slate-200 shadow-sm space-y-2">
+          <h3 class="font-bold text-slate-900 text-sm">Citizen Charter Compensation</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            In case of proven delay beyond published transit norms, the sender is entitled to compensation equal to <strong>double the Speed Post fee</strong> paid or ₹1,000 (whichever is lower). For loss or theft of article, compensation is double the Speed Post fee or ₹1,000.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Actions -->
+    <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">Need to calculate Speed Post shipping cost?</h3>
+        <p class="text-xs text-slate-400 mt-1">Check official domestic tariffs by weight slabs and distance tiers with 18% GST.</p>
+      </div>
+      <a href="/speed-post-calculator" class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-semibold text-xs uppercase tracking-wider transition-all whitespace-nowrap shadow-md">
+        Open Rate Calculator →
+      </a>
+    </div>
+
+  </article>
+</Layout>
