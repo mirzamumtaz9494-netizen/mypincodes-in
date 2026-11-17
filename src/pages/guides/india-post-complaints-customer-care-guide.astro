@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: 'India Post Customer Care & Complaints Guide: Toll-Free Numbers, CPGRAMS & Compensation Norms',
+  description: 'How to contact India Post customer support, file complaints for delayed or lost Speed Post consignments, escalate to CPGRAMS, and claim Citizen Charter compensation.',
+  author: {
+    '@type': 'Organization',
+    name: 'MyPincodes.in Editorial Team'
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'MyPincodes.in',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://mypincodes.in/logo.png'
+    }
+  },
+  datePublished: '2026-10-24',
+  dateModified: '2026-11-18'
+};
+---
+
+<Layout
+  title="India Post Customer Care & Complaints Guide (Toll-Free, CPGRAMS & Escalation)"
+  description="Official India Post customer care numbers (1800 266 6868). Learn how to file complaints for delayed Speed Post parcels, escalate via CPGRAMS, and claim delay compensation."
+  canonical="https://mypincodes.in/guides/india-post-complaints-customer-care-guide"
+  activePage="guides"
+  schemaJson={articleSchema}
+>
+  <!-- Hero Header -->
+  <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <div class="flex items-center gap-2 text-xs font-semibold text-accent-400 uppercase tracking-wider">
+        <a href="/guides" class="hover:underline">Postal Knowledge Hub</a>
+        <span>•</span>
+        <span>Support & Redressal</span>
+        <span>•</span>
+        <span>6 Min Read</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+        India Post Customer Care & Grievance Redressal Guide
+      </h1>
+      <p class="text-slate-300 text-base sm:text-lg max-w-3xl leading-relaxed">
+        Official contact numbers, portal complaint submission procedures, CPGRAMS escalation channels, and legal compensation rights for delayed or damaged Speed Post consignments.
+      </p>
+    </div>
+  </div>
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-slate-800 leading-relaxed space-y-10">
+
+    <!-- Official Helpline Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+        <div class="text-xs font-bold uppercase text-brand-700">Toll-Free Customer Care</div>
+        <div class="text-xl font-black text-slate-900">1800 266 6868</div>
+        <p class="text-xs text-slate-500">Available 9:00 AM to 6:00 PM (Except Sundays & Gazetted Holidays).</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+        <div class="text-xs font-bold uppercase text-emerald-700">IVRS Automated Tracking</div>
+        <div class="text-xl font-black text-slate-900">1924</div>
+        <p class="text-xs text-slate-500">24/7 automated telephone line for consignment status check.</p>
+      </div>
+
+      <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+        <div class="text-xs font-bold uppercase text-accent-700">SMS Tracking Service</div>
+        <div class="text-xl font-black text-slate-900">51969 / 166</div>
+        <p class="text-xs text-slate-500">Send "POST TRACK &lt;Article No&gt;" for real-time SMS status.</p>
+      </div>
+    </div>
+
+    <!-- Step-by-Step Online Complaint Filing -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Step 1: Register Complaint on India Post Web Portal</h2>
+      <p class="text-slate-600 text-sm">
+        To initiate an official investigation, file a grievance directly through the Department of Posts ticketing system:
+      </p>
+
+      <ol class="list-decimal pl-5 space-y-3 text-sm text-slate-700">
+        <li>Navigate to the official portal: <strong>www.indiapost.gov.in</strong>.</li>
+        <li>Under the <strong>"Tools"</strong> menu, select <strong>"Register Complaint"</strong>.</li>
+        <li>Select Category: Choose <em>"Speed Post"</em> or <em>"Parcel"</em>.</li>
+        <li>Enter your 13-digit Consignment Number, sender address, recipient address, and booking post office.</li>
+        <li>Provide details of the grievance (e.g. non-delivery, delay beyond norm, damaged contents).</li>
+        <li>Submit and save your generated <strong>Complaint Ticket Reference Number</strong> for tracking.</li>
+      </ol>
+    </section>
+
+    <!-- Step 2: Escalating to CPGRAMS -->
+    <section class="bg-gradient-to-br from-brand-50 to-emerald-50 rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-sm space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Step 2: Escalating to CPGRAMS (Government Portal)</h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        If your complaint remains unresolved after <strong>7 working days</strong>, you have the right to escalate directly to the Government of India's apex grievance portal: <strong>CPGRAMS (pgportal.gov.in)</strong>.
+      </p>
+
+      <div class="bg-white p-4 rounded-xl border border-brand-200 text-xs sm:text-sm text-slate-800 space-y-2">
+        <div class="font-bold text-brand-700 uppercase">How to Escalate via CPGRAMS:</div>
+        <p>1. Visit <strong>pgportal.gov.in</strong> and log in with your mobile OTP.</p>
+        <p>2. Select Ministry/Department: <strong>"Department of Posts"</strong>.</p>
+        <p>3. Quote your previously unresolved India Post ticket reference number.</p>
+        <p>4. Officers at the Postal Directorate level are legally mandated to review, investigate, and close CPGRAMS tickets with a written explanation.</p>
+      </div>
+    </section>
+
+    <!-- Compensation Norms -->
+    <section class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-4">
+      <h2 class="text-2xl font-bold text-slate-900">Official Citizen Charter Compensation Norms</h2>
+      <p class="text-slate-600 text-sm">
+        Under Government of India Gazette notifications, customers are entitled to monetary compensation for service failure:
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <h3 class="font-bold text-slate-900 text-sm">Delayed Delivery Compensation</h3>
+          <div class="text-lg font-bold text-brand-600 mt-1">Double Speed Post Charges</div>
+          <p class="text-xs text-slate-500 mt-1">Refund of double the Speed Post fee paid, or ₹1,000 (whichever is lower).</p>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <h3 class="font-bold text-slate-900 text-sm">Loss or Damage Compensation</h3>
+          <div class="text-lg font-bold text-red-600 mt-1">Double Fee or ₹1,000</div>
+          <p class="text-xs text-slate-500 mt-1">For uninsured domestic Speed Post articles, compensation is double the postage fee or ₹1,000.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">Track an Existing Article</h3>
+        <p class="text-xs text-slate-400 mt-1">Read our complete barcode tracking guide with SMS formats and mobile app instructions.</p>
+      </div>
+      <a href="/guides/india-post-speed-post-tracking-guide" class="px-5 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md whitespace-nowrap">
+        Read Tracking Guide →
+      </a>
+    </div>
+
+  </article>
+</Layout>

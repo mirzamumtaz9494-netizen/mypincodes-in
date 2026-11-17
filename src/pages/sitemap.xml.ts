@@ -18,6 +18,8 @@ export const GET: APIRoute = async () => {
     { url: '/guides/how-pincode-system-works-india', priority: '0.8', changefreq: 'monthly' },
     { url: '/guides/india-post-speed-post-tracking-guide', priority: '0.8', changefreq: 'monthly' },
     { url: '/guides/courier-address-packaging-guidelines', priority: '0.8', changefreq: 'monthly' },
+    { url: '/guides/speed-post-vs-registered-post-courier', priority: '0.8', changefreq: 'monthly' },
+    { url: '/guides/india-post-complaints-customer-care-guide', priority: '0.8', changefreq: 'monthly' },
     { url: '/states', priority: '0.8', changefreq: 'monthly' },
     { url: '/about', priority: '0.4', changefreq: 'yearly' },
     { url: '/contact', priority: '0.4', changefreq: 'yearly' },

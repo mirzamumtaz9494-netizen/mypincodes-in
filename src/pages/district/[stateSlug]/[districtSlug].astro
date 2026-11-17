@@ -15,38 +15,79 @@ export async function getStaticPaths() {
 const { district } = Astro.props;
 const state = getStateBySlug(district.stateSlug);
 
-// Breadcrumbs Schema
-const breadcrumbSchema = {
+// Combined Breadcrumb + FAQ Schema for Maximum Rich Snippet Power
+const combinedSchema = {
   '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
+  '@graph': [
     {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: 'https://mypincodes.in'
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://mypincodes.in'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: district.state,
+          item: `https://mypincodes.in/state/${district.stateSlug}`
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: `${district.name} District`,
+          item: `https://mypincodes.in/district/${district.stateSlug}/${district.slug}`
+        }
+      ]
     },
     {
-      '@type': 'ListItem',
-      position: 2,
-      name: district.state,
-      item: `https://mypincodes.in/state/${district.stateSlug}`
-    },
-    {
-      '@type': 'ListItem',
-      position: 3,
-      name: `${district.name} District`,
-      item: `https://mypincodes.in/district/${district.stateSlug}/${district.slug}`
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: `How many PIN codes and post offices are there in ${district.name} district?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `${district.name} district in ${district.state} contains ${district.pincodes.length} distinct PIN codes across ${district.officesCount} postal facilities, including Head Post Offices (HO), Sub Post Offices (SO), and Branch Post Offices (BO).`
+          }
+        },
+        {
+          '@type': 'Question',
+          name: `How long does Speed Post take to deliver to ${district.name}?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `Under official India Post delivery standards, local delivery within ${district.name} takes 1 to 2 business days. Parcels from other districts within ${district.state} arrive in 2 to 3 days, while inter-state or metro consignments generally arrive within 3 to 5 business days.`
+          }
+        },
+        {
+          '@type': 'Question',
+          name: `Do private couriers like DTDC, Delhivery, and Blue Dart service ${district.name} using these PIN codes?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `Yes. All major private logistics and e-commerce courier networks (including DTDC, Blue Dart, Delhivery, Amazon Logistics, and Shadowfax) route their sorting hubs, warehouse hubs, and delivery zones based on the official 6-digit India Post PIN codes of ${district.name}.`
+          }
+        },
+        {
+          '@type': 'Question',
+          name: `How is postage calculated for parcels to ${district.name}?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `Domestic Speed Post postage to ${district.name} is determined based on the total shipment weight (up to 35 kg) and distance slab from the sender PIN code (Local, up to 200 km, 201-1000 km, 1001-2000 km, or above 2000 km), plus 18% GST.`
+          }
+        }
+      ]
     }
   ]
 };
 ---
 
 <Layout 
-  title={`${district.name} PIN Codes List - ${district.state} Post Offices`}
-  description={`List of all ${district.pincodes.length} PIN codes and ${district.officesCount} post offices in ${district.name} district, ${district.state}. View delivery status, office type, and Speed Post tariffs.`}
+  title={`${district.name} PIN Codes List - ${district.state} Post Offices (2026 Directory)`}
+  description={`Find all ${district.pincodes.length} PIN codes and ${district.officesCount} post offices in ${district.name} district, ${district.state}. Official India Post directory with Speed Post delivery times, sorting hubs, and parcel tariffs.`}
   activePage="states"
-  schemaJson={breadcrumbSchema}
+  schemaJson={combinedSchema}
 >
   <!-- Breadcrumbs -->
   <div class="bg-slate-100 border-b border-slate-200">
@@ -59,44 +100,202 @@ const breadcrumbSchema = {
     </div>
   </div>
 
+  <!-- Hero Header -->
   <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center border-b border-slate-800">
     <div class="max-w-3xl mx-auto space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pinDark-800 border border-slate-700 text-xs font-semibold text-brand-300 uppercase tracking-wider">
-        Postal District Directory
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pinDark-800 border border-slate-700 text-xs font-semibold text-accent-400 uppercase tracking-wider">
+        <span>📍</span> Official Postal District Directory
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
         {district.name} District PIN Codes
       </h1>
-      <p class="text-slate-300 text-sm max-w-xl mx-auto">
-        Located in {district.state}. Explore all {district.pincodes.length} postal codes covering {district.officesCount} post offices.
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Located in <strong>{district.state}</strong>. Complete directory of all {district.pincodes.length} postal codes covering {district.officesCount} post offices with official delivery schedules, sorting hubs, and parcel tariffs.
       </p>
+
+      <div class="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 max-w-sm mx-auto text-center border-t border-slate-800">
+        <div>
+          <div class="text-2xl font-black text-white">{district.pincodes.length}</div>
+          <div class="text-xs text-slate-400">PIN Codes</div>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-white">{district.officesCount}</div>
+          <div class="text-xs text-slate-400">Post Offices</div>
+        </div>
+        <div class="col-span-2 sm:col-span-1">
+          <div class="text-2xl font-black text-accent-400">{district.state}</div>
+          <div class="text-xs text-slate-400">Postal Circle</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="flex items-center justify-between mb-6">
-      <h2 class="text-xl font-bold text-slate-900">
-        PIN Codes in {district.name} ({district.pincodes.length})
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    
+    <!-- PIN Codes Grid Section -->
+    <section>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+            PIN Codes in {district.name} ({district.pincodes.length})
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">Click any PIN code to view delivery post offices, sub-offices, and geographic coordinates.</p>
+        </div>
+        <a href={`/state/${district.stateSlug}`} class="inline-flex items-center gap-1 text-xs font-semibold text-brand-600 hover:text-brand-700">
+          <span>← Back to {district.state}</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        {district.pincodes.map((pin) => (
+          <a 
+            href={`/pincode/${pin}`}
+            class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-center group"
+          >
+            <div class="font-mono text-base font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+              {pin}
+            </div>
+            <div class="text-[11px] text-slate-400 mt-0.5 group-hover:text-brand-500">
+              View Offices →
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Rich Editorial Section 1: District Postal Infrastructure -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+        About the Postal Network in {district.name} District
       </h2>
-      <a href={`/state/${district.stateSlug}`} class="text-xs font-semibold text-brand-600 hover:text-brand-700">
-        ← Back to {district.state}
-      </a>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        The postal delivery network in <strong>{district.name}</strong> operates under the administrative authority of the <strong>{district.state} Postal Circle</strong> of India Post. Serving both dense municipal regions and rural communities, the district comprises <strong>{district.pincodes.length} distinct 6-digit PIN codes</strong> that route mail across <strong>{district.officesCount} operational post offices</strong>.
+      </p>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        Mail distribution across {district.name} is anchored by centralized Head Post Offices (HO) and subordinate Sub Post Offices (SO), which manage Speed Post bookings, registered mail, financial accounts under India Post Payments Bank (IPPB), and parcel dispatches. Rural and outlying hamlets are reached daily through local Branch Post Offices (BO), guaranteeing doorstep postal delivery even in remote localities.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase text-brand-700">Postal Division</div>
+          <div class="text-base font-bold text-slate-900 mt-1">{district.name} Division</div>
+          <p class="text-xs text-slate-500 mt-1">Supervised by Senior Superintendent of Post Offices.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase text-brand-700">Total Delivery Points</div>
+          <div class="text-base font-bold text-slate-900 mt-1">{district.officesCount} Post Offices</div>
+          <p class="text-xs text-slate-500 mt-1">Classified across GPO, HO, SO, and rural Branch Offices.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase text-brand-700">Regional Coverage</div>
+          <div class="text-base font-bold text-slate-900 mt-1">{district.state} Circle</div>
+          <p class="text-xs text-slate-500 mt-1">Connected to National Sorting Hubs (NSH) for express cargo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rich Editorial Section 2: Speed Post Delivery Standards for District -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+            Speed Post Delivery Times & Norms for {district.name}
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">Official Citizen's Charter transit standards published by Department of Posts.</p>
+        </div>
+        <a href="/speed-post-calculator" class="inline-flex items-center gap-1 text-xs font-bold text-brand-600 hover:text-brand-700 hover:underline">
+          <span>Calculate Exact Postage</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-semibold text-slate-500">Local Delivery</div>
+          <div class="text-xl font-bold text-brand-600 mt-1">1 – 2 Days</div>
+          <p class="text-xs text-slate-600 mt-1">Deliveries originating and arriving within {district.name} boundaries.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-semibold text-slate-500">Intra-State Delivery</div>
+          <div class="text-xl font-bold text-brand-600 mt-1">2 – 3 Days</div>
+          <p class="text-xs text-slate-600 mt-1">Transit to/from any other district within {district.state}.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-semibold text-slate-500">Metro to Metro</div>
+          <div class="text-xl font-bold text-brand-600 mt-1">2 – 4 Days</div>
+          <p class="text-xs text-slate-600 mt-1">Inter-state transit connecting tier-1 metro hubs across India.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-semibold text-slate-500">Rest of India</div>
+          <div class="text-xl font-bold text-brand-600 mt-1">4 – 6 Days</div>
+          <p class="text-xs text-slate-600 mt-1">Deliveries to remote, northeastern, and hilly destinations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rich Editorial Section 3: Courier Addressing Guidelines -->
+    <section class="bg-gradient-to-br from-brand-50 to-emerald-50 rounded-2xl border border-brand-200 p-6 sm:p-8 shadow-sm space-y-4">
+      <h2 class="text-xl font-bold text-slate-900">
+        Courier & E-Commerce Addressing Guidelines for {district.name}
+      </h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        Whether you are sending documents via India Post Speed Post or dispatching customer parcels through private logistics providers (such as DTDC, Blue Dart, Delhivery, or Amazon Logistics), ensure your address label accurately reflects the verified 6-digit PIN code and sub-office for {district.name}.
+      </p>
+      
+      <div class="bg-white p-4 rounded-xl border border-brand-200 font-mono text-xs sm:text-sm text-slate-800 space-y-1">
+        <div class="text-slate-400 text-[11px] font-sans font-bold uppercase">Standard Label Format for {district.name}:</div>
+        <div class="text-brand-700 font-bold">[Recipient Name] - Mob: [10-Digit Mobile Number]</div>
+        <div>[House/Flat Number, Building/Apartment Name, Street]</div>
+        <div>[Locality/Colony/Village], [Taluk/Tehsil]</div>
+        <div class="text-emerald-700 font-bold">{district.name}, {district.state} - [6-Digit PIN Code]</div>
+      </div>
+
+      <div class="pt-2 flex flex-wrap items-center gap-3">
+        <a href="/address-formatter" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs transition-all shadow-sm">
+          Format Courier Address Label
+        </a>
+        <a href="/guides/courier-address-packaging-guidelines" class="px-4 py-2 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold text-xs transition-all">
+          View Packaging Guidelines
+        </a>
+      </div>
+    </section>
+
+    <!-- Rich Editorial Section 4: Dynamic District FAQs -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-6">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+        Frequently Asked Questions: {district.name} PIN Codes & Postal Services
+      </h2>
+
+      <div class="space-y-4">
+        {combinedSchema['@graph'][1].mainEntity.map((faq, index) => (
+          <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-start gap-2">
+              <span class="text-brand-600 font-mono text-sm">Q{index + 1}.</span>
+              <span>{faq.name}</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 pl-6 leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bottom Quick Action Links -->
+    <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">Need to calculate postage to {district.name}?</h3>
+        <p class="text-xs text-slate-400 mt-1">Compute exact Speed Post tariffs with 18% GST and distance matrices.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="/speed-post-calculator" class="px-4 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md whitespace-nowrap">
+          Speed Post Calculator
+        </a>
+        <a href="/distance-calculator" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs uppercase tracking-wider transition-all whitespace-nowrap">
+          Distance Finder
+        </a>
+      </div>
     </div>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-      {district.pincodes.map((pin) => (
-        <a 
-          href={`/pincode/${pin}`}
-          class="bg-white p-3.5 rounded-xl border border-slate-200 hover:border-brand-500 hover:shadow-md transition-all text-center group"
-        >
-          <div class="font-mono text-base font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
-            {pin}
-          </div>
-          <div class="text-[11px] text-slate-400 mt-0.5 group-hover:text-brand-500">
-            View Offices →
-          </div>
-        </a>
-      ))}
-    </div>
   </div>
 </Layout>

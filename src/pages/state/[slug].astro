@@ -15,38 +15,71 @@ export async function getStaticPaths() {
 const { state } = Astro.props;
 const districts = getDistrictsByState(state.slug);
 
-// Breadcrumbs Schema
-const breadcrumbSchema = {
+// Combined Breadcrumbs + State FAQs Schema
+const combinedSchema = {
   '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
+  '@graph': [
     {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: 'https://mypincodes.in'
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://mypincodes.in'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'States',
+          item: 'https://mypincodes.in/states'
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: state.name,
+          item: `https://mypincodes.in/state/${state.slug}`
+        }
+      ]
     },
     {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'States',
-      item: 'https://mypincodes.in/states'
-    },
-    {
-      '@type': 'ListItem',
-      position: 3,
-      name: state.name,
-      item: `https://mypincodes.in/state/${state.slug}`
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: `How many postal districts and post offices are in ${state.name}?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `${state.name} comprises ${state.districtsCount} postal districts with ${state.pincodesCount.toLocaleString('en-IN')} PIN codes and ${state.officesCount.toLocaleString('en-IN')} active post offices operating under the India Post circle administrative framework.`
+          }
+        },
+        {
+          '@type': 'Question',
+          name: `What is the delivery timeline for Speed Post across ${state.name}?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `Deliveries within the same city or municipality in ${state.name} take 1 to 2 business days. Transit between different districts within ${state.name} takes 2 to 3 business days, while inter-state consignments arrive within 3 to 5 business days.`
+          }
+        },
+        {
+          '@type': 'Question',
+          name: `How can I calculate postage for parcels sent from ${state.name}?`,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: `Postage is calculated based on weight slabs up to 35 kilograms and distance tiers (Local, up to 200 km, 201-1000 km, 1001-2000 km, and >2000 km). An 18% GST is added to the base tariff.`
+          }
+        }
+      ]
     }
   ]
 };
 ---
 
 <Layout 
-  title={`${state.name} PIN Code Directory - All Districts & Post Offices`}
-  description={`Browse all ${state.districtsCount} districts, ${state.pincodesCount.toLocaleString('en-IN')} PIN codes, and ${state.officesCount.toLocaleString('en-IN')} post offices in ${state.name}. Official India Post directory.`}
+  title={`${state.name} PIN Code Directory 2026 - All ${state.districtsCount} Districts & Post Offices`}
+  description={`Official postal directory for ${state.name}. Browse all ${state.districtsCount} districts, ${state.pincodesCount.toLocaleString('en-IN')} PIN codes, and ${state.officesCount.toLocaleString('en-IN')} post offices. View delivery circles and tariffs.`}
   activePage="states"
-  schemaJson={breadcrumbSchema}
+  schemaJson={combinedSchema}
 >
   <!-- Breadcrumbs -->
   <div class="bg-slate-100 border-b border-slate-200">
@@ -59,57 +92,136 @@ const breadcrumbSchema = {
     </div>
   </div>
 
+  <!-- Hero Header -->
   <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-12 px-4 sm:px-6 lg:px-8 text-center border-b border-slate-800">
     <div class="max-w-3xl mx-auto space-y-3">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pinDark-800 border border-slate-700 text-xs font-semibold text-brand-300 uppercase tracking-wider">
-        State Postal Circle
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pinDark-800 border border-slate-700 text-xs font-semibold text-accent-400 uppercase tracking-wider">
+        <span>🏛️</span> State Postal Circle Directory
       </div>
       <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
-        {state.name} PIN Code & Post Office Directory
+        {state.name} PIN Code & Postal Directory
       </h1>
-      <p class="text-slate-300 text-sm max-w-xl mx-auto">
-        Complete postal breakdown for {state.districtsCount} districts with {state.pincodesCount.toLocaleString('en-IN')} PIN codes and {state.officesCount.toLocaleString('en-IN')} post offices.
+      <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+        Comprehensive postal directory for {state.districtsCount} districts across {state.pincodesCount.toLocaleString('en-IN')} PIN codes and {state.officesCount.toLocaleString('en-IN')} post offices under India Post.
       </p>
 
       <div class="pt-6 grid grid-cols-3 gap-4 max-w-sm mx-auto text-center border-t border-slate-800">
         <div>
-          <div class="text-xl font-bold text-white">{state.districtsCount}</div>
+          <div class="text-2xl font-black text-white">{state.districtsCount}</div>
           <div class="text-xs text-slate-400">Districts</div>
         </div>
         <div>
-          <div class="text-xl font-bold text-white">{state.pincodesCount.toLocaleString('en-IN')}</div>
+          <div class="text-2xl font-black text-accent-400">{state.pincodesCount.toLocaleString('en-IN')}</div>
           <div class="text-xs text-slate-400">PIN Codes</div>
         </div>
         <div>
-          <div class="text-xl font-bold text-white">{state.officesCount.toLocaleString('en-IN')}</div>
+          <div class="text-2xl font-black text-emerald-400">{state.officesCount.toLocaleString('en-IN')}</div>
           <div class="text-xs text-slate-400">Post Offices</div>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h2 class="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-      <span>Districts in {state.name} ({districts.length})</span>
-    </h2>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+    
+    <!-- Districts Grid -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+            Districts in {state.name} ({districts.length})
+          </h2>
+          <p class="text-xs text-slate-500 mt-0.5">Select a district to view all postal codes, sub-offices, and delivery rules.</p>
+        </div>
+      </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {districts.map((d) => (
-        <a 
-          href={`/district/${state.slug}/${d.slug}`}
-          class="bg-white p-4 rounded-xl border border-slate-200/80 hover:border-brand-500 hover:shadow-md transition-all group flex items-center justify-between"
-        >
-          <div>
-            <div class="text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
-              {d.name}
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {districts.map((d) => (
+          <a 
+            href={`/district/${state.slug}/${d.slug}`}
+            class="bg-white p-4 rounded-xl border border-slate-200/80 hover:border-brand-500 hover:shadow-md transition-all group flex items-center justify-between"
+          >
+            <div>
+              <div class="text-sm font-bold text-slate-900 group-hover:text-brand-600 transition-colors">
+                {d.name}
+              </div>
+              <div class="text-xs text-slate-500 mt-1">
+                {d.pincodes.length} PIN codes • {d.officesCount} offices
+              </div>
             </div>
-            <div class="text-xs text-slate-500 mt-1">
-              {d.pincodes.length} PIN codes • {d.officesCount} offices
-            </div>
+            <span class="text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- State Postal Infrastructure Editorial -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-4">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+        About {state.name} Postal Administration & Infrastructure
+      </h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        The postal infrastructure in <strong>{state.name}</strong> constitutes one of the critical logistical and communication arteries of India. Overseen by the <strong>Chief Postmaster General (CPMG)</strong>, the state circle is divided into operational postal divisions and sub-divisions, administering a comprehensive network of <strong>{state.officesCount.toLocaleString('en-IN')} post offices</strong> spanning <strong>{state.districtsCount} revenue districts</strong>.
+      </p>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        From high-tech automated National Sorting Hubs (NSH) handling express Speed Post cargo to rural Branch Post Offices equipped with biometric micro-ATMs under the India Post Payments Bank (IPPB), {state.name} delivers complete postal, banking, insurance, and export logistics (Dak Ghar Niryat Kendras) to citizens and local e-commerce businesses alike.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase text-brand-700">Postal Hubs</div>
+          <div class="text-base font-bold text-slate-900 mt-1">National Sorting Centers</div>
+          <p class="text-xs text-slate-500 mt-1">Central sorting facilities connected directly to air and rail networks.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase text-brand-700">Financial Access</div>
+          <div class="text-base font-bold text-slate-900 mt-1">IPPB Micro-Banking</div>
+          <p class="text-xs text-slate-500 mt-1">Aadhaar Enabled Payment System (AePS) at doorstep.</p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase text-brand-700">MSME Support</div>
+          <div class="text-base font-bold text-slate-900 mt-1">Dak Ghar Niryat Kendras</div>
+          <p class="text-xs text-slate-500 mt-1">Commercial export processing for artisans and merchants.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- State FAQs Section -->
+    <section class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-6">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+        Frequently Asked Questions: {state.name} Postal Directory
+      </h2>
+
+      <div class="space-y-4">
+        {combinedSchema['@graph'][1].mainEntity.map((faq, index) => (
+          <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-200">
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-start gap-2">
+              <span class="text-brand-600 font-mono text-sm">Q{index + 1}.</span>
+              <span>{faq.name}</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 mt-2 pl-6 leading-relaxed">
+              {faq.acceptedAnswer.text}
+            </p>
           </div>
-          <span class="text-xs font-bold text-brand-600 group-hover:translate-x-1 transition-transform">→</span>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bottom Action Navigation -->
+    <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div>
+        <h3 class="text-lg font-bold text-white">Need to check postage tariffs for {state.name}?</h3>
+        <p class="text-xs text-slate-400 mt-1">Calculate Speed Post charges with 18% GST or view our complete 2026 tariff matrix.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="/speed-post-calculator" class="px-4 py-2.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md whitespace-nowrap">
+          Speed Post Calculator
         </a>
-      ))}
+        <a href="/speed-post-rates-chart" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-bold text-xs uppercase tracking-wider transition-all whitespace-nowrap">
+          View Rate Matrix
+        </a>
+      </div>
     </div>
+
   </div>
 </Layout>
