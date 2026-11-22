@@ -4,87 +4,188 @@ interface Props {
 }
 
 const { activePage = 'home' } = Astro.props;
+const isCalculatorActive = ['calculator', 'schemes', 'international', 'distance'].includes(activePage);
 ---
 
-<header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 transition-all">
+<header class="sticky top-0 z-50 glass-nav border-b border-slate-200/80 transition-all bg-white/95 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-18 py-2">
+    <div class="flex items-center justify-between h-16 sm:h-18">
       
-      <!-- Brand Logo using User's Official Logo (Large & Crisp) -->
-      <a href="/" class="flex items-center py-1 group">
+      <!-- Brand Logo -->
+      <a href="/" class="flex items-center py-1 group shrink-0">
         <img 
           src="/logo.png" 
           alt="MyPincodes.in - India Postal Data Reference" 
-          class="h-11 sm:h-13 md:h-14 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-sm"
+          class="h-9 sm:h-11 md:h-12 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-sm"
         />
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-1">
+      <nav class="hidden lg:flex items-center gap-1.5 xl:gap-2">
+        
+        <!-- Home / PIN Lookup -->
         <a 
           href="/" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'home' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+          class={`px-3 py-2 rounded-xl text-[13px] font-medium whitespace-nowrap transition-all ${
+            activePage === 'home' 
+              ? 'text-brand-700 bg-brand-50 font-semibold shadow-xs' 
+              : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'
+          }`}
         >
-          🇮🇳 India PIN
+          PIN Search
         </a>
-        <a 
-          href="/speed-post-calculator" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'calculator' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
-        >
-          Speed Post
-        </a>
-        <a 
-          href="/post-office-schemes-calculator" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'schemes' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
-        >
-          Savings Schemes
-        </a>
-        <a 
-          href="/international-postage-calculator" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'international' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
-        >
-          International
-        </a>
+
+        <!-- Calculators & Utilities Dropdown -->
+        <div class="relative group" id="calcDropdown">
+          <button 
+            type="button" 
+            class={`px-3 py-2 rounded-xl text-[13px] font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${
+              isCalculatorActive 
+                ? 'text-brand-700 bg-brand-50 font-semibold shadow-xs' 
+                : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'
+            }`}
+            aria-expanded="false"
+          >
+            <span>Postal Calculators</span>
+            <svg class="w-3.5 h-3.5 text-slate-400 group-hover:text-brand-600 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown Floating Menu -->
+          <div class="absolute left-0 top-full pt-2 w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out z-50">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200/80 p-2 space-y-1">
+              
+              <a 
+                href="/speed-post-calculator" 
+                class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-brand-50/80 transition-colors group/item"
+              >
+                <div class="w-8 h-8 rounded-lg bg-accent-100 text-accent-700 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                  ⚡
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-brand-700">Speed Post Calculator</div>
+                  <div class="text-[11px] text-slate-500">Official India Post tariffs with 18% GST</div>
+                </div>
+              </a>
+
+              <a 
+                href="/post-office-schemes-calculator" 
+                class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-amber-50/80 transition-colors group/item"
+              >
+                <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                  💰
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-amber-800 flex items-center gap-1.5">
+                    <span>Savings Schemes</span>
+                    <span class="px-1.5 py-0.2 rounded bg-amber-200 text-amber-900 text-[9px] font-extrabold">8.2%</span>
+                  </div>
+                  <div class="text-[11px] text-slate-500">SSY, PPF, Senior Citizen, NSC & KVP</div>
+                </div>
+              </a>
+
+              <a 
+                href="/international-postage-calculator" 
+                class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-sky-50/80 transition-colors group/item"
+              >
+                <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-700 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                  ✈️
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-sky-800">International Postage</div>
+                  <div class="text-[11px] text-slate-500">EMS & Air Parcel to USA, UK, UAE & 200+ countries</div>
+                </div>
+              </a>
+
+              <a 
+                href="/distance-calculator" 
+                class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-emerald-50/80 transition-colors group/item"
+              >
+                <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold shrink-0 mt-0.5">
+                  📍
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-slate-900 group-hover/item:text-emerald-700">PIN-to-PIN Distance</div>
+                  <div class="text-[11px] text-slate-500">Transit kilometers & delivery estimates</div>
+                </div>
+              </a>
+
+              <div class="border-t border-slate-100 pt-1 mt-1">
+                <a 
+                  href="/speed-post-rates-chart" 
+                  class="flex items-center justify-between px-3 py-2 text-[11px] font-semibold text-brand-600 hover:text-brand-800 hover:bg-slate-50 rounded-lg transition-colors"
+                >
+                  <span>Official Speed Post Rate Chart 2026</span>
+                  <span>→</span>
+                </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Address Label Formatter -->
         <a 
           href="/address-formatter" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'formatter' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+          class={`px-3 py-2 rounded-xl text-[13px] font-medium whitespace-nowrap transition-all ${
+            activePage === 'formatter' 
+              ? 'text-brand-700 bg-brand-50 font-semibold shadow-xs' 
+              : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'
+          }`}
         >
           Address Label
         </a>
-        <a 
-          href="/distance-calculator" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'distance' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
-        >
-          Distance
-        </a>
+
+        <!-- Postal Knowledge Guides -->
         <a 
           href="/guides" 
-          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'guides' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+          class={`px-3 py-2 rounded-xl text-[13px] font-medium whitespace-nowrap transition-all ${
+            activePage === 'guides' 
+              ? 'text-brand-700 bg-brand-50 font-semibold shadow-xs' 
+              : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'
+          }`}
         >
           Guides
         </a>
+
+        <!-- USA Hub Link -->
         <a 
           href="/us" 
-          class={`px-3 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 ${activePage === 'us' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-700 bg-slate-100 hover:bg-brand-50 hover:text-brand-700'}`}
+          class={`px-3 py-2 rounded-xl text-[13px] font-medium whitespace-nowrap transition-all flex items-center gap-1.5 ${
+            activePage === 'us' 
+              ? 'text-brand-700 bg-brand-50 font-semibold shadow-xs' 
+              : 'text-slate-600 hover:text-brand-600 hover:bg-slate-50'
+          }`}
         >
-          <span>🇺🇸 USA ZIP Hub</span>
-          <span class="px-1.5 py-0.2 rounded bg-accent-500 text-[9px] text-white font-bold">New</span>
+          <span>🇺🇸 USA ZIPs</span>
         </a>
+
       </nav>
 
-      <!-- Country Toggle Pill -->
-      <div class="hidden sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+      <!-- Right Side: Clean Country Segmented Control -->
+      <div class="hidden sm:flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold shrink-0">
         <a 
           href="/" 
-          class={`px-2.5 py-1 rounded-lg transition-all ${activePage !== 'us' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+          class={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 ${
+            activePage !== 'us' 
+              ? 'bg-brand-600 text-white shadow-xs font-bold' 
+              : 'text-slate-600 hover:text-slate-900'
+          }`}
         >
-          🇮🇳 India
+          <span>🇮🇳</span>
+          <span>India</span>
         </a>
         <a 
           href="/us" 
-          class={`px-2.5 py-1 rounded-lg transition-all ${activePage === 'us' ? 'bg-brand-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+          class={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 ${
+            activePage === 'us' 
+              ? 'bg-brand-600 text-white shadow-xs font-bold' 
+              : 'text-slate-600 hover:text-slate-900'
+          }`}
         >
-          🇺🇸 USA
+          <span>🇺🇸</span>
+          <span>USA</span>
         </a>
       </div>
 
@@ -92,7 +193,7 @@ const { activePage = 'home' } = Astro.props;
       <button 
         type="button" 
         id="mobileMenuBtn" 
-        class="lg:hidden p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+        class="lg:hidden p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
         aria-label="Toggle navigation menu"
       >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -104,22 +205,47 @@ const { activePage = 'home' } = Astro.props;
   </div>
 
   <!-- Mobile Dropdown Menu -->
-  <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-1 shadow-xl">
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2 shadow-2xl">
     <div class="py-2 border-b border-slate-100 flex items-center justify-between text-xs font-bold text-slate-400 uppercase">
       <span>Select Region</span>
       <div class="flex gap-2">
-        <a href="/" class="px-2 py-0.5 rounded bg-brand-100 text-brand-800">🇮🇳 India</a>
-        <a href="/us" class="px-2 py-0.5 rounded bg-slate-100 text-slate-800">🇺🇸 USA</a>
+        <a href="/" class="px-2.5 py-1 rounded-lg bg-brand-600 text-white text-xs font-bold">🇮🇳 India</a>
+        <a href="/us" class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-semibold">🇺🇸 USA</a>
       </div>
     </div>
-    <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">🇮🇳 India PIN Finder</a>
-    <a href="/speed-post-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Speed Post Rate Calculator</a>
-    <a href="/post-office-schemes-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">💰 Post Office Savings Schemes</a>
-    <a href="/international-postage-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">✈️ International Postage Calculator</a>
-    <a href="/address-formatter" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Courier Address Formatter</a>
-    <a href="/distance-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PIN-to-PIN Distance Tool</a>
-    <a href="/guides" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">📚 Postal Knowledge Guides</a>
-    <a href="/us" class="block px-3 py-2 rounded-md text-base font-bold text-brand-700 hover:bg-brand-50">🇺🇸 USA ZIP Code & USPS Hub</a>
+    
+    <a href="/" class="flex items-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-800 hover:bg-slate-50">
+      <span>🇮🇳</span> PIN Search & Lookup
+    </a>
+    
+    <div class="pt-2 pb-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3">
+      Postal Calculators
+    </div>
+    <a href="/speed-post-calculator" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+      <span>⚡</span> Speed Post Rate Calculator
+    </a>
+    <a href="/post-office-schemes-calculator" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+      <span>💰</span> Post Office Savings Schemes (8.2%)
+    </a>
+    <a href="/international-postage-calculator" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+      <span>✈️</span> International Postage Calculator
+    </a>
+    <a href="/distance-calculator" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+      <span>📍</span> PIN-to-PIN Distance Tool
+    </a>
+
+    <div class="pt-2 pb-1 text-[11px] font-bold text-slate-400 uppercase tracking-wider px-3">
+      Utilities & Resources
+    </div>
+    <a href="/address-formatter" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+      <span>📦</span> Courier Address Formatter
+    </a>
+    <a href="/guides" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50">
+      <span>📚</span> Postal Knowledge Guides
+    </a>
+    <a href="/us" class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm font-bold text-brand-700 hover:bg-brand-50">
+      <span>🇺🇸</span> USA ZIP Code Hub
+    </a>
   </div>
 </header>
 
