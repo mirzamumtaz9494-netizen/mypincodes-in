@@ -1,0 +1,397 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+
+const schemaJson = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'India Post International Speed Post (EMS) & Air Parcel Calculator 2026',
+  description: 'Calculate official India Post international postage tariffs, delivery times, and customs declaration requirements for USA, UK, Canada, Australia, UAE, and 200+ countries.',
+  provider: {
+    '@type': 'GovernmentOrganization',
+    name: 'Department of Posts, Ministry of Communications, Government of India'
+  }
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How much does it cost to send an international parcel via India Post Speed Post (EMS)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'India Post International EMS rates depend on the destination country and weight slab. For example, a 500g document or merchandise parcel costs approximately ₹1,150–₹1,450 to the United States and Canada, ₹950–₹1,200 to the UK and Europe, and ₹650–₹850 to the UAE and Gulf region, plus applicable GST and handling fees.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What is the difference between Customs Declaration Form CN22 and CN23?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Form CN22 is a green customs sticker used for small international postal packets and gifts valued under 300 SDR (approximately ₹33,000) weighing up to 2 kg. Form CN23 is a comprehensive declaration form required for heavier parcels, commercial goods, or consignments valued at 300 SDR or higher.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What items are strictly prohibited in India Post international shipments?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Prohibited items include standalone lithium-ion batteries, liquid perfumes, combustible chemicals, gold/silver bullion, prescription drugs without licensed narcotics NOC, currency notes, and counterfeit branded goods.'
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title="India Post International Postage Calculator 2026 - EMS & Air Parcel Rates"
+  description="Calculate international postage charges, delivery timelines, and customs forms (CN22/CN23) for sending letters and parcels from India to USA, UK, Canada, UAE, Australia, and 200+ countries."
+  activePage="international"
+  schemaJson={[schemaJson, faqSchema]}
+>
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pinDark-800/90 border border-slate-700 text-xs font-semibold text-brand-300 uppercase tracking-wider">
+        <span class="text-accent-400 font-bold">✈️</span> Worldwide Postal Transit Matrix
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+        India Post International <span class="text-accent-400">Postage Calculator</span>
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Calculate official India Post International EMS (Speed Post) and Air Parcel tariffs, customs clearance requirements (CN22/CN23), and delivery transit times across 200+ global destinations.
+      </p>
+
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-300">
+        <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+          <span class="text-emerald-400 font-bold">✓</span> Universal Postal Union (UPU) Rates
+        </span>
+        <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+          <span class="text-accent-400 font-bold">✓</span> End-to-End Barcode Tracking
+        </span>
+        <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+          <span class="text-brand-400 font-bold">✓</span> Customs CN22/CN23 Guides
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+
+    <!-- Interactive International Calculator Card -->
+    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xl overflow-hidden p-6 sm:p-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Input Form (Left 7 Cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+            Estimate International Shipping Charges
+          </h2>
+
+          <!-- Destination Country Selector -->
+          <div class="space-y-1.5">
+            <label for="countrySelect" class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+              Destination Country
+            </label>
+            <select 
+              id="countrySelect" 
+              class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 font-semibold text-slate-900 text-sm bg-slate-50"
+            >
+              <option value="us" selected>🇺🇸 United States of America (USA)</option>
+              <option value="gb">🇬🇧 United Kingdom (UK)</option>
+              <option value="ca">🇨🇦 Canada</option>
+              <option value="ae">🇦🇪 United Arab Emirates (Dubai/Abu Dhabi)</option>
+              <option value="au">🇦🇺 Australia</option>
+              <option value="de">🇩🇪 Germany</option>
+              <option value="sg">🇸🇬 Singapore</option>
+              <option value="sa">🇸🇦 Saudi Arabia</option>
+              <option value="fr">🇫🇷 France</option>
+              <option value="nz">🇳🇿 New Zealand</option>
+              <option value="my">🇲🇾 Malaysia</option>
+              <option value="jp">🇯🇵 Japan</option>
+              <option value="nl">🇳🇱 Netherlands</option>
+              <option value="it">🇮🇹 Italy</option>
+              <option value="qa">🇶🇦 Qatar</option>
+              <option value="kw">🇰🇼 Kuwait</option>
+            </select>
+          </div>
+
+          <!-- Consignment Type: Document vs Merchandise -->
+          <div class="space-y-1.5">
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+              Consignment Category
+            </label>
+            <div class="grid grid-cols-2 gap-3">
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer bg-slate-50 text-xs font-bold text-slate-800">
+                <input type="radio" name="itemType" value="doc" checked class="text-brand-600 focus:ring-brand-500" />
+                <span>📄 Documents / Letters</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-brand-500 cursor-pointer bg-slate-50 text-xs font-bold text-slate-800">
+                <input type="radio" name="itemType" value="merch" class="text-brand-600 focus:ring-brand-500" />
+                <span>📦 Merchandise / Parcel</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Weight Input Slider -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="weightInput" class="font-bold text-slate-700">
+                Package Weight (Grams / Kg)
+              </label>
+              <span id="weightDisplay" class="font-mono font-extrabold text-brand-600 text-base">
+                500 g (0.50 kg)
+              </span>
+            </div>
+            <input 
+              type="range" 
+              id="weightSlider" 
+              min="50" 
+              max="5000" 
+              step="50" 
+              value="500" 
+              class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"
+            />
+            <div class="flex justify-between text-[11px] text-slate-400 font-mono">
+              <span>50 g (Light Letter)</span>
+              <span>5,000 g (5 kg Parcel)</span>
+            </div>
+          </div>
+
+          <!-- Quick Service Info -->
+          <div class="bg-brand-50 rounded-2xl p-4 border border-brand-100 text-xs text-brand-900 space-y-1.5">
+            <div class="font-bold flex items-center gap-1.5">
+              <span>🌐</span> Service Comparison:
+            </div>
+            <p class="text-brand-700 leading-relaxed">
+              <strong>EMS (International Speed Post):</strong> Fastest door-to-door delivery with priority customs clearance.<br/>
+              <strong>Air Parcel:</strong> Cost-effective for commercial merchandise and larger items over 2 kg.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tariff & Delivery Summary (Right 5 Cols) -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-pinDark-950 text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-lg">
+          <div>
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
+              <div>
+                <span class="text-xs text-slate-400 uppercase tracking-wider block">Estimated Postage</span>
+                <div id="costDisplay" class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400">
+                  ₹ 1,280
+                </div>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-brand-500/20 text-brand-300 text-[11px] font-bold border border-brand-500/30">
+                Incl. Tax & Surcharges
+              </span>
+            </div>
+
+            <div class="space-y-3 text-xs">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Destination:</span>
+                <span id="destDisplay" class="font-bold text-white">United States (USA)</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Transit Days:</span>
+                <span id="transitDisplay" class="font-mono font-bold text-emerald-300">4 – 7 Business Days</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Customs Form:</span>
+                <span id="customsDisplay" class="font-bold text-accent-300">Form CN22 (Green Sticker)</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Barcode Tracking:</span>
+                <span class="text-white font-mono font-bold">13-Character (e.g. EM123456789IN)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800 text-[11px] text-slate-400 leading-relaxed">
+            *Final postage may vary slightly depending on emergency air surcharges and local destination postal handling fees. Booking is accepted at all Computerized Head Post Offices (HO).
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Official International Speed Post Rate Table for Top Destinations -->
+    <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-6">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Official 2026 Tariff Slabs</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
+          International Speed Post (EMS) Standard Rate Matrix
+        </h2>
+        <p class="text-xs text-slate-500 mt-1">
+          Representative tariffs for documents and parcels across major international postal zones from India.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
+            <tr>
+              <th class="p-3.5">Country / Destination</th>
+              <th class="p-3.5">Zone</th>
+              <th class="p-3.5">First 250g</th>
+              <th class="p-3.5">Addl. 250g up to 5kg</th>
+              <th class="p-3.5">Estimated Transit</th>
+              <th class="p-3.5">Customs Declaration</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-800">
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">🇺🇸 United States (USA)</td>
+              <td class="p-3.5 text-slate-600">Americas</td>
+              <td class="p-3.5 font-mono font-bold">₹1,050</td>
+              <td class="p-3.5 font-mono">₹250</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">4–7 Days</td>
+              <td class="p-3.5">CN22 / CN23</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">🇬🇧 United Kingdom (UK)</td>
+              <td class="p-3.5 text-slate-600">Europe</td>
+              <td class="p-3.5 font-mono font-bold">₹850</td>
+              <td class="p-3.5 font-mono">₹200</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">4–6 Days</td>
+              <td class="p-3.5">CN22 / CN23</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">🇨🇦 Canada</td>
+              <td class="p-3.5 text-slate-600">Americas</td>
+              <td class="p-3.5 font-mono font-bold">₹1,050</td>
+              <td class="p-3.5 font-mono">₹250</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">5–8 Days</td>
+              <td class="p-3.5">CN22 / CN23</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">🇦🇪 United Arab Emirates (UAE)</td>
+              <td class="p-3.5 text-slate-600">Gulf / Middle East</td>
+              <td class="p-3.5 font-mono font-bold">₹600</td>
+              <td class="p-3.5 font-mono">₹130</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">3–5 Days</td>
+              <td class="p-3.5">CN22 / CN23</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">🇦🇺 Australia</td>
+              <td class="p-3.5 text-slate-600">Oceania</td>
+              <td class="p-3.5 font-mono font-bold">₹950</td>
+              <td class="p-3.5 font-mono">₹220</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">5–7 Days</td>
+              <td class="p-3.5">CN22 / CN23</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">🇸🇬 Singapore</td>
+              <td class="p-3.5 text-slate-600">Asia Pacific</td>
+              <td class="p-3.5 font-mono font-bold">₹550</td>
+              <td class="p-3.5 font-mono">₹120</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">3–5 Days</td>
+              <td class="p-3.5">CN22 / CN23</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">🇩🇪 Germany</td>
+              <td class="p-3.5 text-slate-600">Europe</td>
+              <td class="p-3.5 font-mono font-bold">₹850</td>
+              <td class="p-3.5 font-mono">₹200</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">4–7 Days</td>
+              <td class="p-3.5">CN22 / CN23</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Customs Documentation Guide: CN22 vs CN23 -->
+    <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-10 shadow-sm space-y-6 text-slate-700 text-sm leading-relaxed">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+        International Customs Documentation Guide: CN22 vs CN23
+      </h2>
+      <p>
+        All parcels leaving Indian territorial borders are subject to export scrutiny by <strong>Indian Customs</strong> and border inspection at the destination country. Affixing the correct customs declaration form ensures your consignment clears international customs without delays or seizure.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+            <h3 class="font-bold text-slate-900 text-base">Customs Declaration CN 22</h3>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            <strong>Applicability:</strong> Small packets, gifts, samples, and documents weighing up to 2 kg with an aggregate declared value of <strong>under 300 SDR</strong> (approx. ₹33,000).
+          </p>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            <strong>Format:</strong> A small green self-adhesive sticker affixed directly to the address face of the envelope or packet. Requires description of contents, net weight, value in INR, and country of origin (India).
+          </p>
+        </div>
+
+        <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-brand-500"></span>
+            <h3 class="font-bold text-slate-900 text-base">Customs Declaration CN 23</h3>
+          </div>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            <strong>Applicability:</strong> All postal parcels weighing above 2 kg, commercial goods regardless of weight, or any consignment with a value of <strong>300 SDR or higher</strong>.
+          </p>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            <strong>Format:</strong> An independent multi-copy document enclosed in a transparent adhesive pouch. Requires HS Tariff code, detailed invoice, certificate of origin, and recipient contact details.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<script is:inline>
+  const rates = {
+    us: { name: "United States (USA)", base: 1050, step: 250, transit: "4 – 7 Days" },
+    gb: { name: "United Kingdom (UK)", base: 850, step: 200, transit: "4 – 6 Days" },
+    ca: { name: "Canada", base: 1050, step: 250, transit: "5 – 8 Days" },
+    ae: { name: "United Arab Emirates (UAE)", base: 600, step: 130, transit: "3 – 5 Days" },
+    au: { name: "Australia", base: 950, step: 220, transit: "5 – 7 Days" },
+    de: { name: "Germany", base: 850, step: 200, transit: "4 – 7 Days" },
+    sg: { name: "Singapore", base: 550, step: 120, transit: "3 – 5 Days" },
+    sa: { name: "Saudi Arabia", base: 650, step: 140, transit: "4 – 6 Days" },
+    fr: { name: "France", base: 850, step: 200, transit: "4 – 7 Days" },
+    nz: { name: "New Zealand", base: 1000, step: 230, transit: "5 – 8 Days" },
+    my: { name: "Malaysia", base: 580, step: 130, transit: "3 – 5 Days" },
+    jp: { name: "Japan", base: 750, step: 180, transit: "4 – 6 Days" },
+    nl: { name: "Netherlands", base: 850, step: 200, transit: "4 – 7 Days" },
+    it: { name: "Italy", base: 850, step: 200, transit: "5 – 8 Days" },
+    qa: { name: "Qatar", base: 650, step: 140, transit: "4 – 6 Days" },
+    kw: { name: "Kuwait", base: 650, step: 140, transit: "4 – 6 Days" }
+  };
+
+  function updateCalculation() {
+    const countryKey = document.getElementById('countrySelect').value;
+    const country = rates[countryKey] || rates['us'];
+    const weight = Number(document.getElementById('weightSlider').value);
+    const itemType = document.querySelector('input[name="itemType"]:checked').value;
+
+    document.getElementById('weightDisplay').innerText = `${weight} g (${(weight / 1000).toFixed(2)} kg)`;
+    document.getElementById('destDisplay').innerText = country.name;
+    document.getElementById('transitDisplay').innerText = country.transit;
+
+    // Calculate cost based on 250g slabs
+    const slabs = Math.ceil(weight / 250);
+    let total = country.base + Math.max(0, slabs - 1) * country.step;
+
+    if (itemType === 'merch') {
+      total += 120; // Handling & merchandise booking surcharge
+    }
+
+    document.getElementById('costDisplay').innerText = `₹ ${total.toLocaleString('en-IN')}`;
+
+    const customsText = weight <= 2000 
+      ? "Form CN22 (Green Sticker)" 
+      : "Form CN23 (Full Parcel Declaration)";
+    document.getElementById('customsDisplay').innerText = customsText;
+  }
+
+  document.getElementById('countrySelect').addEventListener('change', updateCalculation);
+  document.getElementById('weightSlider').addEventListener('input', updateCalculation);
+  document.querySelectorAll('input[name="itemType"]').forEach(r => r.addEventListener('change', updateCalculation));
+
+  updateCalculation();
+</script>

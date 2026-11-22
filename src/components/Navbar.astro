@@ -34,6 +34,18 @@ const { activePage = 'home' } = Astro.props;
           Speed Post
         </a>
         <a 
+          href="/post-office-schemes-calculator" 
+          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'schemes' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          Savings Schemes
+        </a>
+        <a 
+          href="/international-postage-calculator" 
+          class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'international' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
+        >
+          International
+        </a>
+        <a 
           href="/address-formatter" 
           class={`px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors ${activePage === 'formatter' ? 'text-brand-700 bg-brand-50 border border-brand-200' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'}`}
         >
@@ -102,6 +114,8 @@ const { activePage = 'home' } = Astro.props;
     </div>
     <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">🇮🇳 India PIN Finder</a>
     <a href="/speed-post-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Speed Post Rate Calculator</a>
+    <a href="/post-office-schemes-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">💰 Post Office Savings Schemes</a>
+    <a href="/international-postage-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">✈️ International Postage Calculator</a>
     <a href="/address-formatter" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">Courier Address Formatter</a>
     <a href="/distance-calculator" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">PIN-to-PIN Distance Tool</a>
     <a href="/guides" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-600 hover:bg-slate-50">📚 Postal Knowledge Guides</a>

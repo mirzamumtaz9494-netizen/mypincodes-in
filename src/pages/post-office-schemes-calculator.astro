@@ -1,0 +1,701 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+export const prerender = true;
+
+const schemaJson = {
+  '@context': 'https://schema.org',
+  '@type': 'FinancialProduct',
+  name: 'India Post Small Savings Schemes Calculator 2026',
+  description: 'Calculate interest rates, maturity amounts, and tax benefits for Sukanya Samriddhi Yojana (SSY), PPF, Senior Citizen Savings Scheme (SCSS), MIS, NSC, and KVP across all Indian post offices.',
+  provider: {
+    '@type': 'GovernmentOrganization',
+    name: 'Department of Posts, Ministry of Communications, Government of India'
+  },
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Sukanya Samriddhi Account (SSA)',
+      priceCurrency: 'INR',
+      price: '250',
+      description: '8.2% annual interest compounded yearly. Tax exemption under Section 80C and EEE tax status.'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Senior Citizen Savings Scheme (SCSS)',
+      priceCurrency: 'INR',
+      price: '1000',
+      description: '8.2% annual interest paid quarterly. Max investment limit ₹30 Lakhs.'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Public Provident Fund (PPF)',
+      priceCurrency: 'INR',
+      price: '500',
+      description: '7.1% annual interest compounded yearly. 15-year tenure with EEE tax status.'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Post Office Monthly Income Scheme (POMIS)',
+      priceCurrency: 'INR',
+      price: '1000',
+      description: '7.4% annual interest paid monthly. Max limit ₹9 Lakhs for single and ₹15 Lakhs for joint accounts.'
+    },
+    {
+      '@type': 'Offer',
+      name: 'National Savings Certificate (NSC VIII Issue)',
+      priceCurrency: 'INR',
+      price: '1000',
+      description: '7.7% annual interest compounded annually, payable at 5-year maturity.'
+    },
+    {
+      '@type': 'Offer',
+      name: 'Kisan Vikas Patra (KVP)',
+      priceCurrency: 'INR',
+      price: '1000',
+      description: '7.5% annual interest. Investment doubles in 115 months (9 years 7 months).'
+    }
+  ]
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'What are the latest Post Office savings scheme interest rates for 2026 in India?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'For 2026, the Ministry of Finance offers 8.2% p.a. for Sukanya Samriddhi Yojana (SSY) and Senior Citizen Savings Scheme (SCSS), 7.7% for National Savings Certificate (NSC), 7.5% for Kisan Vikas Patra (KVP), 7.4% for Post Office Monthly Income Scheme (POMIS), and 7.1% for Public Provident Fund (PPF).'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I open a Post Office Savings Scheme at any Branch Post Office (BO)?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes. Through the Core Banking Solution (CBS) and DARPAN mobile devices, all 157,000+ Head Offices (HO), Sub Offices (SO), and rural Branch Offices (BO) across India are empowered to open and service small savings scheme accounts.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Which Post Office savings schemes offer tax deduction under Section 80C?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Sukanya Samriddhi Yojana (SSY), Public Provident Fund (PPF), National Savings Certificate (NSC), 5-Year Post Office Time Deposit (POTD), and Senior Citizen Savings Scheme (SCSS) qualify for tax deductions up to ₹1.5 Lakh per financial year under Section 80C of the Income Tax Act.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How does the Post Office Monthly Income Scheme (POMIS) interest payout work?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'POMIS offers a 7.4% annual interest rate paid on a monthly basis directly into your Post Office Savings Bank account or IPPB account. For an investment of ₹9 Lakhs (single account maximum), the monthly payout is exactly ₹5,550.'
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title="Post Office Savings Schemes & Interest Calculator 2026 - All India Post Bank Rates"
+  description="Calculate maturity amounts, monthly interest payouts, and tax deductions for Sukanya Samriddhi (8.2%), PPF (7.1%), SCSS (8.2%), POMIS (7.4%), NSC (7.7%), and KVP across India Post."
+  activePage="schemes"
+  schemaJson={[schemaJson, faqSchema]}
+>
+  <!-- Hero Section -->
+  <div class="bg-gradient-to-b from-pinDark-950 via-pinDark-900 to-slate-900 text-white py-14 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-pinDark-800/90 border border-slate-700 text-xs font-semibold text-brand-300 uppercase tracking-wider">
+        <span class="text-accent-400 font-bold">💰</span> Official India Post Small Savings Suite
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+        Post Office Savings Schemes <span class="text-accent-400">Calculator 2026</span>
+      </h1>
+      <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+        Government-backed sovereign guarantee savings accounts across 157,000+ Indian post offices. Calculate exact interest returns, maturity timelines, and Section 80C tax exemptions.
+      </p>
+
+      <!-- Sovereign Guarantee Badge -->
+      <div class="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-300">
+        <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+          <span class="text-emerald-400 font-bold">✓</span> Sovereign Government Guarantee
+        </span>
+        <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+          <span class="text-accent-400 font-bold">✓</span> 100% Capital Protection
+        </span>
+        <span class="flex items-center gap-1.5 bg-white/10 px-3 py-1.5 rounded-full border border-white/10">
+          <span class="text-brand-400 font-bold">✓</span> EEE Tax Benefits (SSY & PPF)
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+
+    <!-- Interactive Calculator Card -->
+    <div class="bg-white rounded-3xl border border-slate-200/80 shadow-xl overflow-hidden">
+      
+      <!-- Scheme Selector Tabs -->
+      <div class="bg-slate-50 border-b border-slate-200 p-2 sm:p-4 overflow-x-auto">
+        <div class="flex gap-2 min-w-max" id="schemeTabs">
+          <button type="button" data-scheme="ssy" class="scheme-tab active px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-brand-600 text-white shadow-md">
+            Sukanya Samriddhi (8.2%)
+          </button>
+          <button type="button" data-scheme="scss" class="scheme-tab px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
+            Senior Citizen (8.2%)
+          </button>
+          <button type="button" data-scheme="ppf" class="scheme-tab px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
+            PPF (7.1%)
+          </button>
+          <button type="button" data-scheme="pomis" class="scheme-tab px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
+            Monthly Income - POMIS (7.4%)
+          </button>
+          <button type="button" data-scheme="nsc" class="scheme-tab px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
+            NSC (7.7%)
+          </button>
+          <button type="button" data-scheme="kvp" class="scheme-tab px-4 py-2.5 rounded-xl text-xs font-bold transition-all bg-white text-slate-700 hover:bg-slate-100 border border-slate-200">
+            Kisan Vikas Patra (7.5%)
+          </button>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        
+        <!-- Controls Column (Left) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="flex items-center justify-between">
+            <h2 id="schemeTitle" class="text-xl sm:text-2xl font-bold text-slate-900">
+              Sukanya Samriddhi Account (SSA)
+            </h2>
+            <span id="rateBadge" class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold font-mono">
+              8.20% p.a.
+            </span>
+          </div>
+          <p id="schemeDescription" class="text-xs text-slate-600 leading-relaxed">
+            High-interest government initiative for the girl child below 10 years of age. Deposit for 15 years; matures upon 21 years with 100% tax-free interest.
+          </p>
+
+          <!-- Investment Input -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="investmentInput" id="investmentLabel" class="font-bold text-slate-700">
+                Annual Investment Amount (₹)
+              </label>
+              <span id="investmentDisplay" class="font-mono font-extrabold text-brand-600 text-base">
+                ₹ 1,50,000
+              </span>
+            </div>
+            <input 
+              type="range" 
+              id="investmentSlider" 
+              min="1000" 
+              max="150000" 
+              step="1000" 
+              value="150000" 
+              class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"
+            />
+            <div class="flex justify-between text-[11px] text-slate-400 font-mono">
+              <span id="minLimitLabel">Min: ₹250</span>
+              <span id="maxLimitLabel">Max: ₹1,50,000 / year</span>
+            </div>
+          </div>
+
+          <!-- Tenure / Age Input -->
+          <div id="tenureContainer" class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="tenureInput" id="tenureLabel" class="font-bold text-slate-700">
+                Girl Child's Current Age
+              </label>
+              <span id="tenureDisplay" class="font-mono font-bold text-slate-800 text-sm">
+                1 Year
+              </span>
+            </div>
+            <input 
+              type="range" 
+              id="tenureSlider" 
+              min="1" 
+              max="10" 
+              step="1" 
+              value="1" 
+              class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"
+            />
+            <div class="flex justify-between text-[11px] text-slate-400 font-mono">
+              <span>1 Year</span>
+              <span>Max: 10 Years</span>
+            </div>
+          </div>
+
+          <!-- Feature Highlights Checklist -->
+          <div class="bg-slate-50 rounded-2xl p-4 border border-slate-100 space-y-2 text-xs text-slate-700">
+            <div class="font-bold text-slate-900 flex items-center gap-1.5">
+              <span>📋</span> Key Scheme Guidelines (Ministry of Finance 2026):
+            </div>
+            <ul id="schemeHighlights" class="space-y-1.5 text-slate-600 list-disc list-inside">
+              <li>Section 80C Tax Exemption up to ₹1,50,000 per financial year.</li>
+              <li>Exempt-Exempt-Exempt (EEE) status: Principal, Interest, and Maturity are 100% Tax-Free.</li>
+              <li>Compounded annually; deposited for 15 years from account opening.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Results Display Column (Right) -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-pinDark-950 text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between shadow-lg">
+          <div>
+            <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-1">
+              Estimated Maturity Value
+            </span>
+            <div id="maturityAmountDisplay" class="text-3xl sm:text-4xl font-extrabold font-mono text-emerald-400 mb-6">
+              ₹ 69,80,098
+            </div>
+
+            <div class="space-y-3.5 border-t border-slate-800 pt-5 text-xs">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Total Investment:</span>
+                <span id="totalDepositDisplay" class="font-mono font-bold text-white text-sm">
+                  ₹ 22,50,000
+                </span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Total Interest Earned:</span>
+                <span id="totalInterestDisplay" class="font-mono font-bold text-emerald-300 text-sm">
+                  ₹ 47,30,098
+                </span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Maturity Year:</span>
+                <span id="maturityYearDisplay" class="font-mono font-bold text-white text-sm">
+                  2047 (21 Years)
+                </span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">Tax Exemption:</span>
+                <span id="taxStatusDisplay" class="font-bold text-accent-300 text-xs">
+                  Section 80C + 10(10D) [EEE]
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-slate-800/80 text-[11px] text-slate-400 leading-relaxed">
+            *Interest rates are reviewed and notified quarterly by the Ministry of Finance, Government of India. Accounts can be transferred across any post office in India free of charge.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 2026 Interest Rates Comparison Schedule Table -->
+    <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-8 shadow-sm space-y-6">
+      <div>
+        <span class="text-xs font-bold text-brand-600 uppercase tracking-wider">Official Gazette Rates</span>
+        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mt-1">
+          Post Office Small Savings Schemes Interest Rate Chart 2026
+        </h2>
+        <p class="text-xs text-slate-500 mt-1">
+          Applicable across all Head Post Offices (HO), Sub Post Offices (SO), and Branch Post Offices (BO) nationwide.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="bg-slate-50 text-slate-700 font-bold uppercase tracking-wider border-b border-slate-200">
+            <tr>
+              <th class="p-3.5">Scheme Name</th>
+              <th class="p-3.5">Interest Rate (p.a.)</th>
+              <th class="p-3.5">Compounding Frequency</th>
+              <th class="p-3.5">Minimum Deposit</th>
+              <th class="p-3.5">Tenure / Maturity</th>
+              <th class="p-3.5">Tax Benefit (80C)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100 text-slate-800">
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">Sukanya Samriddhi Account (SSA)</td>
+              <td class="p-3.5 font-mono font-bold text-emerald-600">8.2%</td>
+              <td class="p-3.5 text-slate-600">Annually</td>
+              <td class="p-3.5 font-mono">₹250</td>
+              <td class="p-3.5">21 Years (Deposit 15 yrs)</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">Yes (EEE)</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">Senior Citizen Savings Scheme (SCSS)</td>
+              <td class="p-3.5 font-mono font-bold text-emerald-600">8.2%</td>
+              <td class="p-3.5 text-slate-600">Quarterly Payout</td>
+              <td class="p-3.5 font-mono">₹1,000</td>
+              <td class="p-3.5">5 Years (Extendable by 3)</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">Yes (Sec 80C)</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">National Savings Certificate (NSC VIII Issue)</td>
+              <td class="p-3.5 font-mono font-bold text-brand-600">7.7%</td>
+              <td class="p-3.5 text-slate-600">Annually (Paid at maturity)</td>
+              <td class="p-3.5 font-mono">₹1,000</td>
+              <td class="p-3.5">5 Years</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">Yes (Sec 80C)</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">Kisan Vikas Patra (KVP)</td>
+              <td class="p-3.5 font-mono font-bold text-brand-600">7.5%</td>
+              <td class="p-3.5 text-slate-600">Annually (Doubles money)</td>
+              <td class="p-3.5 font-mono">₹1,000</td>
+              <td class="p-3.5">115 Months (9 yrs 7 mos)</td>
+              <td class="p-3.5 text-slate-500">No</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">Post Office Monthly Income Scheme (POMIS)</td>
+              <td class="p-3.5 font-mono font-bold text-brand-600">7.4%</td>
+              <td class="p-3.5 text-slate-600">Monthly Payout</td>
+              <td class="p-3.5 font-mono">₹1,000</td>
+              <td class="p-3.5">5 Years</td>
+              <td class="p-3.5 text-slate-500">No</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">Public Provident Fund (PPF)</td>
+              <td class="p-3.5 font-mono font-bold text-brand-600">7.1%</td>
+              <td class="p-3.5 text-slate-600">Annually</td>
+              <td class="p-3.5 font-mono">₹500</td>
+              <td class="p-3.5">15 Years (Block of 5)</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">Yes (EEE)</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="p-3.5 font-bold text-slate-900">5-Year Post Office Time Deposit (POTD)</td>
+              <td class="p-3.5 font-mono font-bold text-brand-600">7.5%</td>
+              <td class="p-3.5 text-slate-600">Quarterly (Compounded)</td>
+              <td class="p-3.5 font-mono">₹1,000</td>
+              <td class="p-3.5">5 Years</td>
+              <td class="p-3.5 text-emerald-700 font-semibold">Yes (Sec 80C)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Editorial In-Depth Guide: Why Choose Post Office Over Commercial Banks -->
+    <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-10 shadow-sm space-y-6 text-slate-700 text-sm leading-relaxed">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+        Why Indian Citizens Prefer Post Office Small Savings Schemes
+      </h2>
+      <p>
+        The <strong>National Savings Institute (NSI)</strong> and the <strong>Department of Posts</strong> operate the world's most extensive public savings architecture. Unlike commercial bank fixed deposits that are insured only up to ₹5,00,000 under the Deposit Insurance and Credit Guarantee Corporation (DICGC), Post Office deposits enjoy an **unconditional sovereign guarantee** from the Government of India, making them the safest savings instrument in the country.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+          <div class="text-brand-600 font-bold text-sm">1. Sovereign Backing</div>
+          <p class="text-xs text-slate-600 leading-relaxed">Every rupee deposited in Post Office schemes is backed directly by the Consolidated Fund of India, guaranteeing absolute capital protection.</p>
+        </div>
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+          <div class="text-brand-600 font-bold text-sm">2. Doorstep IPPB Integration</div>
+          <p class="text-xs text-slate-600 leading-relaxed">With India Post Payments Bank (IPPB), accounts can be managed via mobile apps, and rural Gramin Dak Sevaks provide doorstep cash deposit and withdrawal via AePS.</p>
+        </div>
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-2">
+          <div class="text-brand-600 font-bold text-sm">3. Highest Regulated Rates</div>
+          <p class="text-xs text-slate-600 leading-relaxed">Schemes like SSY (8.2%) and SCSS (8.2%) consistently outpace major scheduled commercial bank 5-year fixed deposit offerings.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="bg-white rounded-2xl border border-slate-200/80 p-6 sm:p-10 shadow-sm space-y-6">
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-900">
+        Frequently Asked Questions: Post Office Schemes
+      </h2>
+      <div class="space-y-4 text-xs leading-relaxed text-slate-600">
+        <details class="bg-slate-50 p-4 rounded-xl border border-slate-100 group">
+          <summary class="font-bold text-slate-900 cursor-pointer list-none flex justify-between items-center text-sm">
+            <span>Can Non-Resident Indians (NRIs) open Post Office savings accounts?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="mt-2 text-slate-600">
+            No, NRIs are not eligible to open new Post Office small savings scheme accounts (including PPF, SCSS, and POMIS). However, if an Indian resident opens an account and subsequently becomes an NRI, the account can continue till maturity on a non-repatriation basis without extension.
+          </p>
+        </details>
+
+        <details class="bg-slate-50 p-4 rounded-xl border border-slate-100 group">
+          <summary class="font-bold text-slate-900 cursor-pointer list-none flex justify-between items-center text-sm">
+            <span>What documents are required to open an account at my local Post Office?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <div class="mt-2 text-slate-600 space-y-1">
+            <p>1. Official account opening form (available at any Head or Sub Post Office).</p>
+            <p>2. Proof of Identity (Aadhaar Card, Voter ID, Passport, or Driving License).</p>
+            <p>3. Proof of Address (Aadhaar or utility bill matching current PIN code).</p>
+            <p>4. PAN Card (mandatory for deposits exceeding ₹50,000).</p>
+            <p>5. Passport-sized photographs and birth certificate (for minor accounts like SSY).</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<script is:inline>
+  // Financial Calculator Engine for India Post Schemes
+  const schemes = {
+    ssy: {
+      title: "Sukanya Samriddhi Account (SSA)",
+      rate: 0.082,
+      rateText: "8.20% p.a.",
+      desc: "Tax-free savings dedicated to girl children up to 10 years of age. Deposit for 15 years; matures at 21 years.",
+      inputLabel: "Annual Investment Amount (₹)",
+      min: 250,
+      max: 150000,
+      step: 1000,
+      defaultVal: 150000,
+      hasTenure: true,
+      tenureLabel: "Girl Child's Current Age",
+      tenureMin: 1,
+      tenureMax: 10,
+      defaultTenure: 1,
+      highlights: [
+        "100% Tax-Free under Section 80C and Section 10(10D) (Exempt-Exempt-Exempt).",
+        "Compound interest credited annually at sovereign 8.2% rate.",
+        "Matures 21 years from account opening or upon girl's marriage after age 18."
+      ],
+      calculate: (amount, age) => {
+        const depositYears = 15;
+        const maturityYears = 21;
+        let balance = 0;
+        let totalDeposit = 0;
+        const rate = 0.082;
+        for (let year = 1; year <= maturityYears; year++) {
+          if (year <= depositYears) {
+            balance += amount;
+            totalDeposit += amount;
+          }
+          balance += balance * rate;
+        }
+        return {
+          totalDeposit: Math.round(totalDeposit),
+          maturityAmount: Math.round(balance),
+          totalInterest: Math.round(balance - totalDeposit),
+          maturityYear: new Date().getFullYear() + maturityYears,
+          taxStatus: "Section 80C + 10(10D) [EEE]"
+        };
+      }
+    },
+    scss: {
+      title: "Senior Citizen Savings Scheme (SCSS)",
+      rate: 0.082,
+      rateText: "8.20% p.a.",
+      desc: "For individuals aged 60+ (or 55+ for VRS retirees). Highest sovereign quarterly payout scheme in India.",
+      inputLabel: "Lump Sum Deposit Amount (₹)",
+      min: 1000,
+      max: 3000000,
+      step: 10000,
+      defaultVal: 1500000,
+      hasTenure: false,
+      highlights: [
+        "Maximum deposit ceiling increased to ₹30 Lakhs per individual.",
+        "Quarterly interest payout directly credited to savings account.",
+        "Section 80C deduction up to ₹1.5 Lakhs. Section 80TTB exemption on interest up to ₹50,000."
+      ],
+      calculate: (amount) => {
+        const rate = 0.082;
+        const years = 5;
+        const quarterlyInterest = (amount * rate) / 4;
+        const totalInterest = quarterlyInterest * 4 * years;
+        return {
+          totalDeposit: amount,
+          maturityAmount: amount + totalInterest,
+          totalInterest: Math.round(totalInterest),
+          maturityYear: new Date().getFullYear() + years,
+          taxStatus: "Sec 80C + ₹" + Math.round(quarterlyInterest).toLocaleString('en-IN') + "/quarter"
+        };
+      }
+    },
+    ppf: {
+      title: "Public Provident Fund (PPF)",
+      rate: 0.071,
+      rateText: "7.10% p.a.",
+      desc: "15-year government sovereign fund for all Indian citizens with complete EEE tax exemption.",
+      inputLabel: "Annual Investment Amount (₹)",
+      min: 500,
+      max: 150000,
+      step: 500,
+      defaultVal: 150000,
+      hasTenure: false,
+      highlights: [
+        "Completely tax-free interest and maturity under Section 10(10D).",
+        "15-year tenure extendable indefinitely in blocks of 5 years with or without deposits.",
+        "Loan and partial withdrawal facility available from 3rd and 7th financial years."
+      ],
+      calculate: (amount) => {
+        const rate = 0.071;
+        const years = 15;
+        let balance = 0;
+        let totalDeposit = 0;
+        for (let i = 1; i <= years; i++) {
+          balance += amount;
+          totalDeposit += amount;
+          balance += balance * rate;
+        }
+        return {
+          totalDeposit: totalDeposit,
+          maturityAmount: Math.round(balance),
+          totalInterest: Math.round(balance - totalDeposit),
+          maturityYear: new Date().getFullYear() + years,
+          taxStatus: "Section 80C [EEE 100% Tax-Free]"
+        };
+      }
+    },
+    pomis: {
+      title: "Post Office Monthly Income Scheme (POMIS)",
+      rate: 0.074,
+      rateText: "7.40% p.a.",
+      desc: "Guaranteed monthly income for retirees and families. Single account max ₹9L; Joint account max ₹15L.",
+      inputLabel: "Lump Sum Investment Amount (₹)",
+      min: 1000,
+      max: 1500000,
+      step: 5000,
+      defaultVal: 900000,
+      hasTenure: false,
+      highlights: [
+        "Fixed monthly income payout: ₹5,550/month for ₹9 Lakhs; ₹9,250/month for ₹15 Lakhs.",
+        "5-year maturity with 100% principal refund.",
+        "Automatic monthly credit into Post Office Savings Bank (POSB) or IPPB savings account."
+      ],
+      calculate: (amount) => {
+        const rate = 0.074;
+        const years = 5;
+        const monthlyInterest = (amount * rate) / 12;
+        const totalInterest = monthlyInterest * 12 * years;
+        return {
+          totalDeposit: amount,
+          maturityAmount: amount + totalInterest,
+          totalInterest: Math.round(totalInterest),
+          maturityYear: new Date().getFullYear() + years,
+          taxStatus: "₹" + Math.round(monthlyInterest).toLocaleString('en-IN') + " Monthly Payout"
+        };
+      }
+    },
+    nsc: {
+      title: "National Savings Certificate (NSC VIII Issue)",
+      rate: 0.077,
+      rateText: "7.70% p.a.",
+      desc: "5-year fixed sovereign certificate. High interest compounded annually, payable at maturity.",
+      inputLabel: "Investment Amount (₹)",
+      min: 1000,
+      max: 2000000,
+      step: 5000,
+      defaultVal: 100000,
+      hasTenure: false,
+      highlights: [
+        "No upper ceiling on investment amount.",
+        "Interest accrued annually qualifies for fresh Section 80C tax deduction.",
+        "Widely accepted as collateral security for commercial business and bank loans."
+      ],
+      calculate: (amount) => {
+        const rate = 0.077;
+        const years = 5;
+        const maturity = amount * Math.pow(1 + rate, years);
+        return {
+          totalDeposit: amount,
+          maturityAmount: Math.round(maturity),
+          totalInterest: Math.round(maturity - amount),
+          maturityYear: new Date().getFullYear() + years,
+          taxStatus: "Section 80C Eligible"
+        };
+      }
+    },
+    kvp: {
+      title: "Kisan Vikas Patra (KVP)",
+      rate: 0.075,
+      rateText: "7.50% p.a.",
+      desc: "Doubles your principal in exactly 115 months (9 years and 7 months) with sovereign safety.",
+      inputLabel: "Investment Amount (₹)",
+      min: 1000,
+      max: 2000000,
+      step: 5000,
+      defaultVal: 100000,
+      hasTenure: false,
+      highlights: [
+        "Guaranteed 2x return: ₹1,00,000 becomes exactly ₹2,00,000.",
+        "Maturity tenure: 115 months (9 years 7 months).",
+        "Premature encashment permitted after 2 years and 6 months."
+      ],
+      calculate: (amount) => {
+        return {
+          totalDeposit: amount,
+          maturityAmount: amount * 2,
+          totalInterest: amount,
+          maturityYear: new Date().getFullYear() + 9,
+          taxStatus: "100% Capital Guaranteed"
+        };
+      }
+    }
+  };
+
+  let activeScheme = 'ssy';
+
+  function updateUI() {
+    const s = schemes[activeScheme];
+    document.getElementById('schemeTitle').innerText = s.title;
+    document.getElementById('rateBadge').innerText = s.rateText;
+    document.getElementById('schemeDescription').innerText = s.desc;
+    document.getElementById('investmentLabel').innerText = s.inputLabel;
+
+    const slider = document.getElementById('investmentSlider');
+    slider.min = s.min;
+    slider.max = s.max;
+    slider.step = s.step;
+    if (slider.value > s.max || slider.value < s.min) {
+      slider.value = s.defaultVal;
+    }
+
+    document.getElementById('minLimitLabel').innerText = `Min: ₹${s.min.toLocaleString('en-IN')}`;
+    document.getElementById('maxLimitLabel').innerText = `Max: ₹${s.max.toLocaleString('en-IN')}`;
+
+    const tenureBox = document.getElementById('tenureContainer');
+    if (s.hasTenure) {
+      tenureBox.style.display = 'block';
+    } else {
+      tenureBox.style.display = 'none';
+    }
+
+    const hlList = document.getElementById('schemeHighlights');
+    hlList.innerHTML = s.highlights.map(h => `<li>${h}</li>`).join('');
+
+    calculate();
+  }
+
+  function calculate() {
+    const s = schemes[activeScheme];
+    const amount = Number(document.getElementById('investmentSlider').value);
+    const tenure = Number(document.getElementById('tenureSlider').value);
+
+    document.getElementById('investmentDisplay').innerText = `₹ ${amount.toLocaleString('en-IN')}`;
+    document.getElementById('tenureDisplay').innerText = `${tenure} Year${tenure > 1 ? 's' : ''}`;
+
+    const res = s.calculate(amount, tenure);
+
+    document.getElementById('maturityAmountDisplay').innerText = `₹ ${res.maturityAmount.toLocaleString('en-IN')}`;
+    document.getElementById('totalDepositDisplay').innerText = `₹ ${res.totalDeposit.toLocaleString('en-IN')}`;
+    document.getElementById('totalInterestDisplay').innerText = `₹ ${res.totalInterest.toLocaleString('en-IN')}`;
+    document.getElementById('maturityYearDisplay').innerText = `${res.maturityYear}`;
+    document.getElementById('taxStatusDisplay').innerText = res.taxStatus;
+  }
+
+  document.querySelectorAll('.scheme-tab').forEach(tab => {
+    tab.addEventListener('click', (e) => {
+      document.querySelectorAll('.scheme-tab').forEach(t => {
+        t.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+        t.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+      });
+      tab.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+      tab.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+
+      activeScheme = tab.dataset.scheme;
+      updateUI();
+    });
+  });
+
+  document.getElementById('investmentSlider').addEventListener('input', calculate);
+  document.getElementById('tenureSlider').addEventListener('input', calculate);
+
+  // Initialize
+  updateUI();
+</script>
